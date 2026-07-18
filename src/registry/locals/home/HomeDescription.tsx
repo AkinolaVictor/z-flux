@@ -2,7 +2,9 @@ import { pad_x } from '@/utils/helper'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import { TextFadeDown, TextFadeSkew_2 } from 'react-web-flux'
+// import { TextFadeDown, TextFadeSkew_2 } from 'react-web-flux'
+import TextFadeDown from '@/registry/z-flux/texts/TextFadeDown'
+import TextFadeSkew_2 from '@/registry/z-flux/texts/TextFadeSkew_2'
 
 interface Props {}
 

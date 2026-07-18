@@ -20,7 +20,7 @@ export const texts_fade_skew = {
     // concept: "Description of the way this was achievedi",
     setup: {
         cli: {
-            npm: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFadeSkew.json",
+            npm: "npx shadcn add https://z-flux.vercel.app/r/TextFadeSkew.json",
             usage: usageFunc
         },
         rawcode: {

@@ -140,7 +140,7 @@ function Getting_started(props: Props) {
                                 data={[
                                     {
                                         name: "npm",
-                                        code: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFade.json"
+                                        code: "npx shadcn add https://z-flux.vercel.app/r/TextFade.json"
                                     }
                                 ]}
                             />

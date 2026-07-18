@@ -186,7 +186,7 @@ function ComponentDetails(props: Props) {
                         </div>:
                         null
                     }
-                    <div className={`component-preview-container w-full h-120 bg-amber-600s rounded-2xl_e mt-5 border border-[#757070] overflow-x-hidden overflow-y-auto`}>
+                    <div data-scroll-behavior="smooth" className={`component-preview-container w-full h-120 bg-amber-600s rounded-2xl_e mt-5 border border-[#757070] overflow-x-hidden overflow-y-auto`}>
                         {
                             ThisPreview?
                             <ThisPreview />:

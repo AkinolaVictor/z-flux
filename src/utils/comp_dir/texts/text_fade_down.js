@@ -21,7 +21,7 @@ export const texts_fade_down = {
     // concept: "Description of the way this was achieved",
     setup: {
         cli: {
-            npm: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFadeDown.json",
+            npm: "npx shadcn add https://z-flux.vercel.app/r/TextFadeDown.json",
             usage: usageFunc
         },
         rawcode: {

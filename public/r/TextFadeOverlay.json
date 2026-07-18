@@ -5,7 +5,7 @@
   "description": "A text animation component",
   "dependencies": [],
   "registryDependencies": [
-    "https://webflux-rouge.vercel.app/r/TextEngine.json"
+    "https://z-flux.vercel.app/r/TextEngine.json"
   ],
   "files": [
     {

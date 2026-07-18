@@ -9,7 +9,7 @@ const js_cs = (setState)=>getCode("/codes/vertical_scroll/vertical_scroll_js_cs.
 export const slider_vertical_scroll = {
     title: "Vertical Scroll",
     href: "/components/vertical_scroll",
-    date_published: "07-07-2026",
+    date_published: "18-07-2026",
     id: "vertical_scroll",
     section: "Transitions",
     Icon: ()=><Type size={"13px"}/>,
@@ -17,7 +17,7 @@ export const slider_vertical_scroll = {
     // concept: "Description of the way this was achieved",
     setup: {
         cli: {
-            npm: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFadeSkew_2.json",
+            npm: "npx shadcn add https://z-flux.vercel.app/r/TextFadeSkew_2.json",
             usage: usageFunc
         },
         rawcode: {

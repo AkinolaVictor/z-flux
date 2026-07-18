@@ -20,7 +20,7 @@ export const transition_integrated_scroll = {
     // concept: "Description of the way this was achieved",
     setup: {
         cli: {
-            npm: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFadeSkew_2.json",
+            npm: "npx shadcn add https://z-flux.vercel.app/r/TextFadeSkew_2.json",
             usage: usageFunc
         },
         rawcode: {
