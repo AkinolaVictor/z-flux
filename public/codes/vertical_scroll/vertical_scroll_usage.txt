@@ -66,8 +66,8 @@ const dt = [
     {
         style: {minWidth: "440px", height: "200px", background: "#8EC5FF"},
         txt: "Sasd"
-    },
-]
+    }
+];
 
 <VerticalScroll startAnimation='top'>
     {
