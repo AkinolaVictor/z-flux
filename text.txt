@@ -1,0 +1,111 @@
+
+A fully kinetic and event-driven, open source web components that help you write 
+less codes and build faster and makes your project stand out.
+
+Reconstruct this sentense for makes
+
+A fully animated and event-driven web components library, open source to help you
+write less codes and build faster.
+
+
+I am building a web component library, with the vision of making fully animated, event-driven, 
+and very easy to use (and also copy and paste-if they like) components, that is also fully open source.
+
+Write me a title for this project (less than 25 words), that i can use for the hero section.
+Write me a description for this project (less than 70 words), that i can use for the hero section.
+
+here are samples from other websites
+title: Animate your UI with smooth style
+description: A fully animated, open-source React component distribution. Browse a list of animated primitives, components and icons you can install and use in your projects.
+
+
+Here are the categories of components to be had in this ui library, write me a description for each of this category. 
+Ensure each is less than 50 words, and straight to the point.
+
+1. Text animation
+2. Transition animation (to transition between one page to another, or from one section of a page to another)
+3. Slider/carousel
+4. cursors
+5. More (To describe that we still have more coming soon)
+
+
+write me a very good introduction for this ui library, considering the information you already have.
+
+here's an example you can follow:
+
+"React Bits is an open-source collection of carefully designed UI components that aim to enhance your React web applications.
+
+This is not your typical component library, which means you won't find a set of generic buttons, inputs, or other common UI elements here.
+
+Basically, these components are here to help you stand out and make a statement visually by adding a touch of creativity to your projects."
+
+Ensure to write something better than this.
+
+
+
+Write a suitable mission and vision for this ui library, see an example below, for format
+
+The goal of React Bits is simple - provide flexible, visually stunning and most importantly, free components that take web projects to the next level.
+
+To make that happen, the project is committed to the following principles:
+
+Free For All: You own the code, and it's free to use in your projects
+Prop-First Approach: Easy customization through thoughtfully exposed props
+Fully Modular: Install strictly what you need, React Bits is not a dependency
+Free Choice: JS or TS, plain CSS or Tailwind, the code is all here
+
+
+
+
+
+write me why i am a great fit for a frontend developer role at luma studio (2-3 sentences)
+
+here are some of the things you can talk about
+1. i was the ceo and cto of the tech startup i created
+2. i can develop quality products
+3. currently i am building an open-source project for ui library
+4. i have great communication skills
+5. i have great technical skills
+
+
+I've had the opportunity to lead products from idea to launch, giving me hands-on experience making technical decisions, building polished user experiences, and shipping high-quality software. I'm currently building an open-source UI library, which reflects my passion for creating scalable, polished frontend systems, and I pair strong technical expertise with clear communication to collaborate effectively and turn ideas into exceptional products.
+
+
+
+I have two scroll trigger versions here for the same purpose, why do they behave differently?
+
+
+instead of receiving a single child prop in a react component, how do i recieve multiple children at the same time
+
+
+rewrite this code in only html and inlineCSS
+ <div 
+    ref={containerRef} 
+    className={`
+        ${className}
+        w-full h-auto flex relative integrated_scroll_container
+        ${
+            direction==="normal"?
+            "justify-start items-start":
+            direction==="reverse"?
+            "justify-start items-start flex-row-reverse":
+            direction==="backward"?
+            "justify-end items-start":
+            "justify-start items-start"
+        }
+    `}
+>
+    {
+        React.Children.map(children, (child, index)=>{
+            return (
+                <Fragment key={index}>
+                    {child}
+                </Fragment>
+            )
+        })
+    }
+</div>
+
+
+
+https://lifeattiktok.com/resume/7104433489986734350/apply

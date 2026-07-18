@@ -1,0 +1,85 @@
+import VerticalScroll from '@/VerticalScroll';
+
+
+// Example 1 code (check preview section)
+<VerticalScroll>
+    {
+        ["blue","red","green","brown","#333","purple","orange"].map((background, index)=>{
+            return (
+                <div 
+                    key={index} 
+                    style={{
+                        background,
+                        height: "100vh",
+                        minWidth: index==3?"416px":"100%",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "Center"
+                    }}
+                >
+                    <p>Section {index+1}</p>
+                </div>
+            )
+        })
+    }
+</VerticalScroll>
+
+            
+// Example 2 code (check preview section)
+<VerticalScroll direction='backward'>
+    <div style={{ background: "blue", height: "100vh", minWidth: "100vw", display: "flex", justifyContent: "center", alignItems: "center"}}>
+        Color is Blue (1)
+        // You can do anything here
+    </div>
+    <div style={{ background: "red", height: "100vh", minWidth: "100vw", display: "flex", justifyContent: "center", alignItems: "center"}}>
+        Color is red (2)
+        // You can do anything here
+    </div>
+    ...
+    // You can keep adding more stuffs as you want.
+</VerticalScroll>
+
+
+
+// Example 3 code (check preview section)
+const dt = [
+    {
+        style: {minWidth: "100%", height: "240px", background: "blue"},
+        txt: "Sasd"
+    },
+    {
+        style: {minWidth: "804px", height: "80px", background: "green"},
+        txt: "Sasd"
+    },
+    {
+        style: {minWidth: "320px", height: "280px", background: "#1C398E"},
+        txt: "Sasd"
+    },
+    {
+        style: {minWidth: "200px", height: "404px", background: "red"},
+        txt: "Sasd"
+    },
+    {
+        style: {minWidth: "100%", height: "360px", background: "#0D542B"},
+        txt: "Sasd"
+    },
+    {
+        style: {minWidth: "440px", height: "200px", background: "#8EC5FF"},
+        txt: "Sasd"
+    },
+]
+
+<VerticalScroll startAnimation='top'>
+    {
+        dt.map((item, index)=>{
+            return (
+                <div key={index} 
+                    style={{display: "flex", justifyContent: "center", alignItems: "center", ...item?.style}}
+                >
+                    <p>Page {index+1}</p>
+                </div>
+            )
+        })
+    }
+</VerticalScroll>
+

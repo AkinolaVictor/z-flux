@@ -1,0 +1,47 @@
+import { Type } from "lucide-react";
+import { TextEngineProps } from "../../engineProps/TextEngineProps"
+import Text_Fade_Skew_2_Preview from "@/utils/component_previews/texts/Text_Fade_Skew_2_Preview";
+import { getCode } from "@/utils/helper";
+
+const usageFunc = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_usage.txt", setState)
+const ts_tw = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_ts_tw.txt", setState)
+const ts_cs = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_ts_cs.txt", setState)
+const js_tw = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_js_tw.txt", setState)
+const js_cs = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_js_cs.txt", setState)
+
+export const texts_fade_skew_2 = {
+    title: "FadeSkew 2",
+    href: "/components/text_fade_skew_2",
+    id: "fade_skew_2",
+    section: "Texts",
+    Icon: ()=><Type size={"13px"}/>,
+    date_published: "04-07-2026",
+    description: "Reveal text by adjusting the skewX and opacity values",
+    // concept: "Description of the way this was achieved",
+    setup: {
+        cli: {
+            npm: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFadeSkew_2.json",
+            usage: usageFunc
+        },
+        rawcode: {
+            dependencies: "npm install gsap",
+            codes: {
+                ts_tw,
+                ts_cs,
+                js_tw,
+                js_cs
+            }
+        }
+    },
+    // similar: [
+    //     {
+    //         name: "FadeSkew 2",
+    //         href: "/components/text_fade_skew_2"
+    //     }
+    // ],
+    engine: "TextEngine",
+    preview: Text_Fade_Skew_2_Preview,
+    props: [
+        ...TextEngineProps
+    ]
+}
