@@ -17,7 +17,7 @@ export const texts_fade_skew = {
     Icon: ()=><Type size={"13px"}/>,
     date_published: "04-07-2026",
     description: "Reveal text by adjusting the skewX and opacity values",
-    // concept: "Description of the way this was achieved",
+    // concept: "Description of the way this was achievedi",
     setup: {
         cli: {
             npm: "npx shadcn add https://webflux-rouge.vercel.app/r/TextFadeSkew.json",
