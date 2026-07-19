@@ -37,7 +37,6 @@ export default function TextEngine(props) {
 
         let ctx = gsap.context(()=>{
 
-            if(tl) return
             if(!el || !fontLoaded) return;
 
             const paused = (playOnScroll || playInView)?true:false;
