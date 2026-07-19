@@ -223,7 +223,8 @@ export default function TextEngine(props) {
                     ...moreScroll,
                 });
             };
-        }, containerRef)
+        })
+        // }, containerRef)
 
         return () => {
             ctx?.revert()
