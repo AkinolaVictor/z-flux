@@ -42,6 +42,7 @@ export default function VerticalScroll({
     function initialize_animation(){
         const el = containerRef.current;
         if(!el || !ready) return;
+        // let ctx = gsap.context()
 
         function findScrollingElement(elem, direct){
             let parent = direct?elem:document.querySelector(elem)

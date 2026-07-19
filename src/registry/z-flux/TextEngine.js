@@ -29,19 +29,19 @@ export default function TextEngine(props) {
     const [fontLoaded, setFontLoaded] = useState(false)
 
     
-    let ctx = null
-    let tl = null
+    // let ctx = null
+    // let tl = null
     function initi_animation(){
-        if(ctx) ctx?.revert()
+        // if(ctx) ctx?.revert()
         const el = containerRef.current;
 
-        ctx = gsap.context(()=>{
+        let ctx = gsap.context(()=>{
 
             if(tl) return
             if(!el || !fontLoaded) return;
 
             const paused = (playOnScroll || playInView)?true:false;
-            tl = timeline || gsap.timeline({paused, delay});
+            let tl = timeline || gsap.timeline({paused, delay});
             // if(!el) return;
             
             // declare scrolling element
@@ -225,11 +225,8 @@ export default function TextEngine(props) {
             };
         }, containerRef)
 
-        // setReady(true);
-
         return () => {
             ctx?.revert()
-            ctx?.kill()
             ScrollTrigger.getAll().forEach(st => {
                 if (st.trigger === el) st.kill();
             })
