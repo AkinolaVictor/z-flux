@@ -1,12 +1,101 @@
 import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SplitText } from 'gsap/SplitText';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { build_extend_animation, findScrollingElement } from 'z-flux-utils';
+import gsap from 'gsap';
+import { SplitText } from 'gsap/SplitText';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-export default function TextEngine(props) {
+
+const DEFAULT_FROM = {
+    opacity: 0,
+    x: 100,
+    skewX: 100
+};
+
+const DEFAULT_TO = {
+    opacity: 1,
+    x: 0,
+    skewX: 0,
+    ease: "power3.out"
+};
+
+function getProgressionData(
+    progression,
+    chars,
+    words,
+    lines,
+    speed,
+    playOnScroll
+) {
+
+    const speedMap = {
+        char: playOnScroll ? 0.005 : 0.1,
+        word: 0.35,
+        line: 0.9,
+        char_line: 0.08,
+        word_line: 0.5
+    };
+
+    if (progression === "char_line") {
+
+        const animate = lines.flatMap(line => {
+
+            const lineChars = chars.filter(char =>
+                line.contains(char)
+            );
+
+            return lineChars.map((char, index) => ({
+                char,
+                charIndexInLine: index
+            }));
+        });
+
+        return {
+            set: chars,
+            animate,
+            speed: speed ?? speedMap.char_line
+        };
+    }
+
+    if (progression === "word_line") {
+
+        const animate = lines.flatMap(line => {
+
+            const lineWords = words.filter(word =>
+                line.contains(word)
+            );
+
+            return lineWords.map((char, index) => ({
+                char,
+                charIndexInLine: index
+            }));
+        });
+
+        return {
+            set: words,
+            animate,
+            speed: speed ?? speedMap.word_line
+        };
+    }
+
+    const map = {
+        char: chars,
+        word: words,
+        line: lines
+    };
+
+    const targets = map[progression] || chars;
+
+    return {
+        set: targets,
+        animate: targets,
+        speed: speed ?? speedMap[progression] ?? speedMap.char
+    };
+}
+
+function TextEngine(props) {
     const {
         text, 
         scrollingElement,
@@ -25,464 +114,187 @@ export default function TextEngine(props) {
         watch=false
     } = props
     const containerRef = useRef(null);
-    const [screenResize, setScreenResize] = useState(0)
     const [fontLoaded, setFontLoaded] = useState(false)
+    const [resizeTick, setResizeTick] = useState(0);
 
-    
-    // let ctx = null
-    // let tl = null
-    function initi_animation(){
-        // if(ctx) ctx?.revert()
-        const el = containerRef.current;
+    function initi_animation() {
 
-        let ctx = gsap.context(()=>{
+        const element = containerRef.current;
 
-            if(!el || !fontLoaded) return;
+        if (!element || !fontLoaded) return;
 
-            const paused = (playOnScroll || playInView)?true:false;
-            let tl = timeline || gsap.timeline({paused, delay});
-            // if(!el) return;
-            
-            // declare scrolling element
-            function findScrollingElement(elem){
-                let parent = document.querySelector(elem)
-                
-                while(parent) {
-                    const {overflowY} = getComputedStyle(parent)
-                    if((overflowY === "auto" || overflowY === "scroll") && (parent.scrollHeight > parent.clientHeight)){
-                        return parent
-                    }
-                    parent = parent.parentElement
-                }
-    
-                return document.scrollingElement
-            }
-    
+        const ctx = gsap.context(() => {
+
+            // const scroller = findScrollingElement(scrollingElement);
             const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(".fade_textation_x");
-    
-            const splitRef = SplitText.create(el, {
+
+            const split = SplitText.create(element, {
                 type: "lines,words,chars",
+                autoSplit: true,
                 linesClass: "line",
                 wordsClass: "word",
-                charsClass: "char",
-                autoSplit: true,
-            })
-    
-            const {chars, lines, words} = splitRef;
-            const progression_data = progression_state()
-            
-            // depending on the type of animation progression the developer wants
-            // return elements that must be looped through to create the animation
-            function progression_state() {
-                
-                let anim2 = chars
-                if(progression === "char_line") {
-                    // animate characters and line together
-                    const charMeta = lines.flatMap((line)=>{
-                        const lineChars = chars.filter((c)=>{
-                            return line.contains(c);
-                        });
-                        return lineChars.map((char, charIndexInLine)=>({char, charIndexInLine}));
-                    });
-                    anim2 = charMeta
-                } else if(progression === "word_line") {
-                    // animate words and line together
-                    const wordMeta = lines.flatMap((line, index1)=>{
-                        const lineWords = words.filter((c)=>{
-                            return line.contains(c);
-                        });
-                        return lineWords.map((char, charIndexInLine)=>({char, charIndexInLine}));
-                    });
-                    anim2 = wordMeta
-                } else {
-                    anim2 = (
-                        progression=="char"?chars:
-                        progression=="word"?words:
-                        progression=="line"?lines:
-                        chars
-                    );
-                }
-    
-    
-                return {
-                    set: (
-                        progression=="char"?chars:  //animate characters progressively
-                        progression=="word"?words:    //animate words progressively
-                        progression=="line"?lines:    //animate lines progressively
-                        progression=="char_line"?chars:    //animate characters with line progressively
-                        progression=="word_line"?words:    //animate words with line progressively
-                        chars
-                    ),
-                    animate: anim2,
-                    speed_0: speed || (
-                        progression=="char"?(playOnScroll?0.005:0.1):
-                        progression=="word"?0.35:
-                        progression=="line"?0.9:
-                        progression=="char_line"?0.08:
-                        progression=="word_line"?0.5:
-                        0.08
-                    ),
-                };
-            };
-    
-            // convert extend animation input to acceptable css styles for the engine
-            function build_extend_animation(animation, which){
-                const obj = typeof(animation)=="object"?
-                            animation:
-                            {};
-                
-                const input_obj = Object.entries(obj).map((each)=>{
-                    const [key, val] = each;
-                    return {key, val};
-                });
-        
-                const all = {};
-        
-                for(let i=0; i<input_obj.length; i++){
-                    const key = input_obj[i].key;
-                    const val = input_obj[i].val;
-                    const which_val = which=="from"?val[0]:
-                                    which=="to"?val[1]:
-                                    "";
-                    if(which_val !== null){
-                        all[key] = which_val;
-                    }
-                };
-                
-                return all;
-            }
-            
-    
-            // gsap.set(progression_data.set, {
-            tl.set(progression_data.set, {
-                opacity: 0,
+                charsClass: "char"
+            });
+
+            const { chars, words, lines } = split;
+
+            const progressionData = getProgressionData(
+                progression,
+                chars,
+                words,
+                lines,
+                speed,
+                playOnScroll
+            );
+
+            const fromAnimation = {
+                // ...DEFAULT_FROM,
                 ...build_extend_animation(defaultAnimation, "from"),
                 ...build_extend_animation(extendAnimation, "from")
-            });
-    
-    
-            const moreScroll = moreScrollTrigger()
-    
-            const anim = (tl)=>{
-                if(!tl) return null;
-                
-                // loop through each line and apply styles to each character sequentially
-                progression_data.animate.forEach((charz, index)=>{
-                    let check_progression = progression==="char_line" || progression==="word_line";
-                    let char = check_progression ? charz.char : charz;
-                    const charIndexInLine = check_progression ? charz.charIndexInLine : index;
-    
-                    tl.to(
-                        char,
-                        {
-                            opacity: 1,
-                            ease: "power3.out",
-                            ...build_extend_animation(defaultAnimation, "to"),
-                            ...build_extend_animation(extendAnimation, "to"),
-                        },
-                        charIndexInLine*progression_data.speed_0 //use for speed (fast or slow)
-                    );
+            };
+
+            const toAnimation = {
+                // ...DEFAULT_TO,
+                ...build_extend_animation(defaultAnimation, "to"),
+                ...build_extend_animation(extendAnimation, "to")
+            };
+
+            const tl =
+                timeline ??
+                gsap.timeline({
+                    paused: playOnScroll || playInView,
+                    delay
                 });
-                
-                return tl;
+
+            tl.set(progressionData.set, fromAnimation);
+
+            const grouped =
+                progression === "char_line" ||
+                progression === "word_line";
+
+            if (grouped) {
+
+                progressionData.animate.forEach(item => {
+
+                    tl.to(
+                        item.char,
+                        toAnimation,
+                        item.charIndexInLine * progressionData.speed
+                    );
+
+                });
+
+            } else {
+
+                tl.to(
+                    progressionData.animate,
+                    {
+                        ...toAnimation,
+                        stagger: progressionData.speed
+                    },
+                    0
+                );
+
             }
-    
-            anim(tl);
-    
-            function moreScrollTrigger(){
-                if(typeof(gsapScrollTrigger)==="object"){
-                    return gsapScrollTrigger;
-                };
-    
-                if(typeof(gsapScrollTrigger)==="function"){
-                    return gsapScrollTrigger(tl)||{};
-                };
-    
-                return {};
-            }
-    
-            if(playOnScroll){
+
+            const triggerOptions =
+                typeof gsapScrollTrigger === "function"
+                    ? gsapScrollTrigger(tl) || {}
+                    : gsapScrollTrigger || {};
+
+            if (playOnScroll) {
+
                 ScrollTrigger.create({
-                    trigger: el,
+                    trigger: element,
                     scroller,
                     start: "top 85%",
                     end: "top 35%",
-                    scrub: playOnScroll,
+                    scrub: true,
                     animation: tl,
-                    ...moreScroll,
+                    ...triggerOptions
                 });
-    
-            } else if (playInView){
+
+            } else if (playInView) {
+
                 ScrollTrigger.create({
-                    trigger: el,
+                    trigger: element,
                     scroller,
                     start: "top bottom",
-                    onEnter: ()=>tl.restart(),
-                    onLeaveBack: ()=>tl.pause(),
-                    ...moreScroll,
+
+                    onEnter: () => tl.restart(),
+
+                    onLeaveBack: () => tl.pause(),
+
+                    ...triggerOptions
                 });
-            };
-        })
-        // }, containerRef)
+
+            }
+
+        }, containerRef);
+
+        return () => ctx.revert();
+
+    }
+
+    function updateScreenResize() {
+
+        if (!watch) return;
+
+        const target =
+            typeof watch === "string"
+                ? document.querySelector(watch)
+                : window;
+
+        if (!target) return;
+
+        const update = () => {
+            setResizeTick(prev => prev + 1);
+        };
+
+        target.addEventListener("resize", update);
 
         return () => {
-            ctx?.revert()
-            ScrollTrigger.getAll().forEach(st => {
-                if (st.trigger === el) st.kill();
-            })
+            target.removeEventListener("resize", update);
         };
     }
-    
-    // function initi_animation(){
-    //     let ctx = null
-    //     if(ctx) ctx.revert()
 
-    //     ctx = gsap.context(()=>{})
-    //     const el = containerRef.current;
-    //     if(!el || !fontLoaded) return;
-    //     // if(!el) return;
-        
-    //     // declare scrolling element
-    //     function findScrollingElement(elem){
-    //         let parent = document.querySelector(elem)
-            
-    //         while(parent) {
-    //             const {overflowY} = getComputedStyle(parent)
-    //             if((overflowY === "auto" || overflowY === "scroll") && (parent.scrollHeight > parent.clientHeight)){
-    //                 return parent
-    //             }
-    //             parent = parent.parentElement
-    //         }
-
-    //         return document.scrollingElement
-    //     }
-
-    //     const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(".fade_textation_x");
-
-    //     const splitRef = SplitText.create(el, {
-    //         type: "lines,words,chars",
-    //         linesClass: "line",
-    //         wordsClass: "word",
-    //         charsClass: "char",
-    //         autoSplit: true,
-    //     })
-
-    //     const {chars, lines, words} = splitRef;
-    //     const progression_data = progression_state()
-        
-    //     // depending on the type of animation progression the developer wants
-    //     // return elements that must be looped through to create the animation
-    //     function progression_state() {
-            
-    //         let anim2 = chars
-    //         if(progression === "char_line") {
-    //             // animate characters and line together
-    //             const charMeta = lines.flatMap((line)=>{
-    //                 const lineChars = chars.filter((c)=>{
-    //                     return line.contains(c);
-    //                 });
-    //                 return lineChars.map((char, charIndexInLine)=>({char, charIndexInLine}));
-    //             });
-    //             anim2 = charMeta
-    //         } else if(progression === "word_line") {
-    //             // animate words and line together
-    //             const wordMeta = lines.flatMap((line, index1)=>{
-    //                 const lineWords = words.filter((c)=>{
-    //                     return line.contains(c);
-    //                 });
-    //                 return lineWords.map((char, charIndexInLine)=>({char, charIndexInLine}));
-    //             });
-    //             anim2 = wordMeta
-    //         } else {
-    //             anim2 = (
-    //                 progression=="char"?chars:
-    //                 progression=="word"?words:
-    //                 progression=="line"?lines:
-    //                 chars
-    //             );
-    //         }
-
-
-    //         return {
-    //             set: (
-    //                 progression=="char"?chars:  //animate characters progressively
-    //                 progression=="word"?words:    //animate words progressively
-    //                 progression=="line"?lines:    //animate lines progressively
-    //                 progression=="char_line"?chars:    //animate characters with line progressively
-    //                 progression=="word_line"?words:    //animate words with line progressively
-    //                 chars
-    //             ),
-    //             animate: anim2,
-    //             speed_0: speed || (
-    //                 progression=="char"?(playOnScroll?0.005:0.1):
-    //                 progression=="word"?0.35:
-    //                 progression=="line"?0.9:
-    //                 progression=="char_line"?0.08:
-    //                 progression=="word_line"?0.5:
-    //                 0.08
-    //             ),
-    //         };
-    //     };
-
-    //     // convert extend animation input to acceptable css styles for the engine
-    //     function build_extend_animation(animation, which){
-    //         const obj = typeof(animation)=="object"?
-    //                     animation:
-    //                     {};
-            
-    //         const input_obj = Object.entries(obj).map((each)=>{
-    //             const [key, val] = each;
-    //             return {key, val};
-    //         });
-    
-    //         const all = {};
-    
-    //         for(let i=0; i<input_obj.length; i++){
-    //             const key = input_obj[i].key;
-    //             const val = input_obj[i].val;
-    //             const which_val = which=="from"?val[0]:
-    //                             which=="to"?val[1]:
-    //                             "";
-    //             if(which_val !== null){
-    //                 all[key] = which_val;
-    //             }
-    //         };
-            
-    //         return all;
-    //     }
-        
-    //     const paused = (playOnScroll || playInView)?true:false;
-    //     const tl = timeline || gsap.timeline({paused, delay});
-
-    //     // gsap.set(progression_data.set, {
-    //     tl.set(progression_data.set, {
-    //         opacity: 0,
-    //         ...build_extend_animation(defaultAnimation, "from"),
-    //         ...build_extend_animation(extendAnimation, "from")
-    //     });
-
-
-    //     const moreScroll = moreScrollTrigger()
-
-    //     const anim = (tl)=>{
-    //         if(!tl) return null;
-            
-    //         // loop through each line and apply styles to each character sequentially
-    //         progression_data.animate.forEach((charz, index)=>{
-    //             let check_progression = progression==="char_line" || progression==="word_line";
-    //             let char = check_progression ? charz.char : charz;
-    //             const charIndexInLine = check_progression ? charz.charIndexInLine : index;
-
-    //             tl.to(
-    //                 char,
-    //                 {
-    //                     opacity: 1,
-    //                     ease: "power3.out",
-    //                     ...build_extend_animation(defaultAnimation, "to"),
-    //                     ...build_extend_animation(extendAnimation, "to"),
-    //                 },
-    //                 charIndexInLine*progression_data.speed_0 //use for speed (fast or slow)
-    //             );
-    //         });
-            
-    //         return tl;
-    //     }
-
-    //     anim(tl);
-
-    //     function moreScrollTrigger(){
-    //         if(typeof(gsapScrollTrigger)==="object"){
-    //             return gsapScrollTrigger;
-    //         };
-
-    //         if(typeof(gsapScrollTrigger)==="function"){
-    //             return gsapScrollTrigger(tl)||{};
-    //         };
-
-    //         return {};
-    //     }
-
-    //     if(playOnScroll){
-    //         ScrollTrigger.create({
-    //             trigger: el,
-    //             scroller,
-    //             start: "top 85%",
-    //             end: "top 35%",
-    //             scrub: playOnScroll,
-    //             animation: tl,
-    //             ...moreScroll,
-    //         });
-
-    //     } else if (playInView){
-    //         ScrollTrigger.create({
-    //             trigger: el,
-    //             scroller,
-    //             start: "top bottom",
-    //             onEnter: ()=>tl.restart(),
-    //             onLeaveBack: ()=>tl.pause(),
-    //             ...moreScroll,
-    //         });
-    //     };
-
-    //     // setReady(true);
-
-    //     return () => {
-    //         splitRef.revert()
-    //         splitRef.kill()
-
-    //         tl.revert()
-    //         tl.kill();
-
-    //         ScrollTrigger.getAll().forEach(st => {
-    //             if (st.trigger === el) st.kill();
-    //         })
-    //     };
-    // }
-
-    function updateScreenResize(){
-        if(!watch) return
-
-        const elem = typeof(watch)==="string"?document.querySelector(watch):window
-        elem.addEventListener("resize", ()=>{
-            setScreenResize((prev)=>prev+1);
-        });
-    }
-
-    // // watch for screen resize so animation can be updated
-    useEffect(()=>{
-        updateScreenResize();
-    }, []);
-    
     useEffect(() => {
-        if (document.fonts.status === 'loaded') {
-            setFontLoaded(true);
-        } else {
-            async function seekFonts() {
-                await document.fonts.ready.then(() => {
-                    setFontLoaded(true);
-                }).catch(()=>{
-                    setFontLoaded(true);
-                });
+
+        const cleanup = updateScreenResize();
+
+        return cleanup;
+
+    }, [watch]);
+
+    useEffect(() => {
+
+        let mounted = true;
+
+        async function waitForFonts() {
+
+            await document.fonts.ready;
+
+            if (mounted) {
+                setFontLoaded(true);
             }
-            seekFonts()
+
         }
 
-        // window.onload=()=>setReady(true)
-        // document.addEventListener("DOMContentLoaded",()=>setReady(true))
-        // if(document.readyState=="complete") setReady(true)
+        waitForFonts();
+
+        return () => {
+            mounted = false;
+        };
+
     }, []);
 
-    // // useLayoutEffect(()=>{
-    // useEffect(()=>{
-    //     let anim = initi_animation();
-    //     return anim;
-    // }, [fontLoaded, screenResize])
-    
-    useGSAP(initi_animation, {
-        dependencies: [fontLoaded, screenResize],
-        scope: containerRef
-    })
-
+    useGSAP(
+        initi_animation,
+        {
+            scope: containerRef,
+            dependencies: [fontLoaded, resizeTick]
+        }
+    );
 
     if(React.isValidElement(children)){
         return React.cloneElement(children, {
@@ -513,4 +325,6 @@ export default function TextEngine(props) {
             {text}
         </p>
     );
-};
+}
+
+export default TextEngine

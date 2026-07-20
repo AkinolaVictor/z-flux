@@ -12,6 +12,7 @@ const js_cs = (setState)=>getCode("/codes/text_fade_down/text_fade_down_js_cs.tx
 
 export const texts_fade_down = {
     title: "Fade Down",
+    child: true,
     href: "/components/text_fade_down",
     id: "text_fade_down",
     date_published: "04-07-2026",

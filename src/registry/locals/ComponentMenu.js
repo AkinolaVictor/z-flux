@@ -9,6 +9,7 @@ import { usePathname, useRouter } from 'next/navigation'
 function ComponentMenu(props) {
     const {func} = props
     const [toggleState, setToggleState] = useState([""])
+    const [toggleState2, setToggleState2] = useState([""])
     const path = usePathname()
     const router = useRouter()
 
@@ -25,9 +26,31 @@ function ComponentMenu(props) {
         })
     }
 
+    function toggler2(value){
+        setToggleState2((prev)=>{
+            const curr = [...prev]
+            if(curr.includes(value)){
+                const ind = curr.indexOf(value)
+                curr.splice(ind, 1)
+            } else {
+                curr.push(value)
+            }
+            return curr
+        })
+    }
+
     function click_handler(item){
         func && func()
         // const {title, href, id} = item
+    }
+    
+    function print_content_num(content){
+        let num = content.length || 0
+        console.log(content)
+        content.forEach((item)=>{
+            if(item.taken) num--
+        })
+        return num
     }
 
     return (
@@ -42,7 +65,6 @@ function ComponentMenu(props) {
                             <div key={index_1} className='flex mb-5 w-full'>
                                 <div className='flex flex-col items-center justify-center'>
                                     <div className='flex justify-center items-center min-w-5 min-h-5 rounded-[5px] bg-[#3c3838]'>
-                                        {/* <Book size={"13px"}/> */}
                                         <Icon />
                                     </div>
                                     {
@@ -59,7 +81,12 @@ function ComponentMenu(props) {
                                     >
                                         <p className='opacity-80'>{item_1.section}</p>
                                         <div className='flex items-center justify-center gap-1 hover:bg-[#3c3838] px-0.5 rounded-[5px]'>
-                                            {item_1.content.length>1&&<p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">{item_1.content.length}</p>}
+                                            {
+                                                print_content_num(item_1.content)>1&&
+                                                <p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">
+                                                    {print_content_num(item_1.content)}
+                                                </p>
+                                            }
                                             {
                                                 hid?
                                                 <ChevronUp size={"15px"}/>:
@@ -67,31 +94,109 @@ function ComponentMenu(props) {
                                             }
                                         </div>
                                     </div>
+
                                     <div className={`${hid?'':"hidden"}`}>
                                         {
                                             item_1.content.map((item_2, index_2)=>{
-                                                const {title, href, id, hide} = item_2
+                                                const {title, href, id, hide, parent, grouped, taken} = item_2
                                                 const isPath = path==href
-                                                // console.log(isPath, thisRef)
-                                                return (
-                                                    <Link
-                                                        href={href}
-                                                        key={index_2}
-                                                        style={{display: hide?"none":"block"}}
-                                                    >
-                                                        <div 
-                                                            key={index_2} 
-                                                            onClick={()=>click_handler(item_2)}
-                                                            className={`
-                                                                cursor-pointer rounded-[3px] w-full px-2 py-3 w6:py-2 hover:bg-[#3c3838] 
-                                                                ${isPath?"bg-[#3c3838]":""}
-                                                            `}
-                                                        >
-                                                            <p className='w6:text-[12.5px] text-[14px]  w-full h-full'>{title}</p>
+                                                
+                                                if(parent){
+                                                    const hid2 = !toggleState2.includes(item_2.id)
+                                                    let isActive = false
+                                                    for(let i=0; i<grouped.length; i++){
+                                                        const checker = grouped[i].href === path
+                                                        if(checker) isActive=true
+                                                    }
+
+                                                    return (
+                                                        <div>
+                                                            <div 
+                                                                className={`
+                                                                    cursor-pointer rounded-[3px] w-full px-2 py-3 w6:py-2 hover:bg-[#3c3838] flex justify-between items-center
+                                                                    ${isActive&&hid2?"bg-[#3c3838]":""}
+                                                                `}
+                                                                onClick={()=>toggler2(id)}
+                                                            >
+                                                                <div>
+                                                                    <p className='w6:text-[12.5px] text-[14px] w-full h-full'>{title}</p>
+                                                                </div>
+
+                                                                <div className='flex items-center justify-center gap-1 hover:bg-[#3c3838] px-0.5 rounded-[5px]'>
+                                                                    {
+                                                                        item_2?.grouped.length>1&&
+                                                                        <p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">
+                                                                            {item_2?.grouped.length}
+                                                                        </p>
+                                                                    }
+                                                                    {
+                                                                        hid2?
+                                                                        <ChevronDown size={"15px"}/>:
+                                                                        <ChevronUp size={"15px"}/>
+                                                                    }
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                            <div 
+                                                                className={`
+                                                                    w-full h-auto
+                                                                    ${hid2?"hidden":""}
+                                                                `}
+                                                            >
+                                                                {
+                                                                    grouped.map((item_3, index)=>{
+                                                                        const {href, title} = item_3
+                                                                        const isPath = path==href
+                                                                        return (
+                                                                            <Link
+                                                                                key={index}
+                                                                                // onClick={()=>window.location.href=href}
+                                                                                href={href}
+                                                                                style={{display: false?"none":"block"}}
+                                                                            >
+                                                                                <div 
+                                                                                    className={`
+                                                                                        cursor-pointer rounded-[3px] px-2 pl-5 py-3 w6:py-2 flex justify-start items-center hover:bg-[#3c3838]
+                                                                                        ${isPath?"bg-[#3c3838]":""}
+                                                                                    `}
+                                                                                >
+                                                                                    <div className='w-1 h-1 mr-2 bg-[#b9a2a2] rounded-full'>
+                                                                                    </div>
+                                                                                    <p>{title}</p>
+                                                                                </div>
+                                                                            </Link>
+                                                                        )
+                                                                    })
+                                                                }
+                                                            </div>
                                                         </div>
-                                                    </Link>
-                                                )
+                                                    )
+                                                } else {
+                                                    if(taken) return null
+                                                    
+                                                    return (
+                                                        <Link
+                                                            key={index_2}
+                                                            href={href}
+                                                            // onClick={()=>window.location.href=href}
+                                                            style={{display: hide?"none":"block"}}
+                                                        >
+                                                            <div 
+                                                                key={index_2} 
+                                                                onClick={()=>click_handler(item_2)}
+                                                                className={`
+                                                                    cursor-pointer rounded-[3px] w-full px-2 py-3 w6:py-2 hover:bg-[#3c3838] 
+                                                                    ${isPath?"bg-[#3c3838]":""}
+                                                                `}
+                                                            >
+                                                                <p className='w6:text-[12.5px] text-[14px]  w-full h-full'>{title}</p>
+                                                            </div>
+                                                        </Link>
+                                                    )
+                                                }
                                             })
+
                                         }
                                     </div>
                                 </div>
@@ -100,6 +205,7 @@ function ComponentMenu(props) {
                     })
                 }
             </div>
+            
             <div className={"w-full h-30"}/>
         </div>
     )

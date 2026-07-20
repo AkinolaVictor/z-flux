@@ -29,7 +29,7 @@ function Components(props: Props) {
                 <title>Z-Flux || Components</title>
                 <meta name="description" content="The z-flux components page" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/z-flux-1.png" />
             </Head>
             <TopHeader />
             <div 

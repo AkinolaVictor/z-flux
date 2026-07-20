@@ -11,6 +11,7 @@ const js_cs = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_js_c
 
 export const texts_fade_skew_2 = {
     title: "FadeSkew 2",
+    child: true,
     href: "/components/text_fade_skew_2",
     id: "fade_skew_2",
     section: "Texts",

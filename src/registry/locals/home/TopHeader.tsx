@@ -35,7 +35,10 @@ function TopHeader(props: Props) {
 
             <Link href={"/"}>
                 <div className='flex justify-center items-center gap-3 cursor-pointer'>
-                    <div className='min-w-9 min-h-9 rounded-full bg-blue-100'></div>
+                    <div className='flex justify-center items-center'>
+                        <img src="/z-flux-4.png" alt="z-flux icon" className='max-w-6 max-h-6' />
+                        {/* <img src="/z-flux-1.png" alt="z-flux icon" className='max-w-13 max-h-13' /> */}
+                    </div>
 
                     {/* <p className='text-[20px] w-full whitespace-nowrap'>Web-Flux</p> */}
                     {/* <p className='text-[20px] w-full whitespace-nowrap'>Zee-Flux</p> */}

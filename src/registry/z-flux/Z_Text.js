@@ -10,10 +10,14 @@ gsap.registerPlugin(SplitText, ScrollTrigger)
 
 const DEFAULT_FROM = {
     opacity: 0,
+    x: 100,
+    skewX: 100
 };
 
 const DEFAULT_TO = {
     opacity: 1,
+    x: 0,
+    skewX: 0,
     ease: "power3.out"
 };
 
@@ -91,7 +95,20 @@ function getProgressionData(
     };
 }
 
-function TextEngine(props) {
+const animation_list = {
+    "Fade Away": {
+        x: [100, 0],
+        y: [100, 0],
+        stagger: [null, 0.5],
+        duration: [null, 1]
+    },
+    "Run In": {
+        x: [500, 0],
+        scale: [100, 0]
+    }
+}
+
+export default function Z_Text(props) {
     const {
         text, 
         scrollingElement,
@@ -111,16 +128,13 @@ function TextEngine(props) {
     } = props
     const containerRef = useRef(null);
     const [fontLoaded, setFontLoaded] = useState(false)
+    const [screenResize, setScreenResize] = useState(0)
     const [resizeTick, setResizeTick] = useState(0);
 
     function initi_animation() {
-
         const element = containerRef.current;
-
         if (!element || !fontLoaded) return;
-
         const ctx = gsap.context(() => {
-
             const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(".fade_textation_x");
 
             const split = SplitText.create(element, {
@@ -191,14 +205,13 @@ function TextEngine(props) {
                 );
 
             }
-
+            
             const triggerOptions =
                 typeof gsapScrollTrigger === "function"
                     ? gsapScrollTrigger(tl) || {}
                     : gsapScrollTrigger || {};
 
             if (playOnScroll) {
-
                 ScrollTrigger.create({
                     trigger: element,
                     scroller,
@@ -208,18 +221,13 @@ function TextEngine(props) {
                     animation: tl,
                     ...triggerOptions
                 });
-
             } else if (playInView) {
-
                 ScrollTrigger.create({
                     trigger: element,
                     scroller,
                     start: "top bottom",
-
                     onEnter: () => tl.restart(),
-
                     onLeaveBack: () => tl.pause(),
-
                     ...triggerOptions
                 });
 
@@ -321,5 +329,3 @@ function TextEngine(props) {
         </p>
     );
 }
-
-export default TextEngine

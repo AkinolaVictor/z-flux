@@ -14,7 +14,7 @@
                     "type": "registry:component"
                 }
             ],
-            "dependencies": ["gsap", "@gsap/react"],
+            "dependencies": ["gsap", "@gsap/react", "z-flux-utils"],
             "registryDependencies": []
         },
         {
@@ -98,7 +98,7 @@
                     "type": "registry:ui"
                 }
             ],
-            "dependencies": ["gsap"],
+            "dependencies": ["gsap", "z-flux-utils"],
             "registryDependencies": []
         }
     ]

@@ -12,7 +12,7 @@ export function get_component_data(this_path){
         const content = this_data.content
         for(let j=0; j<content.length; j++){
             const this_content = content[j]
-            if(this_content.href === this_path){
+            if(this_content?.href === this_path){
                 return this_content
             }
         }

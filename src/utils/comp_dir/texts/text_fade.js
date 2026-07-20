@@ -11,6 +11,7 @@ const js_cs = (setState)=>getCode("/codes/text_fade/text_fade_js_cs.txt", setSta
 
 export const texts_fade = {
     title: "Fade",
+    child: true,
     href: "/components/text_fade",
     id: "main2",
     section: "Texts",

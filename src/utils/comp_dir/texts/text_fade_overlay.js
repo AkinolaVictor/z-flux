@@ -12,6 +12,7 @@ const js_cs = (setState)=>getCode("/codes/text_fade_overlay/text_fade_overlay_js
 
 export const texts_fade_overlay = {
     title: "FadeOverlay",
+    child: true,
     href: "/components/text_fade_overlay",
     id: "fade_overlay",
     section: "Texts",
