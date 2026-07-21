@@ -1,128 +1,40 @@
 import { useGSAP } from '@gsap/react';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { build_extend_animation, findScrollingElement } from 'z-flux-utils';
+import { build_extend_animation, findScrollingElement, getProgressionData } from 'z-flux-utils';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import {animation_list} from "../../utils/animation_list"
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
-
-
-const DEFAULT_FROM = {
-    opacity: 0,
-    x: 100,
-    skewX: 100
-};
-
-const DEFAULT_TO = {
-    opacity: 1,
-    x: 0,
-    skewX: 0,
-    ease: "power3.out"
-};
-
-function getProgressionData(
-    progression,
-    chars,
-    words,
-    lines,
-    speed,
-    playOnScroll
-) {
-
-    const speedMap = {
-        char: playOnScroll ? 0.005 : 0.1,
-        word: 0.35,
-        line: 0.9,
-        char_line: 0.08,
-        word_line: 0.5
-    };
-
-    if (progression === "char_line") {
-        const animate = lines.flatMap(line => {
-            const lineChars = chars.filter(char =>
-                line.contains(char)
-            );
-            return lineChars.map((char, index) => ({
-                char,
-                charIndexInLine: index
-            }));
-        });
-
-        return {
-            set: chars,
-            animate,
-            speed: speed ?? speedMap.char_line
-        };
-    }
-
-    if (progression === "word_line") {
-        const animate = lines.flatMap(line => {
-            const lineWords = words.filter(word =>
-                line.contains(word)
-            );
-            return lineWords.map((char, index) => ({
-                char,
-                charIndexInLine: index
-            }));
-        });
-
-        return {
-            set: words,
-            animate,
-            speed: speed ?? speedMap.word_line
-        };
-    }
-
-    const map = {
-        char: chars,
-        word: words,
-        line: lines
-    };
-
-    const targets = map[progression] || chars;
-
-    return {
-        set: targets,
-        animate: targets,
-        speed: speed ?? speedMap[progression] ?? speedMap.char
-    };
-}
 
 export default function Z_Text({
     text, 
     scrollingElement,
     progression="char",
     animation= "Fade",
+    playOnScroll=false,
+    playInView=false,
+    controllerRef=null,
     style,
     className,
     children,
-    playOnScroll=false,
-    playInView=false,
     delay=0,
     timeline=undefined,
     speed,
     gsapScrollTrigger,
-    defaultAnimation,
     extendAnimation,
     watch=false
 }) {
     const containerRef = useRef(null);
     const [fontLoaded, setFontLoaded] = useState(false)
     const [resizeTick, setResizeTick] = useState(0);
+
+    const paused = playOnScroll || playInView
+    const tl = timeline ?? gsap.timeline({ paused, delay });
     
-    const animation_list = {
-        "Fade": {
-            x: [100, 0],
-            y: [100, 0],
-            stagger: [null, 0.5],
-            duration: [null, 1]
-        },
-        "Run In": {
-            x: [500, 0],
-            y: [50, 0],
-            scale: [100, 0],
-        }
+    if(controllerRef){
+        controllerRef.current = tl
     }
 
     function initi_animation() {
@@ -153,20 +65,14 @@ export default function Z_Text({
             const useAnimation = animation_list[animation] ?? animation_list["Fade"]
 
             const fromAnimation = {
-                ...DEFAULT_FROM,
-                ...build_extend_animation(defaultAnimation, "from"),
                 ...build_extend_animation(useAnimation, "from"),
                 ...build_extend_animation(extendAnimation, "from")
             };
 
             const toAnimation = {
-                ...DEFAULT_TO,
-                ...build_extend_animation(defaultAnimation, "to"),
                 ...build_extend_animation(useAnimation, "to"),
                 ...build_extend_animation(extendAnimation, "to")
             };
-
-            const tl = timeline ?? gsap.timeline({ paused: playOnScroll || playInView, delay });
 
             tl.set(progressionData.set, fromAnimation);
 
@@ -218,7 +124,6 @@ export default function Z_Text({
         }, containerRef);
 
         return () => ctx.revert();
-
     }
 
     function updateScreenResize() {
@@ -254,7 +159,10 @@ export default function Z_Text({
         initi_animation,
         {
             scope: containerRef,
-            dependencies: [fontLoaded, resizeTick]
+            dependencies: [
+                fontLoaded,
+                resizeTick,
+            ]
         }
     );
 

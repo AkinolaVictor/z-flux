@@ -1,17 +1,10 @@
 import { ChevronDown, ChevronUp, CodeXml, Copy, Eye } from 'lucide-react'
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { docco, hybrid, magula, monokai, rainbow } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { dark, a11yDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-// import CLI_Prompts from './CLI_Prompts';
-// import CodeBlock_Custom from './CodeBlock_Custom';
-// import {sample_code} from "../../utils/codes/sample_code"
-// import Select from 'react-select';
-import CustomDropdown from './CustomDropdown';
+import { hybrid } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { generalFunctions } from '@/utils/generalFunctions';
 import ComponentProperties from './ComponentProperties';
 import { usePathname } from 'next/navigation';
-// import { components_directories } from '@/utils/comp_dir/components_directories';
 import { copyThisCode, get_component_data } from '@/utils/helper';
 import Codeblock from './Codeblock';
 import Link from 'next/link';
@@ -20,19 +13,12 @@ interface Props {}
 
 function ComponentDetails(props: Props) {
     const {} = props
-    const view = false
     const [viewState, setView] = useState("preview")
-    const {setGeneralAlpha} = generalFunctions()
     const [similarAnimations, setSimilarAnimations] = useState(true)
-    const [ts_tw, set_ts_tw] = useState("")
-    const [ts_cs, set_ts_cs] = useState("")
-    const [js_tw, set_js_tw] = useState("")
     const [js_cs, set_js_cs] = useState("")
+    const [animations, setAnimations] = useState("")
     const [usage, setUsage] = useState("")
     const allCodes:any = {
-        ts_tw,
-        ts_cs,
-        js_tw,
         js_cs
     }
 
@@ -49,18 +35,11 @@ function ComponentDetails(props: Props) {
     })
     const [concept, setConcept] = useState(false)
     const path = usePathname()
-    // const [comp_data, setCompData] = useState<any>()
-    // console.log(path)
     const comp_data:any = get_component_data(path)
-    // useEffect(()=>{
-    //     // const resp = get_component_data(path)
-    //     // setCompData(resp)
-    // }, [path])
-
-    // console.log("just testing")
-    // const showcode = `${language.value}_${styling.value}`
     const showcode = `${"js"}_${"cs"}`
     const [reloader, setReloader] = useState(false)
+    const [codeArr, setCodeArr] = useState<any>([])
+    const [codeArr2, setCodeArr2] = useState<any>([])
     let timeout:any;
 
     useEffect(()=>{
@@ -72,14 +51,84 @@ function ComponentDetails(props: Props) {
         return ()=>clearTimeout(timeout)
     }, [path])
     
+    // useEffect(()=>{
+    //     if(!comp_data) return
+    //     comp_data?.setup?.rawcode?.codes && comp_data?.setup?.rawcode?.codes["js_cs"](set_js_cs)
+    //     comp_data?.setup?.cli?.usage && comp_data?.setup?.cli?.usage(setUsage)
+    //     comp_data?.setup?.cli?.animations && comp_data?.setup?.cli?.animations(setAnimations)
+    // }, [comp_data])
+
     useEffect(()=>{
         if(!comp_data) return
+        const codelist = comp_data?.setup?.cli?.codespack
+        if(!codelist) return
+
+        function saveFunc(id:string, code:string){
+            setCodeArr((prev:any)=>{
+                const curr:any = [...prev]
+                for(let i=0; i<curr.length; i++){
+                    if(curr[i].id == id){
+                        curr[i].code = code
+                    }
+                }
+                return curr
+            })
+        }
         
-        // comp_data?.setup.rawcode.codes["ts_tw"](set_ts_tw)
-        // comp_data?.setup.rawcode.codes["ts_cs"](set_ts_cs)
-        // comp_data?.setup.rawcode.codes["js_tw"](set_js_tw)
-        comp_data?.setup.rawcode.codes["js_cs"](set_js_cs)
-        comp_data?.setup.cli.usage(setUsage)
+        let aa = []
+        for(let i=0; i<codelist.length; i++){
+            const {title, id} = codelist[i]
+            aa.push({title, id, code: ""})
+        }
+        setCodeArr(aa)
+
+        for(let i=0; i<codelist.length; i++){
+            const {id} = codelist[i]
+            const saveCode = (receivedcode:string)=>{
+                saveFunc(id, receivedcode)
+            }
+
+            comp_data?.setup?.cli?.codespack[i].code(saveCode)
+        }
+
+    }, [comp_data])
+
+    useEffect(()=>{
+        if(!comp_data) return
+        const codelist = comp_data?.setup?.rawcode?.codespack
+        if(!codelist) return
+
+        function saveFunc(id:string, code:string){
+            setCodeArr2((prev:any)=>{
+                const curr:any = [...prev]
+                for(let i=0; i<curr.length; i++){
+                    if(curr[i].id == id){
+                        curr[i].code = code
+                    }
+                }
+                return curr
+            })
+        }
+
+        let aa = []
+        for(let i=0; i<codelist.length; i++){
+            const {title, id} = codelist[i]
+            aa.push({title, id, code: ""})
+        }
+        setCodeArr2(aa)
+
+        for(let i=0; i<codelist.length; i++){
+            const {id, title} = codelist[i]
+            const saveCode = (receivedcode:string)=>{
+                saveFunc(id, receivedcode)
+            }
+
+            if(id=="aua_anim"){
+                comp_data?.setup?.rawcode?.codespack[i].code(saveCode, comp_data?.title)
+            } else {
+                comp_data?.setup?.rawcode?.codespack[i].code(saveCode)
+            }
+        }
     }, [comp_data])
 
     if(comp_data === null) {
@@ -91,6 +140,12 @@ function ComponentDetails(props: Props) {
     }
 
     const ThisPreview = comp_data.preview
+    // let overlay = {
+    //     opacity: [0.2, 1],
+    //     ssd: [1,2]
+    // }
+    // const dd = JSON.stringify(overlay)
+    // console.log({overlay, dd})
 
     return (
         <div>
@@ -273,26 +328,34 @@ function ComponentDetails(props: Props) {
                                     ]}
                                 />
 
-                                <p className='text-[20px] mt-8'>Usage</p>
-                                <div className={`w-full h-auto rounded-2xl mt-3 p-5 border border-[#757070] relative`}>
-                                    <div onClick={()=>{copyThisCode(usage)}} className='cursor-pointer absolute top-5 right-5 w-7 h-7 rounded-[10px] flex justify-center items-center bg-[#3c3838] '>
-                                        <Copy size={14}/>
-                                    </div>
+                                {
+                                    codeArr.map((item:any, index:number)=>{
+                                        const {title, code} = item
+                                        return (
+                                            <div key={index}>
+                                                <p className='text-[20px] mt-8'>{title}</p>
+                                                <div className={`w-full h-auto rounded-2xl mt-3 p-5 border border-[#757070] relative`}>
+                                                    <div onClick={()=>{copyThisCode(code)}} className='cursor-pointer absolute top-5 right-5 w-7 h-7 rounded-[10px] flex justify-center items-center bg-[#3c3838] '>
+                                                        <Copy size={14}/>
+                                                    </div>
 
-                                    <SyntaxHighlighter
-                                        language="javascript" 
-                                        style={hybrid} 
-                                        // style={monokai} 
-                                        // style={rainbow} 
-                                        customStyle={{background: "black", border: "none"}}
-                                        showLineNumbers
-                                        // useInlineStyles
-                                    >
-                                    {/* {comp_data?.setup.cli.usage} */}
-                                    {usage}
-                                    </SyntaxHighlighter>
+                                                    <SyntaxHighlighter
+                                                        language="javascript" 
+                                                        style={hybrid} 
+                                                        // style={monokai} 
+                                                        // style={rainbow} 
+                                                        customStyle={{background: "black", border: "none"}}
+                                                        showLineNumbers
+                                                        // useInlineStyles
+                                                    >
+                                                        {code}
+                                                    </SyntaxHighlighter>
 
-                                </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>:
                             <div>
                                 {
@@ -314,7 +377,6 @@ function ComponentDetails(props: Props) {
                                     null
                                 }
 
-                                <p className='mt-5'>Raw Code</p>
                                 {/* <div className='w-full flex gap-4 mt-3 mb-4'>
                                     <CustomDropdown 
                                         value={language.title}
@@ -359,26 +421,38 @@ function ComponentDetails(props: Props) {
                                         }
                                     />
                                 </div> */}
-                                <div className={`w-full h-auto bg-amber-600s rounded-2xl mt-3 p-5 border border-[#757070] relative`}>
-                                    <div onClick={()=>{copyThisCode(allCodes[showcode])}} className='cursor-pointer absolute top-5 right-5 w-7 h-7 rounded-[10px] flex justify-center items-center bg-[#3c3838] '>
-                                        <Copy size={14}/>
-                                    </div>
 
-                                    <SyntaxHighlighter
-                                        language="javascript" 
-                                        style={hybrid} 
-                                        // style={monokai} 
-                                        // style={rainbow} 
-                                        customStyle={{background: "black", border: "none"}}
-                                        showLineNumbers
-                                        // useInlineStyles
-                                    >
-                                    {/* {sample_code} */}
-                                    {/* {comp_data?.setup.rawcode.codes[showcode]} */}
-                                    {allCodes[showcode]}
-                                    </SyntaxHighlighter>
+                                {
+                                    codeArr2.map((item:any, index:number)=>{
+                                        const {title, code} = item
 
-                                </div>
+                                        return (
+                                            <div key={index}>
+                                                <p className='mt-5'>{title}</p>
+                                                <div className={`w-full h-auto bg-amber-600s rounded-2xl mt-3 p-5 border border-[#757070] relative`}>
+                                                    <div onClick={()=>{copyThisCode(allCodes[showcode])}} className='cursor-pointer absolute top-5 right-5 w-7 h-7 rounded-[10px] flex justify-center items-center bg-[#3c3838] '>
+                                                        <Copy size={14}/>
+                                                    </div>
+
+                                                    <SyntaxHighlighter
+                                                        language="javascript" 
+                                                        style={hybrid} 
+                                                        // style={monokai} 
+                                                        // style={rainbow} 
+                                                        customStyle={{background: "black", border: "none"}}
+                                                        showLineNumbers
+                                                        // useInlineStyles
+                                                    >
+                                                    {/* {sample_code} */}
+                                                    {/* {comp_data?.setup.rawcode.codes[showcode]} */}
+                                                    {/* {allCodes[showcode]} */}
+                                                        {code}
+                                                    </SyntaxHighlighter>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         }
                     </div>

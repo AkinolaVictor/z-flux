@@ -1,11 +1,24 @@
-import Text_Fade_Preview from "@/utils/component_previews/texts/Text_Fade_Preview";
 import { Type } from "lucide-react";
 import { getCode } from "@/utils/helper";
 import { Z_TextEngineProps } from "../../engineProps/Z_TextEngineProps";
 import Z_Text_Preview from "../../component_previews/texts/Z_Text_Preview";
+import { animation_list } from "@/utils/animation_list";
 
-const usageFunc = (setState)=>getCode("/codes/text_fade/text_fade_usage.txt", setState)
+const usageFunc = (setState)=>getCode("/codes/z_text/z_text_usage.txt", setState)
 const js_cs = (setState)=>getCode("/codes/z_text/z_text_js_cs.txt", setState)
+const animations = (setState)=>getCode("/codes/z_text/animation_list.txt", setState)
+
+function getAnimationObj(func, name){
+    let obj = ""
+    const built_animation = Object.entries(animation_list).forEach((each)=>{
+        const [key, val] = each;
+        if(key === name){
+            obj = JSON.stringify(val)
+        }
+        // return {title:key, val};
+    });
+    func(obj)
+}
 
 export const z_text_proto = {
     title: "Z_Text",
@@ -20,13 +33,33 @@ export const z_text_proto = {
     setup: {
         cli: {
             npm: "npx shadcn add https://z-flux.vercel.app/r/Z_Text.json",
-            usage: usageFunc
+            // usage: usageFunc,
+            codespack: [
+                {
+                    title: "Usage",
+                    code: usageFunc,
+                    id: "aouihmnd"
+                }
+            ]
         },
         rawcode: {
-            dependencies: "npm install gsap z-flux-utils",
-            codes: {
-                js_cs
-            }
+            dependencies: "npm install gsap @gsap/react z-flux-utils",
+            // codes: {
+            //     js_cs,
+            //     animations
+            // },
+            codespack: [
+                {
+                    title: "Raw Code",
+                    code: js_cs,
+                    id: "Ssa"
+                },
+                {
+                    title: "Animation Styles",
+                    code: getAnimationObj,
+                    id: "aua_anim"
+                }
+            ]
         }
     },
     engine: "Z_Text",

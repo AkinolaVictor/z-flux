@@ -54,21 +54,18 @@ function fade () {
 function z_text(){
     const built_animation = Object.entries(animation_list).map((each)=>{
         const [key, val] = each;
-
         return {title:key, val};
     });
 
 
     const z_text_content = []
-
+    
     for(let i=0; i<built_animation.length; i++){
-        const each = built_animation[i]
+        const {title, val} = built_animation[i]
         let sample = {...z_text_proto, href: ""}
-
         sample.taken = true
-        sample.title = each.title
-        sample.href = `/components/${each.title}`
-        sample.tests = "works..."
+        sample.title = title
+        sample.href = `/components/${title}`
         z_text_content.push(sample)
     }
 

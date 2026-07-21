@@ -18,16 +18,27 @@ export const slider_vertical_scroll = {
     setup: {
         cli: {
             npm: "npx shadcn add https://z-flux.vercel.app/r/TextFadeSkew_2.json",
-            usage: usageFunc
+            // usage: usageFunc,
+            codespack: [
+                {
+                    title: "Usage",
+                    code: usageFunc,
+                    id: "uwiewk"
+                }
+            ]
         },
         rawcode: {
             dependencies: "npm install gsap z-flux-utils",
-            codes: {
-                // ts_tw,
-                // ts_cs,
-                // js_tw,
-                js_cs
-            }
+            // codes: {
+            //     js_cs
+            // },
+            codespack: [
+                {
+                    title: "Usage",
+                    code: js_cs,
+                    id: "Sakf"
+                }
+            ]
         }
     },
     // similar: [
