@@ -104,7 +104,8 @@ const animation_list = {
     },
     "Run In": {
         x: [500, 0],
-        scale: [100, 0]
+        y: [50, 0],
+        scale: [100, 0],
     }
 }
 
