@@ -1,17 +1,17 @@
 
-import { Book, ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, ChevronUp } from 'lucide-react'
 import React, { useState } from 'react'
 import {components_directories} from "../../utils/comp_dir/components_directories"
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-
+import { usePathname } from 'next/navigation'
+import { generalFunctions } from '@/utils/generalFunctions'
 
 function ComponentMenu(props) {
     const {func} = props
     const [toggleState, setToggleState] = useState([""])
     const [toggleState2, setToggleState2] = useState([""])
     const path = usePathname()
-    const router = useRouter()
+    const {setGeneralAlpha} = generalFunctions()
 
     function toggler(value){
         setToggleState((prev)=>{
@@ -46,11 +46,14 @@ function ComponentMenu(props) {
     
     function print_content_num(content){
         let num = content.length || 0
-        console.log(content)
         content.forEach((item)=>{
             if(item.taken) num--
         })
         return num
+    }
+
+    function clickComponents(){
+        setGeneralAlpha("modalToggle", false)
     }
 
     return (
@@ -99,7 +102,7 @@ function ComponentMenu(props) {
                                         {
                                             item_1.content.map((item_2, index_2)=>{
                                                 const {title, href, id, hide, parent, grouped, taken} = item_2
-                                                const isPath = path==href
+                                                // const isPath = path==href
                                                 
                                                 if(parent){
                                                     const hid2 = !toggleState2.includes(item_2.id)
@@ -110,8 +113,9 @@ function ComponentMenu(props) {
                                                     }
 
                                                     return (
-                                                        <div>
+                                                        <div key={index_2}>
                                                             <div 
+                                                                // ${isActive?"bg-[#3c3838]":""}
                                                                 className={`
                                                                     cursor-pointer rounded-[3px] w-full px-2 py-3 w6:py-2 hover:bg-[#3c3838] flex justify-between items-center
                                                                     ${isActive&&hid2?"bg-[#3c3838]":""}
@@ -140,10 +144,13 @@ function ComponentMenu(props) {
 
                                                             <div 
                                                                 className={`
-                                                                    w-full h-auto
+                                                                    w-full h-auto relative
                                                                     ${hid2?"hidden":""}
                                                                 `}
+                                                                // style={{borderLeft: "1px solid white"}}
                                                             >
+                                                                <div className='absolute top-0 left-2 w-px h-full bg-white opacity-30'/>
+
                                                                 {
                                                                     grouped.map((item_3, index)=>{
                                                                         const {href, title} = item_3
@@ -152,17 +159,24 @@ function ComponentMenu(props) {
                                                                             <Link
                                                                                 key={index}
                                                                                 // onClick={()=>window.location.href=href}
+                                                                                onClick={()=>{clickComponents()}}
                                                                                 href={href}
                                                                                 style={{display: false?"none":"block"}}
                                                                             >
                                                                                 <div 
                                                                                     className={`
-                                                                                        cursor-pointer rounded-[3px] px-2 pl-5 py-3 w6:py-2 flex justify-start items-center hover:bg-[#3c3838]
+                                                                                        cursor-pointer rounded-[3px] px-2 pl-3 py-3 w6:py-2 flex justify-start items-center hover:bg-[#3c3838]
                                                                                         ${isPath?"bg-[#3c3838]":""}
+                                                                                        ml-auto
                                                                                     `}
+                                                                                    style={{
+                                                                                        width: "calc(100% - 8px)"
+                                                                                    }}
                                                                                 >
-                                                                                    <div className='w-1 h-1 mr-2 bg-[#b9a2a2] rounded-full'>
-                                                                                    </div>
+                                                                                    {/* <div className='w-1 h-1 mr-2 bg-[#b9a2a2] rounded-full' /> */}
+                                                                                    {/* <div className='w-auto h-auto mr-2'>
+                                                                                        <CircleChevronRight size={14}/>
+                                                                                    </div> */}
                                                                                     <p>{title}</p>
                                                                                 </div>
                                                                             </Link>
@@ -174,12 +188,14 @@ function ComponentMenu(props) {
                                                     )
                                                 } else {
                                                     if(taken) return null
+                                                    const isPath = path==href
                                                     
                                                     return (
                                                         <Link
                                                             key={index_2}
                                                             href={href}
                                                             // onClick={()=>window.location.href=href}
+                                                            onClick={()=>{clickComponents()}}
                                                             style={{display: hide?"none":"block"}}
                                                         >
                                                             <div 

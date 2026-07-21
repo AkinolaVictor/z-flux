@@ -5,11 +5,13 @@ import React from 'react'
 // import { TextFadeDown, TextFadeSkew_2 } from 'react-web-flux'
 import TextFadeDown from '@/registry/z-flux/texts/TextFadeDown'
 import TextFadeSkew_2 from '@/registry/z-flux/texts/TextFadeSkew_2'
+import gsap from 'gsap'
 
 interface Props {}
 
 function HomeDescription(props: Props) {
     const {} = props
+    const tl = gsap.timeline()
 
 
     return (
@@ -17,7 +19,7 @@ function HomeDescription(props: Props) {
             {/* <h1 className='text-[30px] font-bold'>Bring Motion and Interaction to Every Interface</h1> */}
             {/* <h1 className='text-[30px] font-bold'>Beautiful, Event-Driven Components for the Modern Web</h1> */}
             {/* <h1 className='text-[30px] font-bold'>Open-Source Components That Feel Alive</h1> */}
-            <TextFadeDown progression='char_line'>
+            <TextFadeDown progression='char_line' timeline={tl}>
                 <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
             </TextFadeDown>
             <TextFadeSkew_2

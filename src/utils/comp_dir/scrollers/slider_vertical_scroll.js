@@ -21,7 +21,7 @@ export const slider_vertical_scroll = {
             usage: usageFunc
         },
         rawcode: {
-            dependencies: "npm install gsap",
+            dependencies: "npm install gsap z-flux-utils",
             codes: {
                 // ts_tw,
                 // ts_cs,

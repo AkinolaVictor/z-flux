@@ -60,6 +60,17 @@ function ComponentDetails(props: Props) {
     // console.log("just testing")
     // const showcode = `${language.value}_${styling.value}`
     const showcode = `${"js"}_${"cs"}`
+    const [reloader, setReloader] = useState(false)
+    let timeout:any;
+
+    useEffect(()=>{
+        setReloader(true)
+        timeout = setTimeout(() => {
+            setReloader(false)
+        }, 300);
+        
+        return ()=>clearTimeout(timeout)
+    }, [path])
     
     useEffect(()=>{
         if(!comp_data) return
@@ -188,9 +199,15 @@ function ComponentDetails(props: Props) {
                     }
                     <div data-scroll-behavior="smooth" className={`component-preview-container w-full h-120 bg-amber-600s rounded-2xl_e mt-5 border border-[#757070] overflow-x-hidden overflow-y-auto`}>
                         {
-                            ThisPreview?
-                            <ThisPreview />:
-                            null
+                            reloader?
+                            null:
+                            <>
+                                {
+                                    ThisPreview?
+                                    <ThisPreview />:
+                                    null
+                                }
+                            </>
                         }
                     </div>
                 </div>:

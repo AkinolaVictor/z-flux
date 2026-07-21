@@ -4,9 +4,22 @@ import { build_extend_animation, findScrollingElement } from 'z-flux-utils';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {animation_list} from "../../utils/animation_list"
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
+
+
+const DEFAULT_FROM = {
+    opacity: 0,
+    x: 100,
+    skewX: 100
+};
+
+const DEFAULT_TO = {
+    opacity: 1,
+    x: 0,
+    skewX: 0,
+    ease: "power3.out"
+};
 
 function getProgressionData(
     progression,
@@ -81,28 +94,35 @@ export default function Z_Text({
     scrollingElement,
     progression="char",
     animation= "Fade",
-    playOnScroll=false,
-    playInView=false,
-    controllerRef=null,
     style,
     className,
     children,
+    playOnScroll=false,
+    playInView=false,
     delay=0,
     timeline=undefined,
     speed,
     gsapScrollTrigger,
+    defaultAnimation,
     extendAnimation,
     watch=false
 }) {
     const containerRef = useRef(null);
     const [fontLoaded, setFontLoaded] = useState(false)
     const [resizeTick, setResizeTick] = useState(0);
-
-    const paused = playOnScroll || playInView
-    const tl = timeline ?? gsap.timeline({ paused, delay });
     
-    if(controllerRef){
-        controllerRef.current = tl
+    const animation_list = {
+        "Fade": {
+            x: [100, 0],
+            y: [100, 0],
+            stagger: [null, 0.5],
+            duration: [null, 1]
+        },
+        "Run In": {
+            x: [500, 0],
+            y: [50, 0],
+            scale: [100, 0],
+        }
     }
 
     function initi_animation() {
@@ -133,14 +153,20 @@ export default function Z_Text({
             const useAnimation = animation_list[animation] ?? animation_list["Fade"]
 
             const fromAnimation = {
+                ...DEFAULT_FROM,
+                ...build_extend_animation(defaultAnimation, "from"),
                 ...build_extend_animation(useAnimation, "from"),
                 ...build_extend_animation(extendAnimation, "from")
             };
 
             const toAnimation = {
+                ...DEFAULT_TO,
+                ...build_extend_animation(defaultAnimation, "to"),
                 ...build_extend_animation(useAnimation, "to"),
                 ...build_extend_animation(extendAnimation, "to")
             };
+
+            const tl = timeline ?? gsap.timeline({ paused: playOnScroll || playInView, delay });
 
             tl.set(progressionData.set, fromAnimation);
 
@@ -192,6 +218,7 @@ export default function Z_Text({
         }, containerRef);
 
         return () => ctx.revert();
+
     }
 
     function updateScreenResize() {
@@ -227,10 +254,7 @@ export default function Z_Text({
         initi_animation,
         {
             scope: containerRef,
-            dependencies: [
-                fontLoaded,
-                resizeTick,
-            ]
+            dependencies: [fontLoaded, resizeTick]
         }
     );
 

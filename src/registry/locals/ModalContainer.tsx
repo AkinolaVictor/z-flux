@@ -13,6 +13,7 @@ function ModalContainer(props: Props) {
 
     if(!modalToggle) return null
     const closeModal = ()=>setGeneralAlpha("modalToggle", false)
+    
     return (
         <div onClick={closeModal} className='w-screen h-screen bg-[#00000093] flex justify-center items-center absolute top-0 left-0'>
             <div className=''>

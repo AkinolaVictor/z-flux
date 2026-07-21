@@ -1,22 +1,60 @@
-import TextFade from '@/registry/z-flux/texts/TextFade'
+import { alltexts } from "@/utils/comp_dir/alltexts"
+import Z_Text from "../../../registry/z-flux/Z_Text"
+import { useEffect, useRef, useState } from "react"
+import { usePathname } from "next/navigation"
+import gsap from "gsap"
 
-interface Props {}
+export default function Z_Text_Preview({
+    data
+}) {
 
-function Text_Fade_Preview(props: Props) {
-    const {} = props
+    const [anim, setAnim] = useState("fade")
+    const path = usePathname()
+    const controller = useRef(null)
+    function getFreshData() {
+        for(let i=0; i<alltexts.content.length; i++){
+            const each = alltexts.content[i]
+            if(each.href == path){
+                return each
+            }
+        }
+        return null
+    }
+
+    function controlAnimation(which){
+        if(controller.current[which]) controller.current?.[which]()
+    }
+
+    useEffect(()=>{
+        const freshData = getFreshData()
+        if(freshData==null) return
+        setAnim(freshData.title)
+    }, [alltexts, path])
     
+
     return (
         <div className='w-full h-full'>
             
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                <div onClick={()=>controlAnimation("pause")} className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     1/6
                 </div>
+                <div onClick={()=>controlAnimation("play")} className='font-bold darkbg w-10 h-10 absolute right-7 top-20 rounded-full flex justify-center items-center'>
+                    play
+                </div>
+                <div onClick={()=>controlAnimation("reverse")} className='font-bold darkbg w-10 h-10 absolute right-7 top-33 rounded-full flex justify-center items-center'>
+                    rev
+                </div>
+                <div onClick={()=>controlAnimation("restart")} className='font-bold darkbg w-10 h-10 absolute right-7 top-46 rounded-full flex justify-center items-center'>
+                    res
+                </div>
 
-                <TextFade
+                <Z_Text
+                    animation={anim}
+                    controllerRef={controller}
                     className='text-[25px] font-bold text-center'
                     text={`
-                        Text Fade Animation Preview Examples (keep scrolling)
+                        Text Fade Animation Preview Examples (keep scrolling) 
                     `}
                 />
             </div>
@@ -25,7 +63,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     2/6
                 </div>
-                <TextFade
+                <Z_Text
+                    animation={anim}
                     progression="char"
                     className='text-[20px]'
                     style={{color: "yellow"}}
@@ -41,7 +80,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     3/6
                 </div>
-                <TextFade
+                <Z_Text
+                    animation={anim}
                     progression="char"
                     className='w11:text-[20px]'
                     playOnScroll
@@ -56,7 +96,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     4/6
                 </div>
-                <TextFade
+                <Z_Text
+                    animation={anim}
                     progression="line"
                     playOnScroll
                     className='w11:text-[20px]'
@@ -70,7 +111,8 @@ function Text_Fade_Preview(props: Props) {
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     5/6
                 </div>
-                <TextFade
+                <Z_Text
+                    animation={anim}
                     progression="char_line"
                     // scrollingElement={'.component-preview-container'}
                     playOnScroll
@@ -85,14 +127,15 @@ function Text_Fade_Preview(props: Props) {
                     >
                         Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
                     </span>
-                </TextFade>
+                </Z_Text>
             </div>
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     6/6
                 </div>
-                <TextFade
+                <Z_Text
+                    animation={anim}
                     className='text-[20px]'
                     // scrollingElement={'.component-preview-container'}
                     playInView
@@ -104,5 +147,3 @@ function Text_Fade_Preview(props: Props) {
         </div>
     )
 }
-
-export default Text_Fade_Preview
