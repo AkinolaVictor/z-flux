@@ -1,10 +1,9 @@
 import { useGSAP } from '@gsap/react';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { build_extend_animation, findScrollingElement, getProgressionData } from 'z-flux-utils';
+import React, { useEffect, useRef, useState } from 'react';
+import { animation_list, build_extend_animation, findScrollingElement, getProgressionData } from 'z-flux-utils';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {animation_list} from "../../../utils/animation_list"
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
