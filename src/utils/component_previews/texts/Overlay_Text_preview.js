@@ -46,9 +46,12 @@ function Overlay_Text_preview({
                     text={``}
                     trigger={"onscroll"}
                     animation={anim}
-                    // stagger={-3}
+                    // stagger={1.5}
+                    // movement={"right"}
+                    // layers={1}
+                    layers={1}
                     // layers={[..."Z-FLUX ANIMATION".split("")]}
-                    layers={[..."  Story Time  ".toUpperCase().split("")]}
+                    // layers={[..."  Story Time  ".toUpperCase().split("")]}
                     // RenderLayer={({data, index})=>{
                     //     return (
                     //         <div className="w-full h-full bg-amber-900 flex justify-center items-center">

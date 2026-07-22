@@ -47,7 +47,7 @@ function EachProperty(props: Props) {
                 <div className='text-[12px] mt-2 opacity-80'>{item.range}</div>:
                 origins.length?
                 <div className='text-[12px] mt-2 opacity-80 flex flex-wrap'>
-                    <p>range: &nbsp;</p>
+                    <p>options: &nbsp;</p>
                     {
                         [...origins].map((item, index)=>{
                             return (

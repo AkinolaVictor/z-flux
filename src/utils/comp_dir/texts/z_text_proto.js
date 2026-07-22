@@ -43,7 +43,8 @@ export const z_text_proto = {
             codespack: [
                 {
                     title: "Keep in Mind",
-                    id: "special_function",
+                    id: "special_functionx",
+                    params: "special_function",
                     code: animationName
                 },
                 {
@@ -63,7 +64,8 @@ export const z_text_proto = {
                 {
                     title: "Animation Styles",
                     code: getAnimationObj,
-                    id: "special_function"
+                    id: "special_function",
+                    params: "special_function"
                 },
                 {
                     title: "Raw Code",

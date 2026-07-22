@@ -24,6 +24,61 @@ export const Overlay_Text_Engine_Props = [
         value: true
     },
     {
+        name: "movement",
+        type: "string",
+        // range: "true or false",
+        id: "skaajajsq",
+        description: <p>
+            If you want the animation to move from left to right, or bottom to top, or from "top right" to "bottom left", or more,
+            choose from the above options to suit your purpose. The first option on the list is often the default.
+            <br /> 
+            <br /> 
+            For example if the layers animate from <b>"top"</b> to the <b>"bottom"</b> by default, 
+            setting movement="bottom" will change the direction of movement.
+            <br />
+            <br />
+            Try the available options above to suit your taste (it's unique for each animation).
+        </p>,
+    },
+    {
+        name: "trigger",
+        type: "string",
+        range: "onscroll | inview",
+        description: "The animation progression, how you want the animation to progressively play (default is char)",
+        more_des: <p>
+            <b>onscroll</b>: animation responds directly to users scroll
+            <br />
+            <br />
+            <b>inview:</b> animation automatically plays whenever user scrolls text to view (screen)
+        </p>,
+        value: "value1"
+    },
+    {
+        name: "useOpacity",
+        type: "boolean",
+        range: "true or false",
+        description: "If set to true, the opacity of each layer gets animated also. Its often looking beautiful, try it out.",
+    },
+    {
+        name: "layers",
+        type: "number | array",
+        // range: "true | false (default) | string",
+        description: "How many layer should the overlay be. You can also pass in an array of data (see examples)",
+    },
+    {
+        name: "RenderLayer",
+        type: "component",
+        range: "function | component",
+        description: "Takes a component to display for each of the element passed to the layers prop (see example)",
+        value: true
+    },
+    {
+        name: "stagger",
+        type: "number",
+        range: "0 and above (default is 0.2)",
+        description: "How fast or slow you want the animation overlay sequence to play. (for multiple layers). SET TO 0 (zero) TO CANCEL THE SEQUENCE",
+    },
+    {
         name: "scrollingElement",
         type: "string",
         description: <p>
@@ -58,23 +113,6 @@ export const Overlay_Text_Engine_Props = [
         </div>,
     },
     {
-        name: "trigger",
-        type: "string",
-        range: "onscroll | inview",
-        description: "The animation progression, how you want the animation to progressively play (default is char)",
-        more_des: <p>
-            <b>onscroll</b>: animation responds directly to users scroll
-            <br />
-            <br />
-            <b>inview:</b> animation automatically plays whenever user scrolls text to view (screen)
-        </p>,
-        value: "value1"
-    },
-
-
-
-
-    {
         name: "textStyle",
         type: "object",
         description: "An object containing all the styles you want to add to your text",
@@ -101,48 +139,6 @@ export const Overlay_Text_Engine_Props = [
         description: "All the classes your want to add to the overlay element",
         // more_des: "Many more explanation to help understand better",
         // value: true
-    },
-
-
-    
-    {
-        name: "useOpacity",
-        type: "boolean",
-        range: "true or false",
-        description: "If set to true, the opacity of each layer gets animated also. Its often looking beautiful, try it out.",
-    },
-    {
-        name: "animationOrigin",
-        type: "string",
-        // range: "true or false",
-        id: "skaajajsq",
-        description: <p>
-            Sometimes when you change the origin of the animation, it's often beautiful, and gets more attention. 
-            For example if the layers animate to the <b>"bottom</b> (animationOrigin="bottom"), you can use this to 
-            animate it to the <b>"top"</b> (animationOrigin="top"), and much more.
-            <br />
-            <br />
-            Try the available options above (from the range) to suit your taste.
-        </p>,
-    },
-    {
-        name: "stagger",
-        type: "number",
-        range: "0 and above (default is 0.2)",
-        description: "How fast or slow you want the animation overlay sequence to play. (for multiple layers). SET TO 0 (zero) TO CANCEL THE SEQUENCE",
-    },
-    {
-        name: "layers",
-        type: "number | array",
-        // range: "true | false (default) | string",
-        description: "How many layer should the overlay be. You can also pass in an array of data (see examples)",
-    },
-    {
-        name: "RenderLayer",
-        type: "component",
-        range: "function | component",
-        description: "Takes a component to display for each of the element passed to the layers prop (see example)",
-        value: true
     },
     {
         name: "timeline",

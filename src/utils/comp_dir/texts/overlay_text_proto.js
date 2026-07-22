@@ -5,18 +5,27 @@ import Overlay_Text_preview from "../../component_previews/texts/Overlay_Text_pr
 import { Overlay_Text_Engine_Props } from "../../engineProps/Overlay_Text_Engine_Props";
 
 
-const usageFunc = (setState)=>getCode("/codes/z_text/z_text_usage.txt", setState)
-const js_cs = (setState)=>getCode("/codes/z_text/z_text_js_cs.txt", setState)
-const animations = (setState)=>getCode("/codes/z_text/animation_list.txt", setState)
+const usageFunc = (setState)=>getCode("/codes/overlay_text/overlay_text_usage.txt", setState)
+const js_cs = (setState)=>getCode("/codes/overlay_text/overlay_text_js_cs.txt", setState)
 
 function getAnimationObj({func, name}){
     let obj = ""
-    const built_animation = Object.entries(overlay_text_animations).forEach((each)=>{
+    Object.entries(overlay_text_animations).forEach((each)=>{
         const [key, val] = each;
         if(key === name){
-            obj = JSON.stringify(val)
+            obj = JSON.stringify(val["defaultGsap"])
         }
-        // return {title:key, val};
+    });
+    func(obj)
+}
+
+function getAnimationOrigin({func, name}){
+    let obj = ""
+    Object.entries(overlay_text_animations).forEach((each)=>{
+        const [key, val] = each;
+        if(key === name){
+            obj = JSON.stringify(val["animation_origins"])
+        }
     });
     func(obj)
 }
@@ -44,7 +53,8 @@ export const overlay_text_proto = {
             codespack: [
                 {
                     title: "Keep in Mind",
-                    id: "special_function",
+                    id: "special_functionsa",
+                    params: "special_function",
                     code: animationName
                 },
                 {
@@ -64,7 +74,14 @@ export const overlay_text_proto = {
                 {
                     title: "Animation Styles",
                     code: getAnimationObj,
-                    id: "special_function"
+                    id: "special_functionav",
+                    params: "special_function"
+                },
+                {
+                    title: "Reasonable Animation Origins",
+                    code: getAnimationOrigin,
+                    id: "special_functionswg",
+                    params: "special_function"
                 },
                 {
                     title: "Raw Code",

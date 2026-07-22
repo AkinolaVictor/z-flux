@@ -83,12 +83,12 @@ function ComponentDetails(props: Props) {
         setCodeArr(aa)
 
         for(let i=0; i<codelist.length; i++){
-            const {id} = codelist[i]
+            const {id, params} = codelist[i]
             const saveCode = (receivedcode:string)=>{
                 saveFunc(id, receivedcode)
             }
 
-            if(id=="special_function"){
+            if(params==="special_function"){
                 comp_data?.setup?.cli?.codespack[i].code({
                     func: saveCode, 
                     name: comp_data?.title
@@ -125,12 +125,12 @@ function ComponentDetails(props: Props) {
         setCodeArr2(aa)
 
         for(let i=0; i<codelist.length; i++){
-            const {id, title} = codelist[i]
+            const {id, title, params} = codelist[i]
             const saveCode = (receivedcode:string)=>{
                 saveFunc(id, receivedcode)
             }
 
-            if(id=="special_function"){
+            if(params==="special_function"){
                 comp_data?.setup?.rawcode?.codespack[i].code({
                     func: saveCode, 
                     name: comp_data?.title
