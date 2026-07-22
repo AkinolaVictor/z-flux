@@ -88,10 +88,17 @@ function ComponentDetails(props: Props) {
                 saveFunc(id, receivedcode)
             }
 
-            comp_data?.setup?.cli?.codespack[i].code(saveCode)
+            if(id=="special_function"){
+                comp_data?.setup?.cli?.codespack[i].code({
+                    func: saveCode, 
+                    name: comp_data?.title
+                })
+            } else {
+                comp_data?.setup?.cli?.codespack[i].code(saveCode)
+            }
         }
 
-    }, [comp_data])
+    }, [comp_data, path])
 
     useEffect(()=>{
         if(!comp_data) return
@@ -123,13 +130,16 @@ function ComponentDetails(props: Props) {
                 saveFunc(id, receivedcode)
             }
 
-            if(id=="aua_anim"){
-                comp_data?.setup?.rawcode?.codespack[i].code(saveCode, comp_data?.title)
+            if(id=="special_function"){
+                comp_data?.setup?.rawcode?.codespack[i].code({
+                    func: saveCode, 
+                    name: comp_data?.title
+                })
             } else {
                 comp_data?.setup?.rawcode?.codespack[i].code(saveCode)
             }
         }
-    }, [comp_data])
+    }, [comp_data, path])
 
     if(comp_data === null) {
         return (
@@ -327,6 +337,16 @@ function ComponentDetails(props: Props) {
                                         }
                                     ]}
                                 />
+                                <p className='w-full text-center py-2'>or use npm module</p>
+                                <Codeblock
+                                    hideNav
+                                    data={[
+                                        {
+                                            name: "npm",
+                                            code: true?comp_data?.setup.cli.npm_react:comp_data?.setup.cli.npm_vue
+                                        }
+                                    ]}
+                                />
 
                                 {
                                     codeArr.map((item:any, index:number)=>{
@@ -341,11 +361,14 @@ function ComponentDetails(props: Props) {
 
                                                     <SyntaxHighlighter
                                                         language="javascript" 
+                                                        // showInlineLineNumbers={false}
                                                         style={hybrid} 
                                                         // style={monokai} 
                                                         // style={rainbow} 
                                                         customStyle={{background: "black", border: "none"}}
-                                                        showLineNumbers
+
+                                                        // showLineNumbers
+
                                                         // useInlineStyles
                                                     >
                                                         {code}

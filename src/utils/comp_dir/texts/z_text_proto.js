@@ -8,7 +8,7 @@ const usageFunc = (setState)=>getCode("/codes/z_text/z_text_usage.txt", setState
 const js_cs = (setState)=>getCode("/codes/z_text/z_text_js_cs.txt", setState)
 const animations = (setState)=>getCode("/codes/z_text/animation_list.txt", setState)
 
-function getAnimationObj(func, name){
+function getAnimationObj({func, name}){
     let obj = ""
     const built_animation = Object.entries(animation_list).forEach((each)=>{
         const [key, val] = each;
@@ -18,6 +18,11 @@ function getAnimationObj(func, name){
         // return {title:key, val};
     });
     func(obj)
+}
+
+function animationName({func, name}){
+    let prop = `animation="${name}"`
+    func(prop)
 }
 
 export const z_text_proto = {
@@ -33,13 +38,20 @@ export const z_text_proto = {
     setup: {
         cli: {
             npm: "npx shadcn add https://z-flux.vercel.app/r/Z_Text.json",
+            npm_react: "npm i z-flux-react",
+            npm_vue: "npm i z-flux-vue",
             // usage: usageFunc,
             codespack: [
+                {
+                    title: "Keep in Mind",
+                    id: "special_function",
+                    code: animationName
+                },
                 {
                     title: "Usage",
                     code: usageFunc,
                     id: "aouihmnd"
-                }
+                },
             ]
         },
         rawcode: {
@@ -50,15 +62,15 @@ export const z_text_proto = {
             // },
             codespack: [
                 {
+                    title: "Animation Styles",
+                    code: getAnimationObj,
+                    id: "special_function"
+                },
+                {
                     title: "Raw Code",
                     code: js_cs,
                     id: "Ssa"
                 },
-                {
-                    title: "Animation Styles",
-                    code: getAnimationObj,
-                    id: "aua_anim"
-                }
             ]
         }
     },

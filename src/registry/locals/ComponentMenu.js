@@ -47,7 +47,8 @@ function ComponentMenu(props) {
     function print_content_num(content){
         let num = content.length || 0
         content.forEach((item)=>{
-            if(item.taken) num--
+            // if(item.taken) num-- // remove children
+            if(item.parent) num-- // remove parent
         })
         return num
     }

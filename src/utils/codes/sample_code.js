@@ -37,9 +37,11 @@ const items = [
 />`
 
 
-export const sample_code_2 = `import TextFade from '@/TextFade';
+export const sample_code_2 = `import Z_Text from '@/Z_Text';
+        or
+import {Z_Text} from "z-flux-react"
 
-<TextFade
+<Z_Text
     playOnScroll
     text="This text responds directly to your scrolling"
 />`

@@ -17,7 +17,9 @@ export const slider_vertical_scroll = {
     // concept: "Description of the way this was achieved",
     setup: {
         cli: {
-            npm: "npx shadcn add https://z-flux.vercel.app/r/TextFadeSkew_2.json",
+            npm: "npx shadcn add https://z-flux.vercel.app/r/VerticalScroll.json",
+            npm_react: "npm i z-flux-react",
+            npm_vue: "npm i z-flux-vue",
             // usage: usageFunc,
             codespack: [
                 {
@@ -34,7 +36,7 @@ export const slider_vertical_scroll = {
             // },
             codespack: [
                 {
-                    title: "Usage",
+                    title: "Raw Code",
                     code: js_cs,
                     id: "Sakf"
                 }

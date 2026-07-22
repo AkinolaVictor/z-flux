@@ -21,10 +21,6 @@ function fade () {
 
     fade_contents.map((item, index)=>{
         fade_contents[index].taken = true
-        // return {
-        //     title: item.title,
-        //     href: item.href
-        // }
     })
 
     const fade_parent =  {
@@ -40,23 +36,11 @@ function fade () {
     }
 }
 
-// const animation_list = [
-//     {
-//         title: "Fly_Up",
-//         style: {},
-//     },
-//     {
-//         title: "Fly_Down",
-//         style: {},
-//     },
-// ]
-
 function z_text(){
     const built_animation = Object.entries(animation_list).map((each)=>{
         const [key, val] = each;
         return {title:key, val};
     });
-
 
     const z_text_content = []
     
@@ -82,18 +66,17 @@ function z_text(){
     }
 }
 
-
 const {fade_contents, fade_parent} = fade()
 const {z_text_content, z_text_parent} = z_text()
-
 
 export const alltexts = {
     section: "Texts",
     Icon: ()=><Type size={"13px"}/>,
     content: [
-        fade_parent,
+        // fade_parent,
+        // ...fade_contents,
+
         z_text_parent,
-        ...fade_contents,
         ...z_text_content,
         texts_texter
 

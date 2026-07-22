@@ -4,7 +4,7 @@ import { build_extend_animation, findScrollingElement, getProgressionData } from
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {animation_list} from "../../utils/animation_list"
+import {animation_list} from "../../../utils/animation_list"
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
