@@ -1,4 +1,7 @@
-export const animation_list = {
+
+const module = require("z-flux-utils").animation_list
+
+const local = {
     Fade: {
         opacity: [0, 1]
     },
@@ -61,4 +64,9 @@ export const animation_list = {
         stagger: [null, 0.5],
         duration: [null, 1]
     },
+}
+
+export const animation_list = {
+    ...module,
+    ...local
 }

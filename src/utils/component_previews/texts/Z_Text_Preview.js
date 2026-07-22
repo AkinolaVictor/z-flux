@@ -37,7 +37,7 @@ export default function Z_Text_Preview({
             
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    1/7
+                    1/8
                 </div>
 
                 <Z_Text
@@ -51,12 +51,11 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    2/7
+                    2/8
                 </div>
                 <Z_Text
                     animation={anim}
                     className='text-[20px]'
-                    progression="word"
                     controllerRef={controller}
                     style={{color: "yellow"}}
                     playInView
@@ -88,7 +87,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    3/7
+                    3/8
                 </div>
                 <Z_Text
                     animation={anim}
@@ -103,7 +102,23 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    4/7
+                    4/8
+                </div>
+                <Z_Text
+                    animation={anim}
+                    progression="word"
+                    className='w11:text-[20px]'
+                    playOnScroll
+                    text={`
+                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
+                    `}
+                />
+
+            </div>
+
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    5/8
                 </div>
                 <Z_Text
                     animation={anim}
@@ -119,7 +134,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    5/7
+                    6/8
                 </div>
                 <Z_Text
                     animation={anim}
@@ -134,7 +149,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    6/7
+                    7/8
                 </div>
                 <Z_Text
                     animation={anim}
@@ -151,7 +166,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    7/7
+                    8/8
                 </div>
                 <Z_Text
                     animation={anim}
