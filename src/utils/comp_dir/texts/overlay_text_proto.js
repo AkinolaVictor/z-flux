@@ -1,8 +1,9 @@
 import { Type } from "lucide-react";
 import { getCode } from "@/utils/helper";
-import { Z_TextEngineProps } from "../../engineProps/Z_TextEngineProps";
-import Z_Text_Preview from "../../component_previews/texts/Z_Text_Preview";
-import { animation_list } from "@/utils/animlations/animation_list";
+import { overlay_text_animations } from "@/utils/animlations/overlay_text_animations";
+import Overlay_Text_preview from "../../component_previews/texts/Overlay_Text_preview";
+import { Overlay_Text_Engine_Props } from "../../engineProps/Overlay_Text_Engine_Props";
+
 
 const usageFunc = (setState)=>getCode("/codes/z_text/z_text_usage.txt", setState)
 const js_cs = (setState)=>getCode("/codes/z_text/z_text_js_cs.txt", setState)
@@ -10,7 +11,7 @@ const animations = (setState)=>getCode("/codes/z_text/animation_list.txt", setSt
 
 function getAnimationObj({func, name}){
     let obj = ""
-    const built_animation = Object.entries(animation_list).forEach((each)=>{
+    const built_animation = Object.entries(overlay_text_animations).forEach((each)=>{
         const [key, val] = each;
         if(key === name){
             obj = JSON.stringify(val)
@@ -25,18 +26,18 @@ function animationName({func, name}){
     func(prop)
 }
 
-export const z_text_proto = {
-    title: "Z_Text",
-    href: "/components/z_text",
-    id: "main2",
+export const overlay_text_proto = {
+    title: "Overlay_Text",
+    href: "/components/Overlay_text",
+    id: "main2awkel",
     section: "Texts",
     Icon: ()=><Type size={"13px"}/>,
     date_published: "04-07-2026",
-    description: "Text animation using the Z-Text Engine",
+    description: "Reveal text by removing the top layer element",
     // concept: "Description of the way this was achieved",
     setup: {
         cli: {
-            npm: "npx shadcn add https://z-flux.vercel.app/r/Z_Text.json",
+            npm: "npx shadcn add https://z-flux.vercel.app/r/Overlay_Text.json",
             npm_react: "npm i z-flux-react",
             npm_vue: "npm i z-flux-vue",
             // usage: usageFunc,
@@ -49,7 +50,7 @@ export const z_text_proto = {
                 {
                     title: "Usage",
                     code: usageFunc,
-                    id: "aouihmnd"
+                    id: "aouihmndss"
                 },
             ]
         },
@@ -68,14 +69,14 @@ export const z_text_proto = {
                 {
                     title: "Raw Code",
                     code: js_cs,
-                    id: "Ssa"
+                    id: "Ssaz"
                 },
             ]
         }
     },
-    engine: "Z_Text",
-    preview: (props)=> <Z_Text_Preview data={z_text_proto} {...props}/>,
+    engine: "Overlay_Text",
+    preview: (props)=> <Overlay_Text_preview data={overlay_text_proto} {...props}/>,
     props: [
-        ...Z_TextEngineProps
+        ...Overlay_Text_Engine_Props
     ]
 }

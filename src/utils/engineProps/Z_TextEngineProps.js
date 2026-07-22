@@ -9,6 +9,14 @@ export const Z_TextEngineProps = [
         value: 12
     },
     {
+        name: "animation",
+        type: "string",
+        // range: "true | false",
+        description: "Which Animation you want to be played. Often the title of this current page. (default is Fade)",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
         name: "progression",
         type: "string",
         range: "char | word | line | char_line | word_line",

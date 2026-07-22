@@ -1,15 +1,17 @@
 import { alltexts } from "@/utils/comp_dir/alltexts"
-import Z_Text from "../../../registry/z-flux/texts/Z_Text"
 import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
+import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
+import { TextRevealByHeight } from "react-web-flux"
 
-export default function Z_Text_Preview({
+function Overlay_Text_preview({
     data
 }) {
 
-    const [anim, setAnim] = useState("fade")
+    const [anim, setAnim] = useState("BottomUp")
     const path = usePathname()
     const controller = useRef(null)
+
     function getFreshData() {
         for(let i=0; i<alltexts.content.length; i++){
             const each = alltexts.content[i]
@@ -29,26 +31,43 @@ export default function Z_Text_Preview({
         if(freshData==null) return
         setAnim(freshData.title)
     }, [alltexts, path])
-    
 
     return (
         <div className='w-full h-full'>
             
+            <div className='w-full h-50 flex flex-col justify-center items-center relative p-3' />
+
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     1/8
                 </div>
 
-                <Z_Text
+                <Overlay_Text
+                    text={``}
+                    trigger={"onscroll"}
                     animation={anim}
-                    className='text-[25px] font-bold text-center'
-                    text={`
-                        Text Fade Animation Preview Examples (keep scrolling) 
-                    `}
-                />
+                    // stagger={-3}
+                    // layers={[..."Z-FLUX ANIMATION".split("")]}
+                    layers={[..."  Story Time  ".toUpperCase().split("")]}
+                    // RenderLayer={({data, index})=>{
+                    //     return (
+                    //         <div className="w-full h-full bg-amber-900 flex justify-center items-center">
+                    //             <p className="text-white font-bold text-[30px]">{"kdkdkdkdkd"}</p>
+                    //         </div>
+                    //     )
+                    // }}
+                    // trigger={"inview"}
+                    // animationOrder="reverse"
+                    
+                >
+                    <p>
+                        Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
+                    </p>
+                </Overlay_Text>
             </div>
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3' />
 
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+            {/* <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     2/8
                 </div>
@@ -175,7 +194,9 @@ export default function Z_Text_Preview({
                         The End
                     `}
                 />
-            </div>
+            </div> */}
         </div>
     )
 }
+
+export default Overlay_Text_preview

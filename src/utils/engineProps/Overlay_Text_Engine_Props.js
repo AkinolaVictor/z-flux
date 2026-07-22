@@ -1,0 +1,210 @@
+import CodeBlock_Custom from "../../registry/locals/CodeBlock_Custom"
+
+export const Overlay_Text_Engine_Props = [
+    {
+        name: "text",
+        type: "string",
+        description: "The text you want to animate",
+        // more_des: "Many more explanation to help understand better",
+        value: 12
+    },
+    {
+        name: "animation",
+        type: "string",
+        // range: "true | false",
+        description: "Which Animation you want to be played. Often the title of this current page. (default is VerticalReveal)",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
+        name: "animationOrder",
+        type: "string",
+        range: "normal | reverse",
+        description: "Whether the animation should play in normal or reverse mode (default is normal)",
+        value: true
+    },
+    {
+        name: "scrollingElement",
+        type: "string",
+        description: <p>
+            A specific scrollable element you want your animation to respond to.
+        </p>,
+        more_des: <p>
+            By default, the animation keeps track of the nearest scrollable element, 
+            (meaning when you set playInView/playOnScroll to true, we seek out the nearest scrollable element and make the animation to respond to it)
+
+
+            <br />
+            <br />
+            However, If you have a specific scrollable element and you want the animation to 
+            respond to this scrollable element, add a class name or id (for example: "container"),
+            then set scrollingElement to that class name or id (like this scrollingElement=".container"), 
+            you can also use specific tag names like: "html", "body", "nav", "div", "p", "a", "div.thisClass", "p.thisparagraph", "p#thisID", "#thisSpecificID". (or anything related)
+            <br />
+            <br />
+            Note: This is only useful if you want to trigger your scroll animaton based a specific scrollable element, otherwise, just ignore it, it would respond to the nearest scrollable parent element.
+        </p>,
+        value: 12
+    },
+    {
+        name: "controllerRef",
+        type: "useRef",
+        description: <div>
+            For a manual control over the animation, in case you'll like to pause, play, reverse, restart, seek, (and more),
+            use the containerRef for this tasks.
+            <br />
+            <br />
+            See example 2 in the code usage section of the Z_Text animation series (select any of its varieties)    
+        </div>,
+    },
+    {
+        name: "trigger",
+        type: "string",
+        range: "onscroll | inview",
+        description: "The animation progression, how you want the animation to progressively play (default is char)",
+        more_des: <p>
+            <b>onscroll</b>: animation responds directly to users scroll
+            <br />
+            <br />
+            <b>inview:</b> animation automatically plays whenever user scrolls text to view (screen)
+        </p>,
+        value: "value1"
+    },
+
+
+
+
+    {
+        name: "textStyle",
+        type: "object",
+        description: "An object containing all the styles you want to add to your text",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
+        name: "textClass",
+        type: "string",
+        description: "All the classes your want to add to the text container",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
+        name: "layerStyle",
+        type: "object",
+        description: "An object containing all the styles you want to add to the overlay element",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
+        name: "layerClass",
+        type: "string",
+        description: "All the classes your want to add to the overlay element",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+
+
+    
+    {
+        name: "useOpacity",
+        type: "boolean",
+        range: "true or false",
+        description: "If set to true, the opacity of each layer gets animated also. Its often looking beautiful, try it out.",
+    },
+    {
+        name: "animationOrigin",
+        type: "string",
+        // range: "true or false",
+        id: "skaajajsq",
+        description: <p>
+            Sometimes when you change the origin of the animation, it's often beautiful, and gets more attention. 
+            For example if the layers animate to the <b>"bottom</b> (animationOrigin="bottom"), you can use this to 
+            animate it to the <b>"top"</b> (animationOrigin="top"), and much more.
+            <br />
+            <br />
+            Try the available options above (from the range) to suit your taste.
+        </p>,
+    },
+    {
+        name: "stagger",
+        type: "number",
+        range: "0 and above (default is 0.2)",
+        description: "How fast or slow you want the animation overlay sequence to play. (for multiple layers). SET TO 0 (zero) TO CANCEL THE SEQUENCE",
+    },
+    {
+        name: "layers",
+        type: "number | array",
+        // range: "true | false (default) | string",
+        description: "How many layer should the overlay be. You can also pass in an array of data (see examples)",
+    },
+    {
+        name: "RenderLayer",
+        type: "component",
+        range: "function | component",
+        description: "Takes a component to display for each of the element passed to the layers prop (see example)",
+        value: true
+    },
+    {
+        name: "timeline",
+        type: "gsap timeline",
+        range: "your own gsap.timeline()",
+        description: "If you want this animation to play sequentially with regards to you own timeline",
+        more_des: <CodeBlock_Custom>{`// if you have your own gsap timeline (for example)
+const tl = gsap.timeline()
+// then pass it to the component, as in
+timeline={tl}
+        `}</CodeBlock_Custom>,
+    },
+    {
+        name: "gsapScrollTrigger",
+        type: "object or function",
+        // range: "true | false",
+        description: "Control the scrollTrigger by adding more details to it",
+        more_des: <p>
+            Basically everything that works in a gsap scrollTrigger also work here, 
+            <br />
+            <br />
+            In case you want to use the timeline to do stuffs within the scrollTrigger, pass a function (instead of an object), and receive the timeline as a prop in your function, but ensure to return an object from that function.
+        </p>,
+        value: true
+    },
+    {
+        name: "extendAnimation",
+        type: "object",
+        range: <p>sample: {`{color: ["blue", "red"]}`}</p>,
+        description: "Add more styles to the animation.",
+        more_des: `
+            Extend the animation beyond the current state, you can animate any css gsap enabled properties, 
+            primarily any style you can animate using gsap also works here (check the usage section for better example)
+        `,
+        value: true
+    },
+    // {
+    //     name: "Keep this in mind",
+    //     type: "",
+    //     description: "Learn more about the Text Engine",
+    //     more_des: <p>
+    //         The underlying TextEngine template used in building this component is an extremely dynamic one, its built using gsap.
+    //         <br />
+    //         <br />
+    //         The idea is to help you abstract the many lines of code you need to do stuffs with gsap (while dealing with texts)
+    //         <br />
+    //         <br />
+    //         With the extendAnimation prop, you can completely transform the entire outlook of the component.
+    //         <br />
+    //         By default, the animation in the engine is basically to transform the opacity from 0 to 1, you can overwrite this by setting the opacity to [1,1] (with extendAnimation),
+    //         You can also add more properties to style, for example if you have a big bold text, you can enlarge (scale) each character, word, lines, etc, as it fully reveals (scale: [0, 1]).
+    //         <br />
+    //         You can really do much more, its up to you.
+    //         <br />
+    //         <br />
+    //         With the extendAnimation prop, you can completely transform the entire outlook of the component.
+    //         <br />
+    //         <br />
+    //         Also with the timeline and scrolltrigger props, you can do much more, like play and pause the animation whenever you want, control the sequence of the animation, and so much more
+    //         <br />
+    //         <br />
+    //         I recommend that you have a basic knowledge of gsap, it would really make a difference.
+    //     </p>
+    // }
+]

@@ -5,29 +5,27 @@ import React from 'react'
 // import { TextFadeDown, TextFadeSkew_2 } from 'react-web-flux'
 import TextFadeDown from '@/registry/z-flux/texts/TextFadeDown'
 import TextFadeSkew_2 from '@/registry/z-flux/texts/TextFadeSkew_2'
-import gsap from 'gsap'
+import {Z_Text} from "z-flux-react"
 
 interface Props {}
 
 function HomeDescription(props: Props) {
     const {} = props
-    const tl = gsap.timeline()
 
 
     return (
         <div className={`w-full ${pad_x} py-10 mt-20 text-center gap-7 h-auto flex flex-col justify-center items-center max-w-220`}>
-            {/* <h1 className='text-[30px] font-bold'>Bring Motion and Interaction to Every Interface</h1> */}
-            {/* <h1 className='text-[30px] font-bold'>Beautiful, Event-Driven Components for the Modern Web</h1> */}
-            {/* <h1 className='text-[30px] font-bold'>Open-Source Components That Feel Alive</h1> */}
-            <TextFadeDown progression='char_line' timeline={tl}>
+            <Z_Text 
+                progression='char_line' 
+                animation='FromRight'
+            >
                 <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
-            </TextFadeDown>
-            <TextFadeSkew_2
-                // progression='char_line'
-                // speed={0.03}
-                
+            </Z_Text>
+
+            <Z_Text
                 speed={0.05}
                 progression='char_line'
+                animation='FromRight'
                 className='text-[rosybrown] text-[16px]'
                 // text={`
                 //     An open-source collection of beautifully animated components that respond naturally to user interactions. 
@@ -38,7 +36,7 @@ function HomeDescription(props: Props) {
                     An open-source collection of beautifully animated components that respond naturally to user interactions. 
                     Easy to use, easy to customize, and simple to copy, paste, or install in any project.
                 </span>
-            </TextFadeSkew_2>
+            </Z_Text>
             <div className='flex justify-center items-center flex-wrap gap-3'>
                 <Link href={"/getting_started"}>
                     <button type="button" className='px-6 text-[14px] text-black min-h-10 bg-white rounded-full flex justify-center items-center gap-3 cursor-pointer'>
@@ -47,7 +45,7 @@ function HomeDescription(props: Props) {
                     </button>
                 </Link>
 
-                <Link href={"/components"}>
+                <Link href={"/components/Fade"}>
                     <button type="button" className='px-6 text-[14px] text-white min-h-10 bg-[#222222] rounded-full flex justify-center items-center cursor-pointer'>
                         <p>Browse Components</p>
                     </button>

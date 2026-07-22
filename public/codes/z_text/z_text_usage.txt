@@ -1,7 +1,6 @@
 import Z_Text from '@/Z_Text';
-        or
-import {Z_Text} from "z-flux-react"
-import {Z_Text} from "z-flux-vue"
+            or
+import {Z_Text} from "z-flux-react";
 
 // Example 1 code (check preview section)
 <Z_Text 
@@ -44,12 +43,6 @@ const playFunction = ()=>if(controller.current?.play) controller.current?.play()
 const reverseFunction = ()=>if(controller.current?.reverse) controller.current?.reverse();
 const restartFunction = ()=>if(controller.current?.restart) controller.current?.reverse();
 
-// assign functions to buttons
-<div className="button" onClick={pauseFunction}>pause</div>
-<div className="button" onClick={playFunction}>play</div>
-<div className="button" onClick={reverseFunction}>reverse</div>
-<div className="button" onClick={restartFunction}>restart</div>
-
 <Z_Text 
     animation={/* NAME OF ANIMATION */}
     style={{fontSize: "20px", color: "yellow"}}
@@ -57,6 +50,12 @@ const restartFunction = ()=>if(controller.current?.restart) controller.current?.
     controllerRef={controller}  // i use this to control the animation
     text="This text automatically animates word by word each time it's scrolled to view from the bottom, each time you scroll to the bottom and up again, it repeats the animation"
 />
+
+// assign functions to buttons
+<div className="button" onClick={pauseFunction}>pause</div>
+<div className="button" onClick={playFunction}>play</div>
+<div className="button" onClick={reverseFunction}>reverse</div>
+<div className="button" onClick={restartFunction}>restart</div>
 
 
 // Example 3 code (check preview section)

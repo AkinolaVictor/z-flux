@@ -12,7 +12,6 @@ function ComponentProperties(props: Props) {
     const path = usePathname()
     if(path=="/components") return null
     
-    
     const comp_data:any = get_component_data(path)
     if(!comp_data) return null
 
@@ -34,6 +33,7 @@ function ComponentProperties(props: Props) {
                         <EachProperty 
                             key={index}
                             item={item}
+                            data={comp_data}
                         />
                     )
                 })

@@ -144,9 +144,14 @@ function ComponentMenu(props) {
                                                             </div>
 
                                                             <div 
+                                                                // ${hid2?"hidden":""}
                                                                 className={`
                                                                     w-full h-auto relative
-                                                                    ${hid2?"hidden":""}
+                                                                    ${
+                                                                        isActive?"":
+                                                                        hid2?"hidden":
+                                                                        ""
+                                                                    }
                                                                 `}
                                                                 // style={{borderLeft: "1px solid white"}}
                                                             >

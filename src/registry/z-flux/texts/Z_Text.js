@@ -7,24 +7,25 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
-export default function Z_Text({
-    text, 
-    scrollingElement,
-    progression="char",
-    animation= "Fade",
-    playOnScroll=false,
-    playInView=false,
-    controllerRef=null,
-    style,
-    className,
-    children,
-    delay=0,
-    timeline=undefined,
-    speed,
-    gsapScrollTrigger,
-    extendAnimation,
-    watch=false
-}) {
+export default function Z_Text(props) {
+    const {
+        text, 
+        scrollingElement,
+        progression="char",
+        animation= "Fade",
+        playOnScroll=false,
+        playInView=false,
+        controllerRef=null,
+        style,
+        className,
+        children,
+        delay=0,
+        timeline=undefined,
+        speed,
+        gsapScrollTrigger,
+        extendAnimation,
+        watch=false
+    } = props
     const containerRef = useRef(null);
     const [fontLoaded, setFontLoaded] = useState(false)
     const [resizeTick, setResizeTick] = useState(0);
@@ -115,6 +116,7 @@ export default function Z_Text({
                     trigger: element,
                     scroller,
                     start: "top bottom",
+                    animation: tl,
                     onEnter: () => tl.restart(),
                     onLeaveBack: () => tl.pause(),
                     ...triggerOptions

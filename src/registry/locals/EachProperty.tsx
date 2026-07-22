@@ -5,11 +5,12 @@ import Custom_Radio from './Custom_Radio';
 import CustomDropdown from './CustomDropdown';
 
 interface Props {
-    item: any
+    item: any,
+    data: any
 }
 
 function EachProperty(props: Props) {
-    const {item} = props
+    const {item, data} = props
     const [hid, setHid] = useState(false)
     const [values, setValues] = useState([50]);
     const [valu, setValu] = useState({value: true});
@@ -25,6 +26,14 @@ function EachProperty(props: Props) {
         }
         return formatt
     }
+
+    function animation_origins() {
+        if(item.id!=="skaajajsq") return []
+        const {animation_origins} = data?.animation || {animation_origins: []}
+        return [...animation_origins]
+    }
+    const origins = animation_origins()
+
     return (
         
         <div className='w-full max-w-full darkbg h-auto px-3 py-2 my-5 rounded-[5px]'>
@@ -36,6 +45,17 @@ function EachProperty(props: Props) {
             {
                 item.range?
                 <div className='text-[12px] mt-2 opacity-80'>{item.range}</div>:
+                origins.length?
+                <div className='text-[12px] mt-2 opacity-80 flex flex-wrap'>
+                    <p>range: &nbsp;</p>
+                    {
+                        [...origins].map((item, index)=>{
+                            return (
+                                <p key={index}>{`"${item}" ${index+1==origins.length?"":"or"}`} &nbsp;</p>
+                            )
+                        })
+                    }
+                </div>:
                 null
             }
             <div className='text-[11px] mt-3 w-full max-w-full overflow-auto'>

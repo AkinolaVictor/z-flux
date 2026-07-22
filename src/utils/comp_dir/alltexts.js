@@ -5,36 +5,11 @@ import {texts_fade_skew} from "./texts/text_fade_skew"
 import {texts_fade_skew_2} from "./texts/text_fade_skew_2"
 import {texts_fade_down} from "./texts/text_fade_down"
 import {z_text_proto} from "./texts/z_text_proto"
+import {overlay_text_proto} from "./texts/overlay_text_proto"
 import {texts_texter} from "./texts/text_texter"
-import {overlay_reveal} from "./texts/overlay_reveal"
-import { animation_list } from "../animation_list";
+import { animation_list } from "../animlations/animation_list";
+import { overlay_text_animations } from "../animlations/overlay_text_animations";
 
-function fade () {
-    const fade_contents = [
-        texts_fade,
-        texts_fade_overlay,
-        texts_fade_skew,
-        texts_fade_skew_2,
-        texts_fade_down,
-        // texts_texter,
-    ]
-
-    fade_contents.map((item, index)=>{
-        fade_contents[index].taken = true
-    })
-
-    const fade_parent =  {
-        parent: true,
-        title: "Fade Series",
-        id: "fade_id",
-        grouped: fade_contents
-    }
-    
-    return {
-        fade_contents,
-        fade_parent
-    }
-}
 
 function z_text(){
     const built_animation = Object.entries(animation_list).map((each)=>{
@@ -55,7 +30,7 @@ function z_text(){
 
     const z_text_parent =  {
         parent: true,
-        title: "Z Text Series",
+        title: "Z Text",
         id: "z_text_id",
         grouped: z_text_content
     }
@@ -66,8 +41,39 @@ function z_text(){
     }
 }
 
-const {fade_contents, fade_parent} = fade()
+function overlay_text(){
+    const built_animation = Object.entries(overlay_text_animations).map((each)=>{
+        const [key, val] = each;
+        return {title:key, val};
+    });
+
+    const overlay_text_content = []
+    
+    for(let i=0; i<built_animation.length; i++){
+        const {title, val} = built_animation[i]
+        let sample = {...overlay_text_proto, href: ""}
+        sample.taken = true
+        sample.title = title
+        sample.href = `/components/${title}`
+        sample.animation = val
+        overlay_text_content.push(sample)
+    }
+
+    const overlay_text_parent =  {
+        parent: true,
+        title: "Overlay Text",
+        id: "overlay_text_id",
+        grouped: overlay_text_content
+    }
+
+    return {
+        overlay_text_parent, 
+        overlay_text_content
+    }
+}
+
 const {z_text_content, z_text_parent} = z_text()
+const {overlay_text_content, overlay_text_parent} = overlay_text()
 
 export const alltexts = {
     section: "Texts",
@@ -78,7 +84,10 @@ export const alltexts = {
 
         z_text_parent,
         ...z_text_content,
-        texts_texter
+        overlay_text_parent,
+        ...overlay_text_content,
+        // overlay_text_proto,
+        texts_texter,
 
         // texts_fade,
         // texts_fade_overlay,
