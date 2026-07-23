@@ -23,7 +23,7 @@
     "**/*.mts",
     "**/*.ts",
     "**/*.tsx"
-, "src/registry/locals/ModalContainer.js", "src/pages/_app.js", "src/pages/getting_started.js", "src/pages/about.js", "src/pages/_document.js"  ],
+, "src/registry/locals/ModalContainer.js", "src/pages/_app.js", "src/pages/getting_started.js", "src/pages/about.js", "src/pages/_document.js", "src/registry/locals/ModalMenu.js", "src/registry/locals/ModalList.js", "src/registry/locals/Footer.js", "src/registry/locals/EachProperty.js", "src/registry/locals/CustomDropdown.js", "src/registry/locals/Custom_Slider.js", "src/registry/locals/ComponentProperties.js", "src/registry/locals/ComponentIntro.js", "src/registry/locals/ComponentDetails.js", "src/registry/locals/Codeblock.js", "src/registry/locals/CodeBlock_Custom.js", "src/registry/locals/CLI_Prompts.js", "src/registry/locals/home/TopHeader.js", "src/registry/locals/home/HomeDescription.js", "src/registry/locals/home/EachCard.js", "src/registry/default/utils/deta.js", "src/registry/default/ui/TextRevealByHeight.js", "src/registry/default/ui/TextColorFade.js", "src/registry/default/ui/TextAnimationTemplate.js", "src/pages/api/hello.js", "src/pages/components/index.js", "src/pages/components/components.js", "src/pages/components/[eachComponent]/index.js", "src/pages/index.js"  ],
   "exclude": [
     "node_modules"
   ]
