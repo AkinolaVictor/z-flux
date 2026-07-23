@@ -1,8 +1,7 @@
-import Text_Fade_Preview from "@/utils/component_previews/texts/Text_Fade_Preview";
-import { ALargeSmall, Type } from "lucide-react";
+import { Type } from "lucide-react";
 import { TextEngineProps } from "../../engineProps/TextEngineProps"
-import Text_Fade_Overlay_Preview from "@/utils/component_previews/texts/Text_Fade_Overlay_Preview";
-import { getCode } from "@/utils/helper";
+import Text_Fade_Overlay_Preview from "../../../utils/component_previews/texts/Text_Fade_Overlay_Preview";
+import { getCode } from "../../../utils/helper";
 
 const usageFunc = (setState)=>getCode("/codes/text_fade_overlay/text_fade_overlay_usage.txt", setState)
 const ts_tw = (setState)=>getCode("/codes/text_fade_overlay/text_fade_overlay_ts_tw.txt", setState)

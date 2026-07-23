@@ -92,7 +92,7 @@ export const Overlay_Text_Engine_Props = [
         </p>,
         more_des: <p>
             By default, the animation keeps track of the nearest scrollable element, 
-            (meaning when you set playInView/playOnScroll to true, we seek out the nearest scrollable element and make the animation to respond to it)
+            (meaning when you set trigger to "onscroll" or "inview", we seek out the nearest scrollable element and make the animation to respond to it)
 
 
             <br />

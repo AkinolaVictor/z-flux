@@ -1,4 +1,4 @@
-import TextFadeDown from '@/registry/z-flux/texts/TextFadeDown'
+import TextFadeDown from '../../../registry/z-flux/texts/TextFadeDown'
 import React from 'react'
 
 interface Props {}

@@ -1,7 +1,7 @@
 import { Type } from "lucide-react";
 import { TextEngineProps } from "../../engineProps/TextEngineProps"
-import Text_Fade_Skew_2_Preview from "@/utils/component_previews/texts/Text_Fade_Skew_2_Preview";
-import { getCode } from "@/utils/helper";
+import Text_Fade_Skew_2_Preview from "../../../utils/component_previews/texts/Text_Fade_Skew_2_Preview";
+import { getCode } from "../../../utils/helper";
 
 const usageFunc = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_usage.txt", setState)
 const ts_tw = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_ts_tw.txt", setState)

@@ -1,4 +1,4 @@
-import TextFadeSkew_2 from '@/registry/z-flux/texts/TextFadeSkew_2'
+import TextFadeSkew_2 from '../../../registry/z-flux/texts/TextFadeSkew_2'
 
 interface Props {}
 

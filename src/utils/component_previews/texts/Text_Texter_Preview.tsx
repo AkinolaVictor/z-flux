@@ -1,5 +1,4 @@
-import TextFadeOverlay from '@/registry/z-flux/texts/TextFadeOverlay'
-import TextTexter from '@/registry/z-flux/texts/TextTexter'
+import TextTexter from '../../../registry/z-flux/texts/TextTexter'
 import React from 'react'
 
 interface Props {}

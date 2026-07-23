@@ -1,6 +1,6 @@
 import { Type } from "lucide-react";
 import { VerticalScrollProps } from "../../engineProps/VerticalScrollProps"
-import { getCode } from "@/utils/helper";
+import { getCode } from "../../../utils/helper";
 import Slider_Vertical_Scroll_Preview from "../../component_previews/scrollers/Sliders_vertical_Scroll_Preview";
 
 const usageFunc = (setState)=>getCode("/codes/vertical_scroll/vertical_scroll_usage.txt", setState)

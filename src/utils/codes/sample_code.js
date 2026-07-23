@@ -42,6 +42,6 @@ export const sample_code_2 = `import Z_Text from '@/Z_Text';
 import {Z_Text} from "z-flux-react"
 
 <Z_Text
-    playOnScroll
+    trigger="onscroll"
     text="This text responds directly to your scrolling"
 />`

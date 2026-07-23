@@ -115,21 +115,34 @@ export const Z_TextEngineProps = [
         </p>,
     },
     {
-        name: "playOnScroll",
-        type: "boolean",
-        range: "default is false",
-        description: "If you want the animation to play responsively to user scroll",
-        more_des: "This takes any value you can add to gsap scrolltrigger scrub",
-        value: true
+        name: "trigger",
+        type: "string",
+        range: "onscroll | inview",
+        description: "The animation progression, how you want the animation to progressively play (default is char)",
+        more_des: <p>
+            <b>onscroll</b>: animation responds directly to users scroll
+            <br />
+            <br />
+            <b>inview:</b> animation automatically plays whenever user scrolls text to view (screen)
+        </p>,
+        value: "value1"
     },
-    {
-        name: "playInView",
-        type: "boolean",
-        range: "default is false",
-        description: "If you want to play when its scrolled to view from the bottom",
-        more_des: "By default, the animation automatically plays (even if its not in view), but if you want it only to play when its scrolled to view, set this prop to true",
-        value: true
-    },
+    // {
+    //     name: "playOnScroll",
+    //     type: "boolean",
+    //     range: "default is false",
+    //     description: "If you want the animation to play responsively to user scroll",
+    //     more_des: "This takes any value you can add to gsap scrolltrigger scrub",
+    //     value: true
+    // },
+    // {
+    //     name: "playInView",
+    //     type: "boolean",
+    //     range: "default is false",
+    //     description: "If you want to play when its scrolled to view from the bottom",
+    //     more_des: "By default, the animation automatically plays (even if its not in view), but if you want it only to play when its scrolled to view, set this prop to true",
+    //     value: true
+    // },
     {
         name: "scrollingElement",
         type: "string",
@@ -138,7 +151,7 @@ export const Z_TextEngineProps = [
         </p>,
         more_des: <p>
             By default, the animation keeps track of the nearest scrollable element, 
-            (meaning when you set playInView/playOnScroll to true, we seek out the nearest scrollable element and make the animation to respond to it)
+            (meaning when you set trigger to "onscroll" or "inview", we seek out the nearest scrollable element and make the animation to respond to it)
 
 
             <br />

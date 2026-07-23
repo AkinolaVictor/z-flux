@@ -1,4 +1,4 @@
-import TextFadeOverlay from '@/registry/z-flux/texts/TextFadeOverlay'
+import TextFadeOverlay from '../../../registry/z-flux/texts/TextFadeOverlay'
 import React from 'react'
 
 interface Props {}

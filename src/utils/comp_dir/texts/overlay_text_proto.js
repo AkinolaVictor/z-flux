@@ -1,6 +1,6 @@
 import { Type } from "lucide-react";
-import { getCode } from "@/utils/helper";
-import { overlay_text_animations } from "@/utils/animlations/overlay_text_animations";
+import { getCode } from "../../../utils/helper";
+import { overlay_text_animations } from "../../../utils/animlations/overlay_text_animations";
 import Overlay_Text_preview from "../../component_previews/texts/Overlay_Text_preview";
 // import Overlay_Text_preview2 from "../../component_previews/texts/Overlay_Text_preview2";
 import { Overlay_Text_Engine_Props } from "../../engineProps/Overlay_Text_Engine_Props";

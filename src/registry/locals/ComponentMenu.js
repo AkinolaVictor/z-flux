@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import {components_directories} from "../../utils/comp_dir/components_directories"
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { generalFunctions } from '@/utils/generalFunctions'
+import { generalFunctions } from '../../utils/generalFunctions'
 
 function ComponentMenu(props) {
     const {func} = props
@@ -119,7 +119,7 @@ function ComponentMenu(props) {
                                                                 // ${isActive?"bg-[#3c3838]":""}
                                                                 className={`
                                                                     cursor-pointer rounded-[3px] w-full px-2 py-3 w6:py-2 hover:bg-[#3c3838] flex justify-between items-center
-                                                                    ${isActive&&hid2?"bg-[#3c3838]":""}
+                                                                    ${isActive&&!hid2?"bg-[#3c3838]":""}
                                                                 `}
                                                                 onClick={()=>toggler2(id)}
                                                             >
@@ -148,8 +148,7 @@ function ComponentMenu(props) {
                                                                 className={`
                                                                     w-full h-auto relative
                                                                     ${
-                                                                        isActive?"":
-                                                                        hid2?"hidden":
+                                                                        !hid2?"hidden":
                                                                         ""
                                                                     }
                                                                 `}

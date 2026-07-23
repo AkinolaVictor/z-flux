@@ -1,4 +1,4 @@
-import TextFade from '@/registry/z-flux/texts/TextFade'
+import TextFade from '../../../registry/z-flux/texts/TextFade'
 
 interface Props {}
 

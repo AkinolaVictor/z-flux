@@ -1,5 +1,5 @@
 import React from 'react'
-import IntegratedScroll from "@/registry/z-flux/transitions/IntegratedScroll"
+import IntegratedScroll from "../../../registry/z-flux/transitions/IntegratedScroll"
 
 
 export default function Transition_Integrated_Scroll_Preview({}) {

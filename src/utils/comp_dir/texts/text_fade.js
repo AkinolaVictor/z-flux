@@ -1,7 +1,7 @@
-import Text_Fade_Preview from "@/utils/component_previews/texts/Text_Fade_Preview";
+import Text_Fade_Preview from "../../../utils/component_previews/texts/Text_Fade_Preview";
 import { Type } from "lucide-react";
 import { TextEngineProps } from "../../engineProps/TextEngineProps"
-import { getCode } from "@/utils/helper";
+import { getCode } from "../../../utils/helper";
 
 const usageFunc = (setState)=>getCode("/codes/text_fade/text_fade_usage.txt", setState)
 const ts_tw = (setState)=>getCode("/codes/text_fade/text_fade_ts_tw.txt", setState)

@@ -1,8 +1,8 @@
 import { Type } from "lucide-react";
-import { getCode } from "@/utils/helper";
+import { getCode } from "../../../utils/helper";
 import { Z_TextEngineProps } from "../../engineProps/Z_TextEngineProps";
 import Z_Text_Preview from "../../component_previews/texts/Z_Text_Preview";
-import { animation_list } from "@/utils/animlations/animation_list";
+import { animation_list } from "../../../utils/animlations/animation_list";
 
 const usageFunc = (setState)=>getCode("/codes/z_text/z_text_usage.txt", setState)
 const js_cs = (setState)=>getCode("/codes/z_text/z_text_js_cs.txt", setState)

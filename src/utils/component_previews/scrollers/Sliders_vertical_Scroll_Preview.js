@@ -1,5 +1,5 @@
 import React from 'react'
-import VerticalScroll from "@/registry/z-flux/scrollers/VerticalScroll"
+import VerticalScroll from "../../../registry/z-flux/scrollers/VerticalScroll"
 
 
 export default function Slider_Vertical_Scroll_Preview({}) {

@@ -1,6 +1,6 @@
 
 import { useDispatch } from "react-redux";
-import { updateGeneralData } from "@/redux/slices/generalSlice";
+import { updateGeneralData } from "../redux/slices/generalSlice";
     
 export function generalFunctions(){
     const dispatch = useDispatch()

@@ -13,8 +13,9 @@ export default function Z_Text(props) {
         scrollingElement,
         progression="char",
         animation= "Fade",
-        playOnScroll=false,
-        playInView=false,
+        trigger, // onscroll, inview
+        // playOnScroll=false,
+        // playInView=false,
         controllerRef=null,
         style,
         className,
@@ -30,6 +31,8 @@ export default function Z_Text(props) {
     const [fontLoaded, setFontLoaded] = useState(false)
     const [resizeTick, setResizeTick] = useState(0);
 
+    const playOnScroll = trigger==="onscroll"
+    const playInView = trigger==="inview"
     const paused = playOnScroll || playInView
     const tl = timeline ?? gsap.timeline({ paused, delay });
     

@@ -1,4 +1,4 @@
-import { alltexts } from "@/utils/comp_dir/alltexts"
+import { alltexts } from "../../../utils/comp_dir/alltexts"
 import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
@@ -34,13 +34,13 @@ function Overlay_Text_preview() {
         <div className='w-full h-full'>
             
 
-            {/* <div className='w-full h-[60%] flex flex-col justify-center items-center relative p-3' /> */}
+            <div className='w-full h-[50%] flex flex-col justify-center items-center relative p-3' />
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     1/8
                 </div>
 
-                <Overlay_Text trigger={"inview"}>
+                {/* <Overlay_Text trigger={"inview"}>
                     <p className="font-bold text-[30px]">Text Overlay</p>
                 </Overlay_Text>
 
@@ -52,18 +52,18 @@ function Overlay_Text_preview() {
                     // text={"An simple text animation engine"}
                 >
                     <p className="font-bold text-[17px]">An simple text animation engine</p>
-                </Overlay_Text>
+                </Overlay_Text> */}
 
-                {/* <Overlay_Text
+                <Overlay_Text
                     text={``}
                     trigger={"onscroll"}
-                    // animation={anim}
+                    animation={anim}
                     // stagger={1.5}
-                    movement={"bottom"}
+                    // movement={"bottom"}
                     // layers={1}
-                    layers={4}
+                    // layers={4}
                     // layers={[..."Z-FLUX ANIMATION".split("")]}
-                    // layers={[..."  Story Time  ".toUpperCase().split("")]}
+                    layers={[..."  Story Time  ".toUpperCase().split("")]}
                     // RenderLayer={({data, index})=>{
                     //     return (
                     //         <div className="w-full h-full bg-amber-900 flex justify-center items-center">
@@ -78,7 +78,7 @@ function Overlay_Text_preview() {
                     <p>
                         Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
                     </p>
-                </Overlay_Text> */}
+                </Overlay_Text>
             </div>
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3' />
 

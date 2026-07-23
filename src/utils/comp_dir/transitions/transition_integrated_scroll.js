@@ -1,7 +1,7 @@
-import Transition_Integrated_Scroll_Preview from "@/utils/component_previews/transitions/Transition_Integrated_Scroll_Preview";
+import Transition_Integrated_Scroll_Preview from "../../../utils/component_previews/transitions/Transition_Integrated_Scroll_Preview";
 import { Type } from "lucide-react";
 import { TextEngineProps } from "../../engineProps/TextEngineProps"
-import { getCode } from "@/utils/helper";
+import { getCode } from "../../../utils/helper";
 
 const usageFunc = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_usage.txt", setState)
 const ts_tw = (setState)=>getCode("/codes/text_fade_skew_2/text_fade_skew_2_ts_tw.txt", setState)

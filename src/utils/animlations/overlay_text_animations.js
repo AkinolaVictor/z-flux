@@ -50,11 +50,6 @@ function revoriginss(origin, reverse){
     return value
 }
 
-// console.log("origins", origins(origins.bottom))
-// console.log("origins", origins(origins.bottom, true))
-// console.log("origins2", origins(origins.bottomRight))
-// console.log("origins2", origins(origins.bottomRight, true))
-
 export const overlay_text_animations = {
     VerticalReveal: {
         defaultGsap: {
