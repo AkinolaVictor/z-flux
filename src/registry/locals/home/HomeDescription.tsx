@@ -6,6 +6,7 @@ import React from 'react'
 import TextFadeDown from '@/registry/z-flux/texts/TextFadeDown'
 import TextFadeSkew_2 from '@/registry/z-flux/texts/TextFadeSkew_2'
 import {Z_Text} from "z-flux-react"
+import Overlay_Text from '@/registry/z-flux/texts/Overlay_Text'
 
 interface Props {}
 
@@ -15,12 +16,13 @@ function HomeDescription(props: Props) {
 
     return (
         <div className={`w-full ${pad_x} py-10 mt-20 text-center gap-7 h-auto flex flex-col justify-center items-center max-w-220`}>
-            <Z_Text 
-                progression='char_line' 
-                animation='FromRight'
+            <Overlay_Text 
+                // progression='char_line' 
+                // animation='FromRight'
+                animation='VerticalReveal'
             >
                 <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
-            </Z_Text>
+            </Overlay_Text>
 
             <Z_Text
                 speed={0.05}

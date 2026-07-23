@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { build_extend_animation, findScrollingElement } from 'z-flux-utils';
@@ -36,6 +36,7 @@ export default function Overlay_Text({
     trigger, // onscroll, inview
     timeline,
     stagger=0.2,
+    duration=3,
     layers=1,
     RenderLayer=DefalutLayerComponent,
     animationOrder="normal", //reverse, normal, random
@@ -49,12 +50,12 @@ export default function Overlay_Text({
     const containerRef = useRef(null)
     const heightRef = useRef(null)
     const tl = timeline||gsap.timeline({})
+    // const {defaultGsap, animation_origins, animationStyles} = overlay_text_animations[animation]
 
     if(controllerRef){
         controllerRef.current = tl
     }
-
-    const {defaultGsap, animation_origins, animationStyles} = overlay_text_animations[animation] || {defaultGsap: {}, animation_origins: [], animationStyles: {}}
+    const {defaultGsap, animation_origins, animationStyles} = overlay_text_animations[animation]
     
     function animate_func(){
         const elements = document.querySelectorAll(".each-overlay-block")
@@ -73,12 +74,14 @@ export default function Overlay_Text({
                 opacity: useOpacity?1:1,
                 ...build_extend_animation(defaultGsap, "from"),
                 ...build_extend_animation(extendAnimation, "from"),
+
             })
 
             tl.to(el, {
                 opacity: useOpacity?0:1,
-                ...build_extend_animation(defaultGsap, "to"),
                 stagger,
+                duration,
+                ...build_extend_animation(defaultGsap, "to"),
                 ...build_extend_animation(extendAnimation, "to"),
                 
             })
@@ -117,7 +120,8 @@ export default function Overlay_Text({
         return ()=>ctx.revert()
     }
 
-    useLayoutEffect(()=>{
+    // useLayoutEffect(()=>{
+    useEffect(()=>{
         const anim = animate_func()
         return anim
     }, [
@@ -127,12 +131,14 @@ export default function Overlay_Text({
         extendAnimation, 
         gsapScrollTrigger, 
         stagger, 
-        movement
+        movement,
+        overlay_text_animations
     ])
 
     return (
-        <div className='overlay_text_container w-full h-screen bg-black text-white flex flex-col justify-center items-center'>
-            <div className='relative w-auto h-auto max-w-201'>
+        <div className='overlay_text_container w-auto h-auto flex flex-col justify-center items-center'>
+            {/* <div className='relative w-auto h-auto max-w-201'> */}
+            <div className='relative w-auto h-auto'>
                 {
                     text?
                     <p ref={containerRef} className={`text-parentz ${textClass}`} style={{...textStyle}}>
@@ -140,6 +146,10 @@ export default function Overlay_Text({
                     </p>:
                     React.cloneElement(children, {
                         ref: containerRef,
+                        style: {
+                            ...children.props.style,
+                            ...textStyle
+                        },
                         className: [
                             children.props.className, 
                             "text-parentz",
@@ -164,7 +174,7 @@ export default function Overlay_Text({
                                     ref={heightRef}
                                     className={`each-overlay-block ${layerClass}`}
                                     style={{
-                                        margin: 0, padding: 0,
+                                        // margin: 0, padding: 0,
                                         width: "100%", height: "100%",
                                         willChange: "transform",
                                         background: "white",

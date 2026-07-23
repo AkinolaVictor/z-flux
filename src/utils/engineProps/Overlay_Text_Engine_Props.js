@@ -12,7 +12,7 @@ export const Overlay_Text_Engine_Props = [
         name: "animation",
         type: "string",
         // range: "true | false",
-        description: "Which Animation you want to be played. Often the title of this current page. (default is VerticalReveal)",
+        description: "Which Animation you want. Often the title of this current page. (default is VerticalReveal)",
         // more_des: "Many more explanation to help understand better",
         // value: true
     },
@@ -77,6 +77,12 @@ export const Overlay_Text_Engine_Props = [
         type: "number",
         range: "0 and above (default is 0.2)",
         description: "How fast or slow you want the animation overlay sequence to play. (for multiple layers). SET TO 0 (zero) TO CANCEL THE SEQUENCE",
+    },
+    {
+        name: "duration",
+        type: "number",
+        // range: "0 and above (default is 0.2)",
+        description: "How long in seconds you want the animation to play",
     },
     {
         name: "scrollingElement",

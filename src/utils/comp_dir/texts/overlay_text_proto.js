@@ -2,6 +2,7 @@ import { Type } from "lucide-react";
 import { getCode } from "@/utils/helper";
 import { overlay_text_animations } from "@/utils/animlations/overlay_text_animations";
 import Overlay_Text_preview from "../../component_previews/texts/Overlay_Text_preview";
+// import Overlay_Text_preview2 from "../../component_previews/texts/Overlay_Text_preview2";
 import { Overlay_Text_Engine_Props } from "../../engineProps/Overlay_Text_Engine_Props";
 
 
@@ -19,7 +20,7 @@ function getAnimationObj({func, name}){
     func(obj)
 }
 
-function getAnimationOrigin({func, name}){
+function getAnimationMovement({func, name}){
     let obj = ""
     Object.entries(overlay_text_animations).forEach((each)=>{
         const [key, val] = each;
@@ -78,8 +79,8 @@ export const overlay_text_proto = {
                     params: "special_function"
                 },
                 {
-                    title: "Reasonable Animation Origins",
-                    code: getAnimationOrigin,
+                    title: "Reasonable Animation Movements",
+                    code: getAnimationMovement,
                     id: "special_functionswg",
                     params: "special_function"
                 },
@@ -92,7 +93,9 @@ export const overlay_text_proto = {
         }
     },
     engine: "Overlay_Text",
-    preview: (props)=> <Overlay_Text_preview data={overlay_text_proto} {...props}/>,
+    // preview: (props)=> <Overlay_Text_preview data={overlay_text_proto} {...props}/>,
+    preview: Overlay_Text_preview,
+    // preview: Overlay_Text_preview2,
     props: [
         ...Overlay_Text_Engine_Props
     ]
