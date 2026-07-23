@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { build_extend_animation, findScrollingElement } from 'z-flux-utils';
@@ -25,38 +25,44 @@ function countNumbers(arg){
     return data
 }
 
-export default function Overlay_Text({
-    text, 
-    children,
-    textClass,
-    textStyle,
-    layerStyle,
-    layerClass,
-    scrollingElement,
-    trigger, // onscroll, inview
-    timeline,
-    stagger=0.2,
-    duration=3,
-    layers=1,
-    RenderLayer=DefalutLayerComponent,
-    animationOrder="normal", //reverse, normal, random
-    animation="VerticalReveal",
-    extendAnimation,
-    gsapScrollTrigger,
-    controllerRef=null,
-    useOpacity,
-    movement=0,
-}) {
+export default function Overlay_Text(props) {
+    const {
+        text, 
+        children,
+        textClass,
+        textStyle,
+        layerStyle,
+        layerClass,
+        scrollingElement,
+        trigger, // onscroll, inview
+        timeline,
+        stagger=0.2,
+        duration=3,
+        layers=1,
+        RenderLayer=DefalutLayerComponent,
+        animationOrder="normal", //reverse, normal, random
+        animation="VerticalReveal",
+        extendAnimation,
+        gsapScrollTrigger,
+        controllerRef=null,
+        useOpacity,
+        movement=0,
+    } = props
     const containerRef = useRef(null)
     const heightRef = useRef(null)
+    const [anim, setAnim] = useState(overlay_text_animations[animation])
+    
     const tl = timeline||gsap.timeline({})
-    // const {defaultGsap, animation_origins, animationStyles} = overlay_text_animations[animation]
-
     if(controllerRef){
         controllerRef.current = tl
     }
-    const {defaultGsap, animation_origins, animationStyles} = overlay_text_animations[animation]
+
+    // const {defaultGsap, animation_origins, animationStyles} = overlay_text_animations[animation]
+    useEffect(()=>{
+        setAnim(overlay_text_animations[animation])
+    }, [animation, overlay_text_animations])
     
+    const {defaultGsap, animation_origins, animationStyles} = anim
     function animate_func(){
         const elements = document.querySelectorAll(".each-overlay-block")
         if(!elements) return

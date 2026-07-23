@@ -19,16 +19,17 @@ function HomeDescription(props: Props) {
             <Overlay_Text 
                 // progression='char_line' 
                 // animation='FromRight'
-                animation='VerticalReveal'
+                animation='HorizontalReveal'
             >
                 <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
             </Overlay_Text>
 
-            <Z_Text
-                speed={0.05}
-                progression='char_line'
-                animation='FromRight'
-                className='text-[rosybrown] text-[16px]'
+            <Overlay_Text
+                animation='Flap'
+                layers={20}
+                // speed={0.05}
+                // progression='char_line'
+                // className='text-[rosybrown] text-[16px]'
                 // text={`
                 //     An open-source collection of beautifully animated components that respond naturally to user interactions. 
                 //     Easy to use, easy to customize, and simple to copy, paste, or install in any project.
@@ -38,7 +39,7 @@ function HomeDescription(props: Props) {
                     An open-source collection of beautifully animated components that respond naturally to user interactions. 
                     Easy to use, easy to customize, and simple to copy, paste, or install in any project.
                 </span>
-            </Z_Text>
+            </Overlay_Text>
             <div className='flex justify-center items-center flex-wrap gap-3'>
                 <Link href={"/getting_started"}>
                     <button type="button" className='px-6 text-[14px] text-black min-h-10 bg-white rounded-full flex justify-center items-center gap-3 cursor-pointer'>
