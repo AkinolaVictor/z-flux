@@ -2,6 +2,7 @@ import { alltexts } from "../../../utils/comp_dir/alltexts"
 import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
+import gsap from "gsap"
 
 function Overlay_Text_preview() {
 
@@ -29,187 +30,392 @@ function Overlay_Text_preview() {
         setAnim(freshData.title)
     }, [alltexts, path])
 
-
+    const tl = gsap.timeline({})
     return (
         <div className='w-full h-full'>
             
-
-            <div className='w-full h-[50%] flex flex-col justify-center items-center relative p-3' />
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                {/* <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     1/8
-                </div>
+                </div> */}
 
-                {/* <Overlay_Text trigger={"inview"}>
-                    <p className="font-bold text-[30px]">Text Overlay</p>
+                <Overlay_Text 
+                    animation={anim}
+                    textClass={"p-6"}
+                    layerColor="#8a6552"
+                >
+                    <p className="font-bold text-[30px]">{anim}</p>
+                </Overlay_Text>
+            </div>
+            
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    layerColor="#462521"
+                >
+                    <p className="font-bold text-[23px] p-5">Single</p>
                 </Overlay_Text>
 
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                text={``}
+                                trigger={"onscroll"}
+                                animation={anim}
+                                layerColor="#462521"
+                                textClass={"py-3"}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+            </div>
+            
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <Overlay_Text
-                    animation="HorizontalReveal"
-                    // movement={"right"}
-                    trigger={"inview"}
-                    // layers={3}
-                    // text={"An simple text animation engine"}
+                    animation={anim}
+                    trigger={"onscroll"}
                 >
-                    <p className="font-bold text-[17px]">An simple text animation engine</p>
-                </Overlay_Text> */}
+                    <p className="font-bold text-[23px] p-5">Layers</p>
+                </Overlay_Text>
+
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                text={``}
+                                trigger={"onscroll"}
+                                animation={anim}
+                                textClass={"py-3"}
+                                layers={[..."  Story Time  ".toUpperCase().split("")]}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+            </div>
+
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    // layers={5}
+                    layerColor="#41393e"
+                >
+                    <p className="font-bold text-[23px] p-5">Ordered Flow</p>
+                </Overlay_Text>
+
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                text={``}
+                                trigger={"onscroll"}
+                                layerColor="#41393e"
+                                animation={anim}
+                                textClass={"py-3"}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+            </div>
+            
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    layerColor="#bf9aca"
+                    layers={5}
+                >
+                    <p className="font-bold text-[23px] p-5">Ordered Flow With Layers</p>
+                </Overlay_Text>
+
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                text={``}
+                                trigger={"onscroll"}
+                                layerColor="#bf9aca"
+                                animationDirection={1}
+                                animation={anim}
+                                textClass={"py-3"}
+                                layers={10}
+                                // layers={[..."  Story Time  ".toUpperCase().split("")]}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+            </div>
+            
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    layers={5}
+                >
+                    <p className="font-bold text-[23px] p-5">Second Paragraph Reversed</p>
+                </Overlay_Text>
+
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                text={``}
+                                trigger={"onscroll"}
+                                animation={anim}
+                                animationOrder={index==1?"reverse":"normal"}
+                                textClass={"py-3"}
+                                layers={[..."  Story Time  ".toUpperCase().split("")]}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+            </div>
+            
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    useOpacity={true}
+                    layers={5}
+                >
+                    <p className="font-bold text-[23px] p-5">Reversed With Opacity</p>
+                </Overlay_Text>
+
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                text={``}
+                                trigger={"onscroll"}
+                                animation={anim}
+                                useOpacity={true}
+                                animationOrder={"reverse"}
+                                textClass={"py-3"}
+                                layers={[..."  Story Time  ".toUpperCase().split("")]}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+            </div>
+            
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    layers={"  FOOD  "}
+                    RenderLayer={({data, index})=>{
+                        return (
+                            <div 
+                                key={index}
+                                className={`
+                                    w-full h-full flex justify-center items-center
+                                    darkbg
+                                `}
+                            >
+                                <p className="font-bold text-[18px]">{data}</p>
+                            </div>
+                        )
+                    }}
+                >
+                    <p className="font-bold text-[23px] p-5">Tell Your Story</p>
+                </Overlay_Text>
+
+                {
+                    [
+                       {
+                            text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                            color: "darkbg",
+                            title: "Who Invented Food",
+                            desctiption: "The history of how food was invented",
+                        },
+                        {
+                            text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                            color: "darkbg",
+                            title: "Special Meals",
+                            desctiption: "Some special meal being prepared today",
+                        },
+                        {
+                            text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                            color: "darkbg",
+                            title: "Health in View",
+                            desctiption: "Learn healthy ways to prepare some food",
+                        },
+                        {
+                            text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                            color: "darkbg",
+                            title: "Food and Hunger",
+                            desctiption: "Interesting facts about food and hunger",
+                       },
+                    ].map((item, index2)=>{
+                        const {text, title, color, desctiption} = item
+                        
+                        return (
+                            <Overlay_Text
+                                key={index2}
+                                text={``}
+                                trigger={"onscroll"}
+                                animation={anim}
+                                useOpacity={true}
+                                animationOrder={"reverse"}
+                                textClass={"py-1"}
+                                gsapScrollTrigger={{
+                                    start: "top 50%",
+                                    end: "top 10%"
+                                }}
+                                containerClass={"my-5"}
+                                RenderLayer={({data, index})=>{
+                                    return (
+                                        <div 
+                                            key={index}
+                                            className={`
+                                                w-full h-full flex flex-col justify-center items-center
+                                                ${color}
+                                            `}
+                                        >
+                                            <p className="font-bold text-[18px]">{title}</p>
+                                            <p className="opacity-70 mt-4">{desctiption}</p>
+                                        </div>
+                                    )
+                                }}
+                            >
+                                <p>{text}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+            </div>
+
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    layers={2}
+                    layerColor="#41393e"
+                >
+                    <p className="font-bold text-[23px] p-5">Fun Fact</p>
+                </Overlay_Text>
 
                 <Overlay_Text
                     text={``}
                     trigger={"onscroll"}
+                    layerColor="#41393e"
                     animation={anim}
-                    // stagger={1.5}
-                    // movement={"bottom"}
-                    // layers={1}
-                    // layers={4}
-                    // layers={[..."Z-FLUX ANIMATION".split("")]}
-                    layers={[..."  Story Time  ".toUpperCase().split("")]}
-                    // RenderLayer={({data, index})=>{
-                    //     return (
-                    //         <div className="w-full h-full bg-amber-900 flex justify-center items-center">
-                    //             <p className="text-white font-bold text-[30px]">{"kdkdkdkdkd"}</p>
-                    //         </div>
-                    //     )
-                    // }}
-                    // trigger={"inview"}
-                    // animationOrder="reverse"
-                    
+                    textClass={"py-3"}
                 >
-                    <p>
-                        Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
-                    </p>
+                    <div className="p-2">
+                        <p className="py-1">This Engine can also overlay a full component of moderate size</p>
+
+                        <div className="flex justify-between items-center flex-wrap my-2">
+                            {
+                                [1,2,3].map((item, index)=>{
+                                    return (
+                                        <div 
+                                            key={index} 
+                                            className="w-20 h-20 rounded-[10px] darkbg flex justify-center items-center"
+                                        >
+                                            <p>Box {index}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+
+                        <div className="w-full h-20 darkbg rounded-[11px] py-2">
+                            
+                        </div>
+                    </div>                    
+                </Overlay_Text>
+
+                <Overlay_Text
+                    text={``}
+                    trigger={"onscroll"}
+                    layerColor="#41393e"
+                    animation={anim}
+                    textClass={"py-3"}
+                    RenderLayer={()=>{
+                        return (
+                            <div className="w-full h-full">
+                                <p>Cover </p>
+                                <div className="flex justify-between items-center flex-wrap gap-3 my-2">
+                                    {
+                                        [12,2,2,2].map((item, index)=>{
+                                            return (
+                                                <div key={index} className="rounded-full w-10 h-10 bg-amber-700">
+                                                    
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        )
+                    }}
+                >
+                    <div className="p-2">
+                        <p className="py-1">This Engine can also overlay a full component of moderate size</p>
+
+                        <div className="flex justify-between items-center flex-wrap gap-3 my-2">
+                            {
+                                [1,2,3].map((item, index)=>{
+                                    return (
+                                        <div 
+                                            key={index} 
+                                            className="w-20 h-20 rounded-[10px] darkbg flex justify-center items-center"
+                                        >
+                                            <p>Box {index}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+
+                        <div className="w-full h-20 darkbg rounded-[11px] py-2">
+                            
+                        </div>
+                    </div>                    
                 </Overlay_Text>
             </div>
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3' />
 
-            {/* <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    2/8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    className='text-[20px]'
-                    controllerRef={controller}
-                    style={{color: "yellow"}}
-                    playInView
-                    text={`
-                        This text automatically animates each time it's scrolled to view from the bottom
-                    `}
-                />
-
-                <div className="w-auto flex flex-colx justify-around items-center flex-wrap mt-5">
-                    {
-                        ["pause", "play", "reverse", "restart"].map((item, index)=>{
-                            return (
-                                <div 
-                                    key={index}
-                                    onClick={()=>{controlAnimation(item)}} 
-                                    className={`
-                                        flex justify-center w-17 items-center gap-2 cursor-pointer rounded-full border px-3 py-1 text-[12px] hover:bg-[#121212]
-                                        opacity-70 hover:opacity-100 mt-4 mx-2
-                                    `}
-                                >
-                                    <p>{item}</p>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    3/8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    className='w11:text-[20px]'
-                    playOnScroll
-                    text={`
-                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
-                    `}
-                />
-
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    4/8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="word"
-                    className='w11:text-[20px]'
-                    playOnScroll
-                    text={`
-                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
-                    `}
-                />
-
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    5/8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="word_line"
-                    className='w11:text-[20px]'
-                    playOnScroll
-                    text={`
-                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
-                    `}
-                />
-
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    6/8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="line"
-                    playOnScroll
-                    className='w11:text-[20px]'
-                    text={`
-                        Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
-                    `}
-                />
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    7/8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="char_line"
-                    playOnScroll
-                    className='w11:text-[20px]'
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
-                    </span>
-                </Z_Text>
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    8/8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    className='text-[20px]'
-                    playInView
-                    text={`
-                        The End
-                    `}
-                />
-            </div> */}
+            <div className='w-full h-80 flex flex-col justify-center items-center relative p-3' />
         </div>
     )
 }

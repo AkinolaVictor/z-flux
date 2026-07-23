@@ -45,10 +45,12 @@ function ComponentMenu(props) {
     }
     
     function print_content_num(content){
-        let num = content.length || 0
+        // let num = content.length || 0
+        let num = 0
         content.forEach((item)=>{
             // if(item.taken) num-- // remove children
-            if(item.parent) num-- // remove parent
+            // if(item.parent) num-- // remove parent
+            if(item.parent) num++ // count parent
         })
         return num
     }
@@ -85,12 +87,12 @@ function ComponentMenu(props) {
                                     >
                                         <p className='opacity-80'>{item_1.section}</p>
                                         <div className='flex items-center justify-center gap-1 hover:bg-[#3c3838] px-0.5 rounded-[5px]'>
-                                            {
+                                            {/* {
                                                 print_content_num(item_1.content)>1&&
                                                 <p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">
                                                     {print_content_num(item_1.content)}
                                                 </p>
-                                            }
+                                            } */}
                                             {
                                                 hid?
                                                 <ChevronUp size={"15px"}/>:
@@ -135,7 +137,7 @@ function ComponentMenu(props) {
                                                                         </p>
                                                                     }
                                                                     {
-                                                                        hid2?
+                                                                        !hid2?
                                                                         <ChevronDown size={"15px"}/>:
                                                                         <ChevronUp size={"15px"}/>
                                                                     }

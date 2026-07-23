@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev2": "npx next dev --webpack",
-    "dev3": "next dev -p 3024",
+    "dev3": "next dev -p 3034",
     "build": "next build",
     "installx": "npm install --legacy-peer-deps",
     "start": "next start",

@@ -44,7 +44,7 @@ export default function Z_Text(props) {
         const element = containerRef.current;
         if (!element || !fontLoaded) return;
         const ctx = gsap.context(() => {
-            const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(".fade_textation_x");
+            const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(element, true);
 
             const split = SplitText.create(element, {
                 type: "lines,words,chars",

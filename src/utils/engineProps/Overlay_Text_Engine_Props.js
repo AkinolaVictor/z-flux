@@ -24,12 +24,12 @@ export const Overlay_Text_Engine_Props = [
         value: true
     },
     {
-        name: "movement",
+        name: "animationDirection",
         type: "string",
         // range: "true or false",
         id: "skaajajsq",
         description: <p>
-            If you want the animation to move from left to right, or bottom to top, or from "top right" to "bottom left", or more,
+            Direction of animation. If you want the animation to move from left to right, or bottom to top, or from "top right" to "bottom left", or more,
             choose from the above options to suit your purpose. The first option on the list is often the default.
             <br /> 
             <br /> 
@@ -61,15 +61,21 @@ export const Overlay_Text_Engine_Props = [
     },
     {
         name: "layers",
-        type: "number | array",
+        type: "str | num | arr",
         // range: "true | false (default) | string",
         description: "How many layer should the overlay be. You can also pass in an array of data (see examples)",
+    },
+    {
+        name: "layerColor",
+        type: "string",
+        // range: "true | false (default) | string",
+        description: "Background color of each layer",
     },
     {
         name: "RenderLayer",
         type: "component",
         range: "function | component",
-        description: "Takes a component to display for each of the element passed to the layers prop (see example)",
+        description: "You can also render a custom component for each layer block.",
         value: true
     },
     {
@@ -143,6 +149,20 @@ export const Overlay_Text_Engine_Props = [
         name: "layerClass",
         type: "string",
         description: "All the classes your want to add to the overlay element",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
+        name: "containerStyle",
+        type: "object",
+        description: "An object containing all the styles you want to add to the main element container",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
+        name: "containerClass",
+        type: "string",
+        description: "All the classes your want to add to the main element container",
         // more_des: "Many more explanation to help understand better",
         // value: true
     },

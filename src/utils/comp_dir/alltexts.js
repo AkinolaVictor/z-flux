@@ -76,7 +76,7 @@ const {z_text_content, z_text_parent} = z_text()
 const {overlay_text_content, overlay_text_parent} = overlay_text()
 
 export const alltexts = {
-    section: "Texts",
+    section: "Text Engines",
     Icon: ()=><Type size={"13px"}/>,
     content: [
         // fade_parent,
@@ -87,7 +87,7 @@ export const alltexts = {
         overlay_text_parent,
         ...overlay_text_content,
         // overlay_text_proto,
-        texts_texter,
+        // texts_texter,
 
         // texts_fade,
         // texts_fade_overlay,

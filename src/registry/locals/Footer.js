@@ -10,11 +10,11 @@ function Footer(props) {
         <div className={`w-full ${pad_x} flex justify-center items-center py-9 bg-black`}>
             <p className='opacity-60'>
                 Built by  
-                <Link href={"https://google.com/"} className='opacity-100'>
+                <Link href={"https://www.linkedin.com/in/victoral/"} className='opacity-100'>
                     &nbsp;victor_olaleykan
                 </Link>. 
                 The source code is available on 
-                <Link href={"https://google.com"} className='opacity-100'>
+                <Link href={"https://google.com"} className='opacity-100 '>
                     &nbsp;GITHUB
                 </Link>
             </p>

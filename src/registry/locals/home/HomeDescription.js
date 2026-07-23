@@ -20,8 +20,11 @@ function HomeDescription(props) {
             </Z_Text>
 
             <Overlay_Text
-                animation='Flap'
-                layers={20}
+                // animation='BottomLeftXY'
+                animation='HorizontalReveal'
+                layers={1}
+                layerColor={"black"}
+                duration={10}
                 // speed={0.05}
                 // progression='char_line'
                 // className='text-[rosybrown] text-[16px]'

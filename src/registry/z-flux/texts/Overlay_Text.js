@@ -25,20 +25,22 @@ function countNumbers(arg){
     return data
 }
 
-export default function Overlay_Text(props) {
-    const {
+export default function Overlay_Text({
         text, 
         children,
         textClass,
         textStyle,
         layerStyle,
         layerClass,
+        containerStyle,
+        containerClass,
         scrollingElement,
         trigger, // onscroll, inview
         timeline,
         stagger=0.2,
         duration=1.5,
         layers=1,
+        layerColor="white",
         RenderLayer=DefalutLayerComponent,
         animationOrder="normal", //reverse, normal, random
         animation="VerticalReveal",
@@ -46,27 +48,28 @@ export default function Overlay_Text(props) {
         gsapScrollTrigger,
         controllerRef=null,
         useOpacity,
-        movement=0,
-    } = props
+        animationDirection=0,
+}) {
     const containerRef = useRef(null)
     const heightRef = useRef(null)
-    // const [anim, setAnim] = useState(overlay_text_animations[animation])
     
     const tl = timeline||gsap.timeline({})
     if(controllerRef){
         controllerRef.current = tl
     }
-
-    // useEffect(()=>{
-    //     setAnim(overlay_text_animations[animation])
-    // }, [animation, overlay_text_animations])
     
-    // const {defaultGsap, animation_origins, animationStyles} = overlay_text_animations[animation]
     const anim = overlay_text_animations[animation]
     const {defaultGsap, animation_origins, animationStyles} = anim
+
     function animate_func(){
-        const elements = document.querySelectorAll(".each-overlay-block")
-        if(!elements) return
+        // const tl = timeline||gsap.timeline({})
+        // if(controllerRef){
+        //     controllerRef.current = tl
+        // }
+
+        const parent = heightRef.current
+        if(!parent) return
+        const elements = parent.children
         
         const el = (
             animationOrder==="reverse"?
@@ -75,22 +78,20 @@ export default function Overlay_Text(props) {
         )
         
         const ctx = gsap.context(()=>{
-            const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(".overlay_text_container");
+            const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(parent, true);
 
             tl.set(el, {
                 opacity: useOpacity?1:1,
                 ...build_extend_animation(defaultGsap, "from"),
                 ...build_extend_animation(extendAnimation, "from"),
-
             })
 
             tl.to(el, {
                 opacity: useOpacity?0:1,
                 stagger,
-                duration,
                 ...build_extend_animation(defaultGsap, "to"),
+                duration,
                 ...build_extend_animation(extendAnimation, "to"),
-                
             })
             
             const triggerOptions =
@@ -124,7 +125,9 @@ export default function Overlay_Text(props) {
             }
         }, elements)
         
-        return ()=>ctx.revert()
+        return ()=>{
+            ctx.revert();
+        }
     }
 
     // useLayoutEffect(()=>{
@@ -138,13 +141,16 @@ export default function Overlay_Text(props) {
         extendAnimation, 
         gsapScrollTrigger, 
         stagger, 
-        movement,
-        overlay_text_animations
+        animationDirection,
+        overlay_text_animations,
+        tl
     ])
 
     return (
-        <div className='overlay_text_container w-auto h-auto flex flex-col justify-center items-center'>
-            {/* <div className='relative w-auto h-auto max-w-201'> */}
+        <div  
+            style={{...containerStyle}}
+            className={`overlay_text_container w-auto h-auto flex flex-col justify-center items-center ${containerClass}`}
+        >
             <div className='relative w-auto h-auto'>
                 {
                     text?
@@ -167,6 +173,7 @@ export default function Overlay_Text(props) {
 
                 {/* multiple */}
                 <div 
+                    ref={heightRef}
                     className={`
                         w-full h-full bg-blacks absolute top-0 left-0
                         flex justify-start items-start
@@ -177,18 +184,16 @@ export default function Overlay_Text(props) {
                         countNumbers(layers).map((data, index)=>{
                             return (
                                 <div 
-                                    key={index} 
-                                    // ref={heightRef}
+                                    key={index}
                                     className={`each-overlay-block ${layerClass}`}
                                     style={{
-                                        // margin: 0, padding: 0,
                                         width: "100%", height: "100%",
                                         willChange: "transform",
-                                        background: "white",
+                                        background: layerColor,
                                         transformOrigin: (
-                                            typeof(movement)=="number"?
-                                            animation_origins[movement]:
-                                            movement
+                                            typeof(animationDirection)=="number"?
+                                            animation_origins[animationDirection]:
+                                            animationDirection
                                         ), 
                                         display: "flex",
                                         justifyContent: "center",

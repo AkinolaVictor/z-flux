@@ -79,7 +79,7 @@ export const overlay_text_proto = {
                     params: "special_function"
                 },
                 {
-                    title: "Reasonable Animation Movements",
+                    title: "Reasonable Animation Directions",
                     code: getAnimationMovement,
                     id: "special_functionswg",
                     params: "special_function"

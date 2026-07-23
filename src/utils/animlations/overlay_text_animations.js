@@ -109,11 +109,11 @@ export const overlay_text_animations = {
         },
         animation_origins: [
             origins.bottomRight, //def
+            origins.center, 
             origins.bottom,
             origins.bottomCenter,
             origins.centerRight, 
             origins.centerLeft, 
-            origins.center, 
             origins.topLeft, 
             origins.topRight, 
             origins.bottomLeft,
