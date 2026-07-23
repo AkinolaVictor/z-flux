@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "eslint",
     "shadcn": "npx shadcn build",
-    "git": "git add . && git commit -m 'updated...' && git push origin master",
+    "git": "git add . && git commit -m 'new_environment...' && git push origin master",
     "push": "npm run shadcn && npm run git"
   },
   "dependencies": {
