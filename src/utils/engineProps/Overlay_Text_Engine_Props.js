@@ -41,15 +41,39 @@ export const Overlay_Text_Engine_Props = [
         </p>,
     },
     {
+        name: "animationDirection",
+        type: "string",
+        range: "x or y",
+        id: "skaajajsqssw",
+        description: <p>
+            Dimension of overlay animation, whether x or y. Default is y.
+            <br />
+            <br />
+            Note: small letter x or y, not capital X OR Y
+        </p>,
+    },
+    {
         name: "trigger",
         type: "string",
-        range: "onscroll | inview",
+        range: "onscroll | inview | none",
         description: "The animation progression, how you want the animation to progressively play (default is char)",
         more_des: <p>
             <b>onscroll</b>: animation responds directly to users scroll
             <br />
             <br />
             <b>inview:</b> animation automatically plays whenever user scrolls text to view (screen)
+            <br />
+            <br />
+            <b>none:</b> animation will not play
+        </p>,
+        value: "value1"
+    },
+    {
+        name: "onClick",
+        type: "function",
+        description: "Make component clickable",
+        more_des: <p>
+            The click function is added to the parent element
         </p>,
         value: "value1"
     },

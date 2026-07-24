@@ -41,7 +41,6 @@ function ComponentMenu(props) {
 
     function click_handler(item){
         func && func()
-        // const {title, href, id} = item
     }
     
     function print_content_num(content){
@@ -105,7 +104,6 @@ function ComponentMenu(props) {
                                         {
                                             item_1.content.map((item_2, index_2)=>{
                                                 const {title, href, id, hide, parent, grouped, taken} = item_2
-                                                // const isPath = path==href
                                                 
                                                 if(parent){
                                                     const hid2 = !toggleState2.includes(item_2.id)

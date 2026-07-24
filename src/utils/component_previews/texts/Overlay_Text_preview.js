@@ -2,10 +2,12 @@ import { alltexts } from "../../../utils/comp_dir/alltexts"
 import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
+import Z_Text from "@/registry/z-flux/texts/Z_Text"
 
 function Overlay_Text_preview() {
 
     const [anim, setAnim] = useState("VerticalReveal")
+    const [reveal, setReveal] = useState("none")
     const path = usePathname()
 
     function getFreshData() {
@@ -114,24 +116,29 @@ function Overlay_Text_preview() {
                     <p className="font-bold text-[23px] p-5 text-center">Layers</p>
                 </Overlay_Text>
 
-                {
-                    [
-                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
-                    ].map((item, index)=>{
-                        return (
-                            <Overlay_Text
-                                key={index}
-                                text={``}
-                                trigger={"onscroll"}
-                                animation={anim}
-                                textClass={"py-3"}
-                                layers={[..."  Story Time  ".toUpperCase().split("")]}
-                            >
-                                <p>{item}</p>
-                            </Overlay_Text>
-                        )
-                    })
-                }
+                <Overlay_Text
+                    trigger={"onscroll"}
+                    animation={anim}
+                    textClass={"py-3"}
+                    layers={"  Story Time  "}
+                >
+                    <p>
+                        Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
+                    </p>
+                </Overlay_Text>
+
+                <Overlay_Text
+                    trigger={"onscroll"}
+                    animation={anim}
+                    animationDimension={"x"}
+                    textClass={"py-3"}
+                    layers={5}
+                    animationOrder="reverse"
+                >
+                    <p>
+                        Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
+                    </p>
+                </Overlay_Text>
             </div>
 
             <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
@@ -160,7 +167,22 @@ function Overlay_Text_preview() {
                                 textClass={"py-3"}
                                 animationDirection={2}
                             >
-                                <p>{item}</p>
+                                <Z_Text
+                                    trigger={"inview"}
+                                    delay={0.5}
+                                    animation={
+                                        index==0?
+                                        "Fade":
+                                        index==1?
+                                        "FromRight":
+                                        "ScaleXY"
+                                    }
+                                    gsapScrollTrigger={{
+                                        start: "top 50%" // the text should start showing when it reaches 50% of the screen
+                                    }}
+                                >
+                                    <p>{item}</p>
+                                </Z_Text>
                             </Overlay_Text>
                         )
                     })
@@ -176,7 +198,7 @@ function Overlay_Text_preview() {
                 >
                     <p className="font-bold text-[23px] p-5 text-center">Ordered Flow With Layers</p>
                 </Overlay_Text>
-
+                
                 {
                     [
                         "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
@@ -186,13 +208,33 @@ function Overlay_Text_preview() {
                         return (
                             <Overlay_Text
                                 key={index}
-                                text={``}
                                 trigger={"onscroll"}
                                 animationDirection={1}
                                 animation={anim}
                                 textClass={"py-3"}
                                 layers={10}
-                                // layers={[..."  Story Time  ".toUpperCase().split("")]}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+                
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                trigger={"onscroll"}
+                                animationDirection={1}
+                                animationDimension="x"
+                                animation={anim}
+                                textClass={"py-3"}
+                                layers={10}
                             >
                                 <p>{item}</p>
                             </Overlay_Text>
@@ -256,10 +298,33 @@ function Overlay_Text_preview() {
                                 trigger={"onscroll"}
                                 animation={anim}
                                 useOpacity={true}
-                                // animationOrder={index==0?"reverse":"random"}
                                 animationOrder={"random"}
                                 textClass={"py-3"}
-                                layers={[..."  Story Time  ".toUpperCase().split("")]}
+                                layers={"  Story Time  "}
+                            >
+                                <p>{item}</p>
+                            </Overlay_Text>
+                        )
+                    })
+                }
+
+                {
+                    [
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                        "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
+                    ].map((item, index)=>{
+                        return (
+                            <Overlay_Text
+                                key={index}
+                                text={``}
+                                trigger={"onscroll"}
+                                animation={anim}
+                                useOpacity={true}
+                                animationOrder={"random"}
+                                animationDimension="x"
+                                textClass={"py-3"}
+                                layers={10}
                             >
                                 <p>{item}</p>
                             </Overlay_Text>
@@ -370,24 +435,6 @@ function Overlay_Text_preview() {
                     animation={anim}
                     layers={100}
                     textClass={"py-3"}
-                    // RenderLayer={()=>{
-                    //     return (
-                    //         <div className="w-full h-full flex flex-col justify-center items-center">
-                    //             <p>Cover Layer</p>
-                    //             <div className="flex justify-between items-center flex-wrap gap-3 my-2">
-                    //                 {
-                    //                     [12,2,2,2].map((item, index)=>{
-                    //                         return (
-                    //                             <div key={index} className="rounded-full w-10 h-10 darkbg">
-                                                    
-                    //                             </div>
-                    //                         )
-                    //                     })
-                    //                 }
-                    //             </div>
-                    //         </div>
-                    //     )
-                    // }}
                 >
                     <div className="p-2">
                         <p className="py-1">This Engine can also overlay a full component of moderate size</p>
@@ -412,6 +459,74 @@ function Overlay_Text_preview() {
                         </div>
                     </div>                 
                 </Overlay_Text>
+            </div>
+
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <Overlay_Text
+                    animation={anim}
+                    trigger={reveal}
+                    layers="  Z-FLUX  "
+                    RenderLayer={({data})=>{
+                        return <p className="text-black font-bold">{data}</p>
+                    }}
+                >
+                    <p className="font-bold text-[23px] p-5 text-center">Interactive Reveal</p>
+                </Overlay_Text>
+
+                <Overlay_Text
+                    text={``}
+                    trigger={reveal}
+                    containerClass={"mt-4"}
+                    animation={anim}
+                    layers={1}
+                    textClass={"py-3"}
+                    RenderLayer={()=>{
+                        return (
+                            <div className="w-full h-full flex flex-col justify-center items-center text-black">
+                                <p>Click to Reveal Component</p>
+                                <div 
+                                    onClick={()=>setReveal("")} 
+                                    className="w-auto text-white px-3 py-1.5 h-auto cursor-pointer mt-4 darkbg rounded-[15px]"
+                                >
+                                    Reveal
+                                </div>
+                            </div>
+                        )
+                    }}
+                >
+                    <div className="p-2">
+                        <p className="py-1">This Engine can also overlay a full component of moderate size</p>
+
+                        <div className="flex justify-between items-center flex-wrap my-2">
+                            {
+                                [1,2,3].map((item, index)=>{
+                                    return (
+                                        <div 
+                                            key={index} 
+                                            className="w-20 h-20 rounded-[10px] darkbg flex justify-center items-center"
+                                        >
+                                            <p>Box {index+1}</p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+
+                        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+                        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+                        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+                    </div>                 
+                </Overlay_Text>
+
+                <div 
+                    onClick={()=>setReveal("none")}
+                    className={`
+                        w-auto h-auto py-2 px-5 mt-3 flex justify-center items-center cursor-pointer darkbg rounded-[11px]
+                        ${reveal=="none"?"hidden":""}
+                    `} 
+                >
+                    Close Component
+                </div>
             </div>
 
             <div className='w-full h-80 flex flex-col justify-center items-center relative p-3' />

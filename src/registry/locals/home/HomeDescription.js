@@ -2,8 +2,9 @@ import { pad_x } from '../../../utils/helper'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-import {Z_Text} from "z-flux-react"
+// import {Z_Text} from "z-flux-react"
 import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
+import Z_Text from '../../../registry/z-flux/texts/Z_Text'
 
 
 function HomeDescription(props) {
@@ -11,7 +12,7 @@ function HomeDescription(props) {
 
     return (
         <div className={`w-full ${pad_x} py-10 mt-20 text-center gap-7 h-auto flex flex-col justify-center items-center max-w-220`}>
-            <Z_Text 
+            <Z_Text
                 // progression='char_line' 
                 // animation='FromRight'
                 animation='VerticalReveal'
@@ -46,7 +47,7 @@ function HomeDescription(props) {
                     </button>
                 </Link>
 
-                <Link href={"/components/Fade"}>
+                <Link href={"/components/z_text_Fade"}>
                     <button type="button" className='px-6 text-[14px] text-white min-h-10 bg-[#222222] rounded-full flex justify-center items-center cursor-pointer'>
                         <p>Browse Components</p>
                     </button>

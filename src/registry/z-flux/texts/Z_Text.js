@@ -13,7 +13,7 @@ export default function Z_Text(props) {
         scrollingElement,
         progression="char",
         animation= "Fade",
-        trigger, // onscroll, inview
+        trigger, // onscroll, inview, none
         controllerRef=null,
         style,
         className,
@@ -26,7 +26,6 @@ export default function Z_Text(props) {
         watch=false
     } = props
     const containerRef = useRef(null);
-    const [fontLoaded, setFontLoaded] = useState(false)
     const [resizeTick, setResizeTick] = useState(0);
 
     const playOnScroll = trigger==="onscroll"
@@ -39,8 +38,10 @@ export default function Z_Text(props) {
     }
 
     function initi_animation() {
+        if(trigger==="none") return
+
         const element = containerRef.current;
-        if (!element || !fontLoaded) return;
+        if (!element) return;
         const ctx = gsap.context(() => {
             const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(element, true);
 
@@ -147,23 +148,13 @@ export default function Z_Text(props) {
         return cleanup;
     }, [watch]);
 
-    useEffect(() => {
-        let mounted = true;
-        async function waitForFonts() {
-            await document.fonts.ready;
-            if (mounted) setFontLoaded(true);
-        }
-        waitForFonts();
-        return () => mounted = false;
-    }, []);
-
     useGSAP(
         initi_animation,
         {
             scope: containerRef,
             dependencies: [
-                fontLoaded,
                 resizeTick,
+                props
             ]
         }
     );
@@ -172,7 +163,6 @@ export default function Z_Text(props) {
         return React.cloneElement(children, {
             ref: containerRef,
             style: {
-                visibility: fontLoaded?"visible":"hidden",
                 ...style,
                 ...children.props.style
             },
@@ -188,7 +178,6 @@ export default function Z_Text(props) {
         <p 
             className={`fade_textation_x ${className}`}
             style={{
-                visibility: fontLoaded?"visible":"hidden" ,
                 ...style
             }} 
             ref={containerRef}

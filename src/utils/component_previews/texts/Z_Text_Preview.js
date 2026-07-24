@@ -29,7 +29,6 @@ export default function Z_Text_Preview({
         if(freshData==null) return
         setAnim(freshData.title)
     }, [alltexts, path])
-    
 
     return (
         <div className='w-full h-full'>

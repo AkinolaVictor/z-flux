@@ -24,7 +24,7 @@ function z_text(){
         let sample = {...z_text_proto, href: ""}
         sample.taken = true
         sample.title = title
-        sample.href = `/components/${title}`
+        sample.href = `/components/z_text_${title}`
         z_text_content.push(sample)
     }
 
@@ -54,7 +54,7 @@ function overlay_text(){
         let sample = {...overlay_text_proto, href: ""}
         sample.taken = true
         sample.title = title
-        sample.href = `/components/${title}`
+        sample.href = `/components/overlay_text_${title}`
         sample.animation = val
         overlay_text_content.push(sample)
     }

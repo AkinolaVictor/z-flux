@@ -117,13 +117,16 @@ export const Z_TextEngineProps = [
     {
         name: "trigger",
         type: "string",
-        range: "onscroll | inview",
+        range: "onscroll | inview | none",
         description: "The animation progression, how you want the animation to progressively play (default is char)",
         more_des: <p>
             <b>onscroll</b>: animation responds directly to users scroll
             <br />
             <br />
             <b>inview:</b> animation automatically plays whenever user scrolls text to view (screen)
+            <br />
+            <br />
+            <b>none:</b> animation will not play
         </p>,
         value: "value1"
     },
