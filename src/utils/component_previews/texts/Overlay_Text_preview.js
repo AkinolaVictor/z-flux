@@ -42,7 +42,8 @@ function Overlay_Text_preview() {
                 <Overlay_Text 
                     animation={anim}
                     textClass={"p-6"}
-                    layerColor="#8a6552"
+                    layerColor="#262626"
+                    duration={3}
                 >
                     <p className="font-bold text-[30px]">{anim}</p>
                 </Overlay_Text>
@@ -52,7 +53,6 @@ function Overlay_Text_preview() {
                 <Overlay_Text
                     animation={anim}
                     trigger={"onscroll"}
-                    layerColor="#462521"
                 >
                     <p className="font-bold text-[23px] p-5">Single</p>
                 </Overlay_Text>
@@ -67,7 +67,6 @@ function Overlay_Text_preview() {
                                 text={``}
                                 trigger={"onscroll"}
                                 animation={anim}
-                                layerColor="#462521"
                                 textClass={"py-3"}
                             >
                                 <p>{item}</p>
@@ -110,7 +109,7 @@ function Overlay_Text_preview() {
                     animation={anim}
                     trigger={"onscroll"}
                     // layers={5}
-                    layerColor="#41393e"
+                    layerColor="#a4bfeb"
                 >
                     <p className="font-bold text-[23px] p-5">Ordered Flow</p>
                 </Overlay_Text>
@@ -126,7 +125,7 @@ function Overlay_Text_preview() {
                                 key={index}
                                 text={``}
                                 trigger={"onscroll"}
-                                layerColor="#41393e"
+                                layerColor="#a4bfeb"
                                 animation={anim}
                                 textClass={"py-3"}
                             >
@@ -141,7 +140,6 @@ function Overlay_Text_preview() {
                 <Overlay_Text
                     animation={anim}
                     trigger={"onscroll"}
-                    layerColor="#bf9aca"
                     layers={5}
                 >
                     <p className="font-bold text-[23px] p-5">Ordered Flow With Layers</p>
@@ -158,7 +156,6 @@ function Overlay_Text_preview() {
                                 key={index}
                                 text={``}
                                 trigger={"onscroll"}
-                                layerColor="#bf9aca"
                                 animationDirection={1}
                                 animation={anim}
                                 textClass={"py-3"}
@@ -248,7 +245,7 @@ function Overlay_Text_preview() {
                                 key={index}
                                 className={`
                                     w-full h-full flex justify-center items-center
-                                    darkbg
+                                    bg-[#554971]
                                 `}
                             >
                                 <p className="font-bold text-[18px]">{data}</p>
@@ -263,25 +260,25 @@ function Overlay_Text_preview() {
                     [
                        {
                             text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
-                            color: "darkbg",
+                            color: "bg-[#554971]",
                             title: "Who Invented Food",
                             desctiption: "The history of how food was invented",
                         },
                         {
                             text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
-                            color: "darkbg",
+                            color: "bg-[#554971]",
                             title: "Special Meals",
                             desctiption: "Some special meal being prepared today",
                         },
                         {
                             text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
-                            color: "darkbg",
+                            color: "bg-[#554971]",
                             title: "Health in View",
                             desctiption: "Learn healthy ways to prepare some food",
                         },
                         {
                             text: "Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.",
-                            color: "darkbg",
+                            color: "bg-[#554971]",
                             title: "Food and Hunger",
                             desctiption: "Interesting facts about food and hunger",
                        },
@@ -329,7 +326,6 @@ function Overlay_Text_preview() {
                     animation={anim}
                     trigger={"onscroll"}
                     layers={2}
-                    layerColor="#41393e"
                 >
                     <p className="font-bold text-[23px] p-5">Fun Fact</p>
                 </Overlay_Text>
@@ -337,9 +333,27 @@ function Overlay_Text_preview() {
                 <Overlay_Text
                     text={``}
                     trigger={"onscroll"}
-                    layerColor="#41393e"
+                    containerClass={"mt-4"}
                     animation={anim}
                     textClass={"py-3"}
+                    // RenderLayer={()=>{
+                    //     return (
+                    //         <div className="w-full h-full flex flex-col justify-center items-center">
+                    //             <p>Cover Layer</p>
+                    //             <div className="flex justify-between items-center flex-wrap gap-3 my-2">
+                    //                 {
+                    //                     [12,2,2,2].map((item, index)=>{
+                    //                         return (
+                    //                             <div key={index} className="rounded-full w-10 h-10 darkbg">
+                                                    
+                    //                             </div>
+                    //                         )
+                    //                     })
+                    //                 }
+                    //             </div>
+                    //         </div>
+                    //     )
+                    // }}
                 >
                     <div className="p-2">
                         <p className="py-1">This Engine can also overlay a full component of moderate size</p>
@@ -362,57 +376,7 @@ function Overlay_Text_preview() {
                         <div className="w-full h-20 darkbg rounded-[11px] py-2">
                             
                         </div>
-                    </div>                    
-                </Overlay_Text>
-
-                <Overlay_Text
-                    text={``}
-                    trigger={"onscroll"}
-                    layerColor="#41393e"
-                    containerClass={"mt-4"}
-                    animation={anim}
-                    textClass={"py-3"}
-                    RenderLayer={()=>{
-                        return (
-                            <div className="w-full h-full flex flex-col justify-center items-center">
-                                <p>Cover </p>
-                                <div className="flex justify-between items-center flex-wrap gap-3 my-2">
-                                    {
-                                        [12,2,2,2].map((item, index)=>{
-                                            return (
-                                                <div key={index} className="rounded-full w-10 h-10 bg-amber-700">
-                                                    
-                                                </div>
-                                            )
-                                        })
-                                    }
-                                </div>
-                            </div>
-                        )
-                    }}
-                >
-                    <div className="p-2 flex flex-col justify-center items-center">
-                        <p className="py-1">This Engine can also overlay a full component of moderate size</p>
-
-                        <div className="flex justify-between items-center flex-wrap gap-3 my-2">
-                            {
-                                [1,2,3].map((item, index)=>{
-                                    return (
-                                        <div 
-                                            key={index} 
-                                            className="w-20 h-20 rounded-[10px] darkbg flex justify-center items-center"
-                                        >
-                                            <p>Box {index}</p>
-                                        </div>
-                                    )
-                                })
-                            }
-                        </div>
-
-                        <div className="w-full h-20 darkbg rounded-[11px] py-2">
-                            
-                        </div>
-                    </div>                    
+                    </div>                 
                 </Overlay_Text>
             </div>
 
