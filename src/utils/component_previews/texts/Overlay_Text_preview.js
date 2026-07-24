@@ -369,11 +369,12 @@ function Overlay_Text_preview() {
                     text={``}
                     trigger={"onscroll"}
                     layerColor="#41393e"
+                    containerClass={"mt-4"}
                     animation={anim}
                     textClass={"py-3"}
                     RenderLayer={()=>{
                         return (
-                            <div className="w-full h-full">
+                            <div className="w-full h-full flex flex-col justify-center items-center">
                                 <p>Cover </p>
                                 <div className="flex justify-between items-center flex-wrap gap-3 my-2">
                                     {
@@ -390,7 +391,7 @@ function Overlay_Text_preview() {
                         )
                     }}
                 >
-                    <div className="p-2">
+                    <div className="p-2 flex flex-col justify-center items-center">
                         <p className="py-1">This Engine can also overlay a full component of moderate size</p>
 
                         <div className="flex justify-between items-center flex-wrap gap-3 my-2">
