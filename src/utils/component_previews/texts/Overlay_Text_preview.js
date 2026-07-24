@@ -325,7 +325,6 @@ function Overlay_Text_preview() {
                 <Overlay_Text
                     animation={anim}
                     trigger={"onscroll"}
-                    layers={2}
                 >
                     <p className="font-bold text-[23px] p-5">Fun Fact</p>
                 </Overlay_Text>
