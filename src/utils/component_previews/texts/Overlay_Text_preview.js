@@ -42,7 +42,6 @@ function Overlay_Text_preview() {
                 <Overlay_Text 
                     animation={anim}
                     textClass={"p-6"}
-                    layerColor="#262626"
                     duration={3}
                 >
                     <p className="font-bold text-[30px]">{anim}</p>
@@ -109,7 +108,7 @@ function Overlay_Text_preview() {
                     animation={anim}
                     trigger={"onscroll"}
                     // layers={5}
-                    layerColor="#a4bfeb"
+                    layerColor="#262626"
                 >
                     <p className="font-bold text-[23px] p-5">Ordered Flow</p>
                 </Overlay_Text>
@@ -125,7 +124,7 @@ function Overlay_Text_preview() {
                                 key={index}
                                 text={``}
                                 trigger={"onscroll"}
-                                layerColor="#a4bfeb"
+                                layerColor="#262626"
                                 animation={anim}
                                 textClass={"py-3"}
                             >
