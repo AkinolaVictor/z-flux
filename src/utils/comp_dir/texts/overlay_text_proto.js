@@ -6,8 +6,9 @@ import Overlay_Text_preview from "../../component_previews/texts/Overlay_Text_pr
 import { Overlay_Text_Engine_Props } from "../../engineProps/Overlay_Text_Engine_Props";
 
 
-const usageFunc = (setState)=>getCode("/codes/overlay_text/overlay_text_usage.txt", setState)
 const js_cs = (setState)=>getCode("/codes/overlay_text/overlay_text_js_cs.txt", setState)
+const usageFunc = (setState)=>getCode("/codes/overlay_text/overlay_text_usage.txt", setState)
+const previewUsageFunc = (setState)=>getCode("/codes/overlay_text/overlay_text_preview.txt", setState)
 
 function getAnimationObj({func, name}){
     let obj = ""
@@ -63,6 +64,11 @@ export const overlay_text_proto = {
                     code: usageFunc,
                     id: "aouihmndss"
                 },
+                {
+                    title: "Usage in Preview",
+                    code: previewUsageFunc,
+                    id: "afouihmndss"
+                },
             ]
         },
         rawcode: {
@@ -79,7 +85,7 @@ export const overlay_text_proto = {
                     params: "special_function"
                 },
                 {
-                    title: "Reasonable Animation Directions",
+                    title: "Animation Directions",
                     code: getAnimationMovement,
                     id: "special_functionswg",
                     params: "special_function"

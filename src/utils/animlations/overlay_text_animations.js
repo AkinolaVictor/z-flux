@@ -18,38 +18,6 @@ const origins = {
     centerRight: "center right"
 }
 
-function revoriginss(origin, reverse){
-
-    function reverser(each){
-        if(!reverse) return each
-
-        if(each==="top") return "bottom"
-        if(each==="bottom") return "top"
-        if(each==="left") return "right"
-        if(each==="right") return "left"
-        if(each==="center") return "center"
-
-        return each
-    }
-
-    const originSplit = [...origin.split(" ")]
-    let value = origin
-    
-    // y
-    const first = originSplit[0]
-    if(first) {
-        value = reverser(first)
-    }
-    
-    // x
-    const second = originSplit[1]
-    if(second) {
-        value = `${value} ${reverser(second)}`
-    }
-
-    return value
-}
-
 export const overlay_text_animations = {
     VerticalReveal: {
         defaultGsap: {
@@ -58,6 +26,7 @@ export const overlay_text_animations = {
         },
         animation_origins: [
             origins.bottom, //def
+            origins.center,
             origins.top,
         ]
 
@@ -70,6 +39,7 @@ export const overlay_text_animations = {
         },
         animation_origins: [
             origins.right, //def
+            origins.center,
             origins.left,
         ]
     },
@@ -117,6 +87,7 @@ export const overlay_text_animations = {
             origins.topLeft, 
             origins.topRight, 
             origins.bottomLeft,
+            origins.top,
         ]
     },
     FlayUp: {
@@ -129,6 +100,14 @@ export const overlay_text_animations = {
         animation_origins: [
             origins.center, //def
             origins.bottomRight,
+            origins.bottomLeft,
+            origins.bottom,
+            origins.bottomCenter,
+            origins.centerRight, 
+            origins.centerLeft, 
+            origins.topLeft, 
+            origins.topRight, 
+            origins.top,
         ]
     },
     FlayDown: {
@@ -141,6 +120,14 @@ export const overlay_text_animations = {
         animation_origins: [
             origins.center, //def
             origins.bottomRight,
+            origins.bottomLeft,
+            origins.bottom,
+            origins.bottomCenter,
+            origins.centerRight, 
+            origins.centerLeft, 
+            origins.topLeft, 
+            origins.topRight, 
+            origins.top,
         ]
     },
     PeelUp: {
@@ -152,8 +139,16 @@ export const overlay_text_animations = {
             duration: [null, 1.5]
         },
         animation_origins: [
+            origins.center, //def
             origins.bottomRight,
-            origins.center //def
+            origins.bottomLeft,
+            origins.bottom,
+            origins.bottomCenter,
+            origins.centerRight, 
+            origins.centerLeft, 
+            origins.topLeft, 
+            origins.topRight, 
+            origins.top,
         ]
     },
     PeelDown: {
@@ -165,10 +160,16 @@ export const overlay_text_animations = {
             duration: [null, 1.5]
         },
         animation_origins: [
-            // origins.top,
             origins.bottomRight,
+            origins.top,
             origins.center, //def
             origins.bottomLeft,
+            origins.bottom,
+            origins.bottomCenter,
+            origins.centerRight, 
+            origins.centerLeft, 
+            origins.topLeft, 
+            origins.topRight, 
         ]
     },
 }

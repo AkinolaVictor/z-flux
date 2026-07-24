@@ -19,7 +19,7 @@ export const Overlay_Text_Engine_Props = [
     {
         name: "animationOrder",
         type: "string",
-        range: "normal | reverse",
+        range: "normal | reverse | random",
         description: "Whether the animation should play in normal or reverse mode (default is normal)",
         value: true
     },

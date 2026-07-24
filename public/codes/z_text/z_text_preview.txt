@@ -1,35 +1,13 @@
-import { alltexts } from "../../../utils/comp_dir/alltexts"
 import Z_Text from "../../../registry/z-flux/texts/Z_Text"
-import { useEffect, useRef, useState } from "react"
-import { usePathname } from "next/navigation"
+import { useRef, useState } from "react"
 
-export default function Z_Text_Preview({
-    data
-}) {
-
+export default function Z_Text_Preview() {
     const [anim, setAnim] = useState("Fade")
-    const path = usePathname()
     const controller = useRef(null)
-    function getFreshData() {
-        for(let i=0; i<alltexts.content.length; i++){
-            const each = alltexts.content[i]
-            if(each.href == path){
-                return each
-            }
-        }
-        return null
-    }
 
     function controlAnimation(which){
         if(controller.current[which]) controller.current?.[which]()
     }
-
-    useEffect(()=>{
-        const freshData = getFreshData()
-        if(freshData==null) return
-        setAnim(freshData.title)
-    }, [alltexts, path])
-    
 
     return (
         <div className='w-full h-full'>

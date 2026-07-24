@@ -1,8 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { build_extend_animation, findScrollingElement } from 'z-flux-utils';
-import {overlay_text_animations} from "../../../utils/animlations/overlay_text_animations"
+import { build_extend_animation, countNumbers, findScrollingElement, getLayerWidth, randomizeArray,  overlay_text_animations} from 'z-flux-utils';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,20 +11,9 @@ function DefalutLayerComponent({data, index}) {
         </div>
     )
 }
-    
-function countNumbers(arg){
-    let data = []
-    if(typeof(arg)=="number"){
-        for(let i=0; i<arg; i++){
-            data.push(i)
-        }
-    } else {
-        data = [...arg]
-    }
-    return data
-}
 
-export default function Overlay_Text({
+export default function Overlay_Text(props) {
+    const {
         text, 
         children,
         textClass,
@@ -49,9 +37,12 @@ export default function Overlay_Text({
         controllerRef=null,
         useOpacity,
         animationDirection=0,
-}) {
+    } = props
+
     const containerRef = useRef(null)
     const heightRef = useRef(null)
+    const allLayers = countNumbers(layers)
+    const [layerWidth, setLayerWidth] = useState({eachWidth: "100%", lastWidth: "100%"})
     
     const tl = timeline||gsap.timeline({})
     if(controllerRef){
@@ -62,18 +53,16 @@ export default function Overlay_Text({
     const {defaultGsap, animation_origins, animationStyles} = anim
 
     function animate_func(){
-        // const tl = timeline||gsap.timeline({})
-        // if(controllerRef){
-        //     controllerRef.current = tl
-        // }
-
         const parent = heightRef.current
         if(!parent) return
-        const elements = parent.children
+        const elements = [...parent.children]
+        
         
         const el = (
             animationOrder==="reverse"?
             [...elements].reverse():
+            animationOrder==="random"?
+            randomizeArray(elements):
             elements
         )
         
@@ -130,8 +119,12 @@ export default function Overlay_Text({
         }
     }
 
-    // useLayoutEffect(()=>{
     useEffect(()=>{
+        const {eachWidth, lastWidth} = getLayerWidth(heightRef, allLayers.length)
+        setLayerWidth({eachWidth, lastWidth})
+    }, [])
+
+    useLayoutEffect(()=>{
         const anim = animate_func()
         return anim
     }, [
@@ -148,66 +141,81 @@ export default function Overlay_Text({
 
     return (
         <div  
-            style={{...containerStyle}}
-            className={`overlay_text_container w-auto h-auto flex flex-col justify-center items-center ${containerClass}`}
+            style={{
+                width: "auto",
+                height: "auto",
+                display: "flex", 
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
+                ...containerStyle
+            }}
+            className={`overlay_text_container ${containerClass}`}
         >
-            <div className='relative w-auto h-auto'>
+            {
+                text?
+                <p ref={containerRef} className={`text-parentz ${textClass}`} style={{...textStyle}}>
+                    {text}
+                </p>:
+                React.cloneElement(children, {
+                    ref: containerRef,
+                    style: {
+                        ...children.props.style,
+                        ...textStyle
+                    },
+                    className: [
+                        children.props.className, 
+                        "text-parentz",
+                        textClass
+                    ].filter(Boolean).join(" ")
+                })
+            }
+
+            <div 
+                ref={heightRef}
+                className={`text_overlay_container`}
+                style={{
+                    width: "100%",
+                    height: "100%",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start"
+                }}
+            >
                 {
-                    text?
-                    <p ref={containerRef} className={`text-parentz ${textClass}`} style={{...textStyle}}>
-                        {text}
-                    </p>:
-                    React.cloneElement(children, {
-                        ref: containerRef,
-                        style: {
-                            ...children.props.style,
-                            ...textStyle
-                        },
-                        className: [
-                            children.props.className, 
-                            "text-parentz",
-                            textClass
-                        ].filter(Boolean).join(" ")
+                    allLayers.map((data, index)=>{
+                        const last = allLayers.length-1 === index
+                        const {eachWidth, lastWidth} = layerWidth
+                        return (
+                            <div 
+                                key={index}
+                                className={`each-overlay-block ${layerClass}`}
+                                style={{
+                                    width: last?lastWidth:eachWidth, 
+                                    height: "100%",
+                                    willChange: "transform",
+                                    background: layerColor,
+                                    transformOrigin: (
+                                        typeof(animationDirection)=="number"?
+                                        animation_origins[animationDirection] || "center":
+                                        animationDirection
+                                    ), 
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    ...animationStyles,
+                                    ...layerStyle
+                                }}
+                            >
+                                <RenderLayer data={data} index={index}/>
+                            </div>
+                        )
                     })
                 }
-
-                {/* multiple */}
-                <div 
-                    ref={heightRef}
-                    className={`
-                        w-full h-full bg-blacks absolute top-0 left-0
-                        flex justify-start items-start
-                        text_overlay_container
-                    `}
-                >
-                    {
-                        countNumbers(layers).map((data, index)=>{
-                            return (
-                                <div 
-                                    key={index}
-                                    className={`each-overlay-block ${layerClass}`}
-                                    style={{
-                                        width: "100%", height: "100%",
-                                        willChange: "transform",
-                                        background: layerColor,
-                                        transformOrigin: (
-                                            typeof(animationDirection)=="number"?
-                                            animation_origins[animationDirection]:
-                                            animationDirection
-                                        ), 
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        alignItems: "center",
-                                        ...animationStyles,
-                                        ...layerStyle
-                                    }}
-                                >
-                                    <RenderLayer data={data} index={index}/>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
             </div>
         </div>
     )
