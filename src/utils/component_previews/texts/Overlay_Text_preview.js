@@ -2,7 +2,7 @@ import { alltexts } from "../../../utils/comp_dir/alltexts"
 import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
 import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
-import Z_Text from "@/registry/z-flux/texts/Z_Text"
+import Z_Text from "../../../registry/z-flux/texts/Z_Text"
 
 function Overlay_Text_preview() {
 
