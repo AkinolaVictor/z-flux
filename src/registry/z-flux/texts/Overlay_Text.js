@@ -32,7 +32,7 @@ export default function Overlay_Text(props) {
         layerColor="white",
         RenderLayer=DefalutLayerComponent,
         animationOrder="normal", //reverse, normal, random
-        animation="VerticalReveal",
+        animation,
         animationDimension="y",
         extendAnimation,
         gsapScrollTrigger,
@@ -53,7 +53,7 @@ export default function Overlay_Text(props) {
         controllerRef.current = tl
     }
     
-    const anim = overlay_text_animations[animation]
+    const anim = overlay_text_animations[animation] || overlay_text_animations["VerticalReveal"]
     const {defaultGsap, animation_origins, animationStyles} = anim
 
     function animate_func(){
@@ -138,9 +138,7 @@ export default function Overlay_Text(props) {
     useLayoutEffect(()=>{
         const anim = animate_func()
         return anim
-    }, [
-        props
-    ])
+    }, [ props ])
 
     return (
         <div  

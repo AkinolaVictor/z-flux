@@ -53,7 +53,7 @@ export default function Z_Text(props) {
                 wordsClass: "word",
                 charsClass: "char"
             });
-
+            
             const { chars, words, lines } = split;
 
             const progressionData = getProgressionData(
@@ -67,16 +67,17 @@ export default function Z_Text(props) {
 
 
             const fromAnimation = {
-                visibility: "visible",
+                // visibility: "visible",
                 ...build_extend_animation(useAnimation, "from"),
                 ...build_extend_animation(extendAnimation, "from")
             };
-
+            
             const toAnimation = {
                 ...build_extend_animation(useAnimation, "to"),
                 ...build_extend_animation(extendAnimation, "to")
             };
-
+            
+            containerRef.current.style.visibility = "visible"
             tl.set(progressionData.set, fromAnimation);
 
             const grouped = progression === "char_line" || progression === "word_line";
