@@ -1,4 +1,4 @@
-import Z_Text from "../../../registry/z-flux/texts/Z_Text"
+import Z_Text from "@/Z_Text"
 import { useRef, useState } from "react"
 
 export default function Z_Text_Preview() {

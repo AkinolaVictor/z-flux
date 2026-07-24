@@ -14,8 +14,6 @@ export default function Z_Text(props) {
         progression="char",
         animation= "Fade",
         trigger, // onscroll, inview
-        // playOnScroll=false,
-        // playInView=false,
         controllerRef=null,
         style,
         className,

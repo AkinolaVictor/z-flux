@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
+import Overlay_Text from '@/Overlay_Text'
 
 function Overlay_Text_preview() {
 
