@@ -66,7 +66,7 @@ export default function Overlay_Text(props) {
         
         const el = (
             animationOrder==="reverse"?
-            [...elements].reverse():
+            elements.reverse():
             animationOrder==="random"?
             randomizeArray(elements):
             elements

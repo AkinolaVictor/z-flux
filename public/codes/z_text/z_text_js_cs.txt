@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import React, { useEffect, useRef, useState } from 'react';
-import { animation_list, build_extend_animation, findScrollingElement, getProgressionData } from 'z-flux-utils';
+import { animation_list, build_extend_animation, findScrollingElement, getProgressionData, randomizeArray } from 'z-flux-utils';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,7 +12,8 @@ export default function Z_Text(props) {
         text, 
         scrollingElement,
         progression="char",
-        animation= "Fade",
+        animation,
+        animationOrder="random", //firstToLast, lastToFirst, random
         trigger, // onscroll, inview, none
         controllerRef=null,
         style,
@@ -26,12 +27,12 @@ export default function Z_Text(props) {
         watch=false
     } = props
     const containerRef = useRef(null);
-    const [fontLoaded, setFontLoaded] = useState(false)
     const [resizeTick, setResizeTick] = useState(0);
 
     const playOnScroll = trigger==="onscroll"
     const playInView = trigger==="inview"
     const paused = playOnScroll || playInView
+    const useAnimation = animation_list[animation] ?? animation_list["Fade"]
     const tl = timeline ?? gsap.timeline({ paused, delay });
     
     if(controllerRef){
@@ -42,7 +43,7 @@ export default function Z_Text(props) {
         if(trigger==="none") return
 
         const element = containerRef.current;
-        if (!element || !fontLoaded) return;
+        if (!element) return;
         const ctx = gsap.context(() => {
             const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(element, true);
 
@@ -53,8 +54,30 @@ export default function Z_Text(props) {
                 wordsClass: "word",
                 charsClass: "char"
             });
+            
+            const words = (
+                animationOrder=="lastToFirst"?
+                split.words.reverse():
+                animationOrder=="random"?
+                randomizeArray(split.words):
+                split.words
+            )
+            
+            const lines = (
+                animationOrder=="lastToFirst"?
+                split.lines.reverse():
+                animationOrder=="random"?
+                randomizeArray(split.lines):
+                split.lines
+            )
 
-            const { chars, words, lines } = split;
+            const chars = (
+                animationOrder=="lastToFirst"?
+                split.chars.reverse():
+                animationOrder=="random"?
+                randomizeArray(split.chars):
+                split.chars
+            )
 
             const progressionData = getProgressionData(
                 progression,
@@ -65,18 +88,18 @@ export default function Z_Text(props) {
                 playOnScroll
             );
 
-            const useAnimation = animation_list[animation] ?? animation_list["Fade"]
 
             const fromAnimation = {
                 ...build_extend_animation(useAnimation, "from"),
                 ...build_extend_animation(extendAnimation, "from")
             };
-
+            
             const toAnimation = {
                 ...build_extend_animation(useAnimation, "to"),
                 ...build_extend_animation(extendAnimation, "to")
             };
-
+            
+            containerRef.current.style.visibility = "visible"
             tl.set(progressionData.set, fromAnimation);
 
             const grouped = progression === "char_line" || progression === "word_line";
@@ -149,24 +172,13 @@ export default function Z_Text(props) {
         return cleanup;
     }, [watch]);
 
-    useEffect(() => {
-        let mounted = true;
-        async function waitForFonts() {
-            await document.fonts.ready;
-            if (mounted) setFontLoaded(true);
-        }
-        waitForFonts();
-        return () => mounted = false;
-    }, []);
-
     useGSAP(
         initi_animation,
         {
             scope: containerRef,
             dependencies: [
-                fontLoaded,
                 resizeTick,
-                trigger
+                props
             ]
         }
     );
@@ -175,7 +187,7 @@ export default function Z_Text(props) {
         return React.cloneElement(children, {
             ref: containerRef,
             style: {
-                visibility: fontLoaded?"visible":"hidden",
+                visibility: "hidden",
                 ...style,
                 ...children.props.style
             },
@@ -191,7 +203,7 @@ export default function Z_Text(props) {
         <p 
             className={`fade_textation_x ${className}`}
             style={{
-                visibility: fontLoaded?"visible":"hidden",
+                visibility: "hidden",
                 ...style
             }} 
             ref={containerRef}

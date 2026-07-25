@@ -14,8 +14,8 @@ function HomeDescription(props) {
         <div className={`w-full ${pad_x} py-10 mt-20 text-center gap-7 h-auto flex flex-col justify-center items-center max-w-220`}>
             <Z_Text
                 // progression='char_line' 
-                // animation='FromRight'
-                animation='VerticalReveal'
+                animation='FromLeft'
+                animationOrder="lastToFirst"
             >
                 <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>
             </Z_Text>
@@ -23,9 +23,11 @@ function HomeDescription(props) {
             <Overlay_Text
                 // animation='BottomLeftXY'
                 animation='HorizontalReveal'
-                layers={1}
+                layers={15}
                 layerColor={"black"}
-                duration={10}
+                animationDirection={"center"}
+                animationDimension={"x"}
+                duration={5}
                 // speed={0.05}
                 // progression='char_line'
                 // className='text-[rosybrown] text-[16px]'

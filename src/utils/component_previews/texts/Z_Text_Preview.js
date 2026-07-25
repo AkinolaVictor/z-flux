@@ -35,7 +35,7 @@ export default function Z_Text_Preview({
             
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    1/8
+                    1
                 </div>
 
                 <Z_Text
@@ -49,7 +49,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    2/8
+                    2
                 </div>
                 <Z_Text
                     animation={anim}
@@ -85,7 +85,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    3/8
+                    3
                 </div>
                 <Z_Text
                     animation={anim}
@@ -100,7 +100,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    4/8
+                    4
                 </div>
                 <Z_Text
                     animation={anim}
@@ -116,7 +116,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    5/8
+                    5
                 </div>
                 <Z_Text
                     animation={anim}
@@ -132,7 +132,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    6/8
+                    6
                 </div>
                 <Z_Text
                     animation={anim}
@@ -147,7 +147,7 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    7/8
+                    7
                 </div>
                 <Z_Text
                     animation={anim}
@@ -164,7 +164,127 @@ export default function Z_Text_Preview({
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    8/8
+                    8
+                </div>
+                <Z_Text
+                    animation={anim}
+                    // progression="char_line"
+                    className='w11:text-[20px]'
+                    animationOrder="lastToFirst"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+                <Z_Text
+                    animation={anim}
+                    // progression="char_line"
+                    className='w11:text-[20px]'
+                    animationOrder="lastToFirst"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+            </div>
+
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    9
+                </div>
+                <Z_Text
+                    animation={anim}
+                    progression="word"
+                    className='w11:text-[20px]'
+                    animationOrder="lastToFirst"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+                <Z_Text
+                    animation={anim}
+                    progression="word"
+                    className='w11:text-[20px]'
+                    animationOrder="lastToFirst"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+            </div>
+
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    8
+                </div>
+                <Z_Text
+                    animation={anim}
+                    // progression="char_line"
+                    className='w11:text-[20px]'
+                    animationOrder="random"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+                <Z_Text
+                    animation={anim}
+                    // progression="char_line"
+                    className='w11:text-[20px]'
+                    animationOrder="random"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+            </div>
+
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    10
+                </div>
+                <Z_Text
+                    animation={anim}
+                    progression="word"
+                    className='w11:text-[20px]'
+                    animationOrder="random"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+                <Z_Text
+                    animation={anim}
+                    progression="word"
+                    className='w11:text-[20px]'
+                    animationOrder="random"
+                    trigger={"inview"}
+                    style={{color: "yellow"}}
+                >
+                    <span>
+                        Rather than revealing characters one after another, every character within a line animates simultaneously...
+                    </span>
+                </Z_Text>
+            </div>
+
+            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
+                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+                    11
                 </div>
                 <Z_Text
                     animation={anim}

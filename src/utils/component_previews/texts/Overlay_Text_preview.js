@@ -521,7 +521,7 @@ function Overlay_Text_preview() {
                 <div 
                     onClick={()=>setReveal("none")}
                     className={`
-                        w-auto h-auto py-2 px-5 mt-3 flex justify-center items-center cursor-pointer darkbg rounded-[11px]
+                        w-auto h-auto py-2 px-5 mt-0 flex justify-center items-center cursor-pointer darkbg rounded-[11px]
                         ${reveal=="none"?"hidden":""}
                     `} 
                 >

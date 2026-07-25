@@ -25,16 +25,32 @@ export const Z_TextEngineProps = [
             <b>char</b>: play animation character by character
             <br />
             <br />
-            word: play animation word by word
+            <b>word:</b> play animation word by word
             <br />
             <br />
-            line: play animation line by line
+            <b>line:</b> play animation line by line
             <br />
             <br />
-            char_line: play animation on each line simultaneously, character by character.
+            <b>char_line:</b> play animation on each line simultaneously, character by character.
             <br />
             <br />
-            word_line: play animation on each line simultaneously, word by word.
+            <b>word_line:</b> play animation on each line simultaneously, word by word.
+        </p>,
+        value: "value1"
+    },
+    {
+        name: "animationOrder",
+        type: "string",
+        range: "firstToLast | lastToFirst | random",
+        description: "The text order, how you want the text to be progressively displayed (default is firstToLast)",
+        more_des: <p>
+            <b>firstToLast</b>: text is progressively revealed from first to last
+            <br />
+            <br />
+            <b>lastToFirst</b>: text is progressively revealed from the last to the first
+            <br />
+            <br />
+            <b>random</b>: text is progressively revealed without any specific order, its randomized
         </p>,
         value: "value1"
     },
