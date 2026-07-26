@@ -60,9 +60,9 @@ function HomeDescription(props) {
                 <div className='min-w-10 min-h-10 rounded-full bg-blue-100s flex justify-center items-center'>
                     <img src="react.png" alt="react icon" className='w-9 h-9' />
                 </div>
-                <div className='min-w-10 min-h-10 rounded-full bg-blue-100s flex justify-center items-center'>
+                {/* <div className='min-w-10 min-h-10 rounded-full bg-blue-100s flex justify-center items-center'>
                     <img src="vue.png" alt="vue icon" className='w-11 h-11' />
-                </div>
+                </div> */}
                 {/* <div className='min-w-10 min-h-10 rounded-full bg-blue-100 flex justify-center items-center'>Nx</div>
                 <div className='min-w-10 min-h-10 rounded-full bg-blue-100 flex justify-center items-center'>Nu</div> */}
             </div>

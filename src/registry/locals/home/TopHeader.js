@@ -35,7 +35,7 @@ function TopHeader(props) {
             <Link href={"/"}>
                 <div className='flex justify-center items-center gap-3 cursor-pointer'>
                     <div className='flex justify-center items-center'>
-                        <img src="/z-flux-4.png" alt="z-flux icon" className='max-w-6 max-h-6' />
+                        <img src="/z-flux-4.png" alt="z-flux icon" className='w6:max-w-6 w6:max-h-6 max-w-4.5 max-h-4.5' />
                         {/* <img src="/z-flux-1.png" alt="z-flux icon" className='max-w-13 max-h-13' /> */}
                     </div>
 

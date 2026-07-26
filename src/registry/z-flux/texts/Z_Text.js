@@ -32,7 +32,7 @@ export default function Z_Text(props) {
     const playOnScroll = trigger==="onscroll"
     const playInView = trigger==="inview"
     const paused = playOnScroll || playInView
-    const useAnimation = animation_list[animation] ?? animation_list["Fade"]
+    const useAnimation = animation_list[animation] ?? {}
     const tl = timeline ?? gsap.timeline({ paused, delay });
     
     if(controllerRef){
@@ -91,12 +91,15 @@ export default function Z_Text(props) {
 
             const fromAnimation = {
                 ...build_extend_animation(useAnimation, "from"),
-                ...build_extend_animation(extendAnimation, "from")
+                ...build_extend_animation(extendAnimation, "from"),
+                // filter: "blur(318px) brightness(0)"
+                // filter: "blur(25px) brightness(0)"
             };
             
             const toAnimation = {
                 ...build_extend_animation(useAnimation, "to"),
-                ...build_extend_animation(extendAnimation, "to")
+                ...build_extend_animation(extendAnimation, "to"),
+                // filter: "blur(0px) brightness(1)"
             };
             
             containerRef.current.style.visibility = "visible"

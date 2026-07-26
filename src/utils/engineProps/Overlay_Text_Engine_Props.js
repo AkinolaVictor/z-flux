@@ -12,7 +12,7 @@ export const Overlay_Text_Engine_Props = [
         name: "animation",
         type: "string",
         // range: "true | false",
-        description: "Which Animation you want. Often the title of this current page. (default is VerticalReveal)",
+        description: "Which Animation you want. Often the title of this current page.",
         // more_des: "Many more explanation to help understand better",
         // value: true
     },

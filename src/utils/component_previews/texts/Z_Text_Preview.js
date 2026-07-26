@@ -41,9 +41,13 @@ export default function Z_Text_Preview({
                 <Z_Text
                     animation={anim}
                     className='text-[25px] font-bold text-center'
-                    text={`
-                        Text Fade Animation Preview Examples (keep scrolling) 
-                    `}
+                    text={anim}
+                />
+                <Z_Text
+                    animation={anim}
+                    animationOrder={"random"}
+                    className='text-[25px] font-bold text-center'
+                    text={"Text Animation"}
                 />
             </div>
 

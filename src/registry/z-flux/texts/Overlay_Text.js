@@ -53,7 +53,7 @@ export default function Overlay_Text(props) {
         controllerRef.current = tl
     }
     
-    const anim = overlay_text_animations[animation] || overlay_text_animations["VerticalReveal"]
+    const anim = overlay_text_animations[animation]
     const {defaultGsap, animation_origins, animationStyles} = anim
 
     function animate_func(){

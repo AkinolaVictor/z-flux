@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import VerticalScroll from "../../../registry/z-flux/scrollers/VerticalScroll"
+import { usePathname } from 'next/navigation'
+import { allscrollers } from '@/utils/comp_dir/allscrollers'
 
 
 export default function Slider_Vertical_Scroll_Preview({}) {
+
+    const [anim, setAnim] = useState("FadeUp")
+    // const [reveal, setReveal] = useState("none")
+    const path = usePathname()
+
+    function getFreshData() {
+        for(let i=0; i<allscrollers.content.length; i++){
+            const each = allscrollers.content[i]
+            if(each.href == path){
+                return each
+            }
+        }
+        return null
+    }
+
+    useEffect(()=>{
+        const freshData = getFreshData()
+        if(freshData==null) return
+        setAnim(freshData.title)
+    }, [allscrollers, path])
+
     const dt = [
         {
             class: "min-w-full h-60 bg-blue-500",
@@ -43,7 +66,7 @@ export default function Slider_Vertical_Scroll_Preview({}) {
                 <p className=''>Keep Scrolling...</p>
             </div>
             
-            <VerticalScroll>
+            <VerticalScroll animation={anim}>
                 {
                     ["blue","red","green","brown","#333","purple","orange"].map((background, index)=>{
                         return (
@@ -70,7 +93,9 @@ export default function Slider_Vertical_Scroll_Preview({}) {
                 <p className=''>Example 2/3</p>
                 <p className=''>Keep Scrolling...</p>
             </div>
-            <VerticalScroll direction='backward'>
+            <VerticalScroll animation={anim} 
+                // direction='backward'
+            >
                 <div style={{ background: "blue", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is Blue (1)
                     <br />
@@ -101,7 +126,7 @@ export default function Slider_Vertical_Scroll_Preview({}) {
                 <p className=''>Keep Scrolling...</p>
             </div>
 
-            <VerticalScroll 
+            <VerticalScroll animation={anim} 
                 startAnimation='top'
             >
                 {
