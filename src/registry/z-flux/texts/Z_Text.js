@@ -33,8 +33,8 @@ export default function Z_Text(props) {
     const playOnScroll = trigger==="onscroll"
     const playInView = trigger==="inview"
     const paused = playOnScroll || playInView
-    // const useAnimation = animation_list[animation] ?? {}
-    const useAnimation = textPack_animations[animation] ?? {}
+    const useAnimation = animation_list[animation] ?? {}
+    // const useAnimation = textPack_animations[animation] ?? {}
     const tl = timeline ?? gsap.timeline({ paused, delay });
     
     if(controllerRef){
