@@ -138,5 +138,5 @@ export const clipPath_animation = {
       "blur(0px)"
     ]
   }
-
 }
+// dk
