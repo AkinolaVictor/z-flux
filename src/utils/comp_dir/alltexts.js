@@ -9,10 +9,12 @@ import {overlay_text_proto} from "./texts/overlay_text_proto"
 import {texts_texter} from "./texts/text_texter"
 import { animation_list } from "../animlations/animation_list";
 import { overlay_text_animations } from "../animlations/overlay_text_animations";
+import { textPack_animations } from "../animlations/textPack_animations";
 
 
 function z_text(){
-    const built_animation = Object.entries(animation_list).map((each)=>{
+    // const built_animation = Object.entries(animation_list).map((each)=>{
+    const built_animation = Object.entries(textPack_animations).map((each)=>{
         const [key, val] = each;
         return {title:key, val};
     });

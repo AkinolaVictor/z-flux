@@ -4,6 +4,7 @@ import { animation_list, build_extend_animation, findScrollingElement, getProgre
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { textPack_animations } from '@/utils/animlations/textPack_animations';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
@@ -32,7 +33,8 @@ export default function Z_Text(props) {
     const playOnScroll = trigger==="onscroll"
     const playInView = trigger==="inview"
     const paused = playOnScroll || playInView
-    const useAnimation = animation_list[animation] ?? {}
+    // const useAnimation = animation_list[animation] ?? {}
+    const useAnimation = textPack_animations[animation] ?? {}
     const tl = timeline ?? gsap.timeline({ paused, delay });
     
     if(controllerRef){
@@ -87,30 +89,23 @@ export default function Z_Text(props) {
                 speed,
                 playOnScroll
             );
-
-
-            const fromAnimation = {
-                ...build_extend_animation(useAnimation, "from"),
-                ...build_extend_animation(extendAnimation, "from"),
-                // filter: "blur(318px) brightness(0)"
-                // filter: "blur(25px) brightness(0)"
-            };
-            
-            const toAnimation = {
-                ...build_extend_animation(useAnimation, "to"),
-                ...build_extend_animation(extendAnimation, "to"),
-                // filter: "blur(0px) brightness(1)"
-            };
             
             containerRef.current.style.visibility = "visible"
-            tl.set(progressionData.set, fromAnimation);
+
+            tl.set(progressionData.set, {
+                ...build_extend_animation(useAnimation, "from"),
+                ...build_extend_animation(extendAnimation, "from"),
+            });
 
             const grouped = progression === "char_line" || progression === "word_line";
             if (grouped) {
                 progressionData.animate.forEach(item => {
                     tl.to(
                         item.char,
-                        toAnimation,
+                        {
+                            ...build_extend_animation(useAnimation, "to"),
+                            ...build_extend_animation(extendAnimation, "to"),
+                        },
                         item.charIndexInLine * progressionData.speed
                     );
                 });
@@ -118,7 +113,8 @@ export default function Z_Text(props) {
                 tl.to(
                     progressionData.animate,
                     {
-                        ...toAnimation,
+                        ...build_extend_animation(useAnimation, "to"),
+                        ...build_extend_animation(extendAnimation, "to"),
                         stagger: progressionData.speed
                     },
                     0

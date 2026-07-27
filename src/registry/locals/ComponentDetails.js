@@ -162,7 +162,7 @@ function ComponentDetails(props) {
                 {comp_data?.description}
             </p>
             <div className='flex justify-between w-full mt-3'>
-                <p className='opacity-70 text-[11px]'>Published: {comp_data?.date_published}</p>
+                {/* <p className='opacity-70 text-[11px]'>Published: {comp_data?.date_published}</p> */}
                 {comp_data?.date_updated?<p className='opacity-70 text-[11px]'>Updated: {comp_data?.date_updated}</p>:null}
             </div>
 

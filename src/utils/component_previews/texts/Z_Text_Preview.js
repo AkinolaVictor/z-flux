@@ -40,13 +40,13 @@ export default function Z_Text_Preview({
 
                 <Z_Text
                     animation={anim}
-                    className='text-[25px] font-bold text-center'
+                    className='text-[45px] font-bold text-center'
                     text={anim}
                 />
                 <Z_Text
                     animation={anim}
                     animationOrder={"random"}
-                    className='text-[25px] font-bold text-center'
+                    className='text-[30px] font-bold text-center'
                     text={"Text Animation"}
                 />
             </div>

@@ -6,19 +6,19 @@ export const components_and_description = [
     },
     {
         name: "Transitions",
-        desc: "Create seamless transitions between pages, sections, and states with elegant animations that make navigation feel natural.",
-        desc2: "Create seamless transitions between pages, layouts, sections, and UI states. Whether navigating between routes or revealing new content, these animations add continuity, improve user flow, and make interactions feel smooth and intentional."
+        desc: "Create seamless transitions between pages, sections, and states with elegant animations that make navigation feel natural. (upcoming...)",
+        desc2: "Create seamless transitions between pages, layouts, sections, and UI states. Whether navigating between routes or revealing new content, these animations add continuity, improve user flow, and make interactions feel smooth and intentional. (upcoming...)"
     },
     {
         name: "Sliders",
-        desc: "Build engaging sliders and carousels with fluid motion, intuitive controls, and responsive interactions for any type of content.",
-        desc2: "Build interactive sliders and carousels with fluid motion, gesture support, autoplay, infinite looping, and customizable controls. Showcase images, testimonials, products, or content with animations that feel responsive across every device."
+        desc: "Build engaging sliders and carousels with fluid motion, intuitive controls, and responsive interactions for any type of content. (upcoming...)",
+        desc2: "Build interactive sliders and carousels with fluid motion, gesture support, autoplay, infinite looping, and customizable controls. Showcase images, testimonials, products, or content with animations that feel responsive across every device. (upcoming...)"
     },
     {
         name: "Cursor",
         homehide: true,
-        desc: "Replace the default cursor with interactive, animated cursors that react to movement, clicks, hover states, and page elements.",
-        desc2: "Enhance user interactions with custom animated cursors that respond to movement, clicks, hover states, scrolling, and interactive elements. Add personality and visual feedback without sacrificing performance or usability."
+        desc: "Replace the default cursor with interactive, animated cursors that react to movement, clicks, hover states, and page elements. (upcoming...)",
+        desc2: "Enhance user interactions with custom animated cursors that respond to movement, clicks, hover states, scrolling, and interactive elements. Add personality and visual feedback without sacrificing performance or usability. (upcoming...)"
     },
     {
         name: "More",

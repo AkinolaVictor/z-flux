@@ -14,7 +14,7 @@ function HomeDescription(props) {
         <div className={`w-full ${pad_x} py-10 mt-20 text-center gap-7 h-auto flex flex-col justify-center items-center max-w-220`}>
             <Z_Text
                 // progression='char_line' 
-                animation='FromLeft'
+                animation='FadeFromLeft'
                 animationOrder="lastToFirst"
             >
                 <h1 className='text-[30px] font-bold'>Build Interfaces That Move Naturally</h1>

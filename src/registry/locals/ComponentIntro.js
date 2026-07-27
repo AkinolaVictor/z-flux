@@ -108,81 +108,87 @@ function ComponentIntro(props) {
                 </p>
             </div>
 
-            <div className='my-10 mb-5'>
-                <div onClick={()=>{togglecClick("mission")}} className='flex justify-between items-center cursor-pointer'>
-                    <p className={`text-[20px] font-semibold mb-5`}>Mission</p>
-                    {
-                        which.includes("mission")?
-                        <ChevronUp size={"20px"}/>:
-                        <ChevronDown size={"20px"}/>
-                    }
-                </div>
-                <div className={`${which.includes("mission")?"block":"hidden"}`}>
-                    <p className='mb-5 opacity-80 text-[14px]'>
-                        The mission of Z-Flux is to make beautiful, interactive web experiences accessible to every developer by providing open-source, event-driven components that are effortless to use, customize, and extend.
-                    </p>
+            {
+                /*
+                    <div className='my-10 mb-5'>
+                        <div onClick={()=>{togglecClick("mission")}} className='flex justify-between items-center cursor-pointer'>
+                            <p className={`text-[20px] font-semibold mb-5`}>Mission</p>
+                            {
+                                which.includes("mission")?
+                                <ChevronUp size={"20px"}/>:
+                                <ChevronDown size={"20px"}/>
+                            }
+                        </div>
+                        <div className={`${which.includes("mission")?"block":"hidden"}`}>
+                            <p className='mb-5 opacity-80 text-[14px]'>
+                                The mission of Z-Flux is to make beautiful, interactive web experiences accessible to every developer by providing open-source, event-driven components that are effortless to use, customize, and extend.
+                            </p>
 
 
-                    <p className='mb-5 opacity-80 text-[14px]'>
-                        We believe interfaces should do more than display content — they should respond, communicate, and delight through meaningful motion and interaction.
-                    </p>
+                            <p className='mb-5 opacity-80 text-[14px]'>
+                                We believe interfaces should do more than display content — they should respond, communicate, and delight through meaningful motion and interaction.
+                            </p>
+                            
+                            <p className='mb-5 opacity-80 text-[14px]'>
+                                To make that happen, the project is committed to the following principles:
+                            </p>
+
+
+                            {
+                                principles.map((item, index)=>{
+                                    return (
+                                        <div key={index}>
+                                            <p className='font-semibold mb-1 opacity-100 text-[14px]'>{item.title}</p>
+                                            <p className='mb-5 opacity-80 text-[14px]'>
+                                                {item.desc}
+                                            </p>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                */
+            }
+
+            {/*
+                <div className='my-10 mb-5'>
+                    <div onClick={()=>{togglecClick("approach")}} className='flex justify-between items-center cursor-pointer'>
+                        <p className={`text-[20px] font-semibold mb-5`}>Approach</p>
+                        {
+                            which.includes("approach")?
+                            <ChevronUp size={"20px"}/>:
+                            <ChevronDown size={"20px"}/>
+                        }
+                    </div>
                     
-                    <p className='mb-5 opacity-80 text-[14px]'>
-                        To make that happen, the project is committed to the following principles:
-                    </p>
+                    <div className={`${which.includes("approach")?"block":"hidden"}`}>
+                        <p className='mb-5 opacity-80 text-[14px]'>
+                            Z-Flux is built on a simple belief: motion should be meaningful, performant, and effortless to use. Every component is designed to enhance user experience through purposeful interactions—not decorative animations.
+                        </p>
 
 
-                    {
-                        principles.map((item, index)=>{
-                            return (
-                                <div key={index}>
-                                    <p className='font-semibold mb-1 opacity-100 text-[14px]'>{item.title}</p>
-                                    <p className='mb-5 opacity-80 text-[14px]'>
-                                        {item.desc}
-                                    </p>
-                                </div>
-                            )
-                        })
-                    }
+
+                        {
+                            approach.map((item, index)=>{
+                                return (
+                                    <div key={index}>
+                                        <p className='font-semibold mb-1 opacity-100 text-[14px]'>{item.title}</p>
+                                        <p className='mb-5 opacity-80 text-[14px]'>
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                )
+                            })
+                        }
+
+                        <p className='mb-5 opacity-80 text-[14px]'>
+                            This is not your typical component library, which means you won't find a set of generic buttons, inputs, or other common UI elements here.
+                        </p>
+                    </div>
                 </div>
-            </div>
+            */}
 
-
-            <div className='my-10 mb-5'>
-                <div onClick={()=>{togglecClick("approach")}} className='flex justify-between items-center cursor-pointer'>
-                    <p className={`text-[20px] font-semibold mb-5`}>Approach</p>
-                    {
-                        which.includes("approach")?
-                        <ChevronUp size={"20px"}/>:
-                        <ChevronDown size={"20px"}/>
-                    }
-                </div>
-                
-                <div className={`${which.includes("approach")?"block":"hidden"}`}>
-                    <p className='mb-5 opacity-80 text-[14px]'>
-                        Z-Flux is built on a simple belief: motion should be meaningful, performant, and effortless to use. Every component is designed to enhance user experience through purposeful interactions—not decorative animations.
-                    </p>
-
-
-
-                    {
-                        approach.map((item, index)=>{
-                            return (
-                                <div key={index}>
-                                    <p className='font-semibold mb-1 opacity-100 text-[14px]'>{item.title}</p>
-                                    <p className='mb-5 opacity-80 text-[14px]'>
-                                        {item.desc}
-                                    </p>
-                                </div>
-                            )
-                        })
-                    }
-
-                    <p className='mb-5 opacity-80 text-[14px]'>
-                        This is not your typical component library, which means you won't find a set of generic buttons, inputs, or other common UI elements here.
-                    </p>
-                </div>
-            </div>
 
             <div className='my-10 mb-5'>
                 <div onClick={()=>{togglecClick("component")}} className='flex justify-between items-center cursor-pointer'>
