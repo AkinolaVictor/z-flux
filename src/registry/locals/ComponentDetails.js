@@ -259,18 +259,23 @@ function ComponentDetails(props) {
                         </div>:
                         null
                     }
-                    <div data-scroll-behavior="smooth" className={`component-preview-container w-full h-120 bg-amber-600s rounded-2xl_e mt-5 border border-[#757070] overflow-x-hidden overflow-y-auto`}>
-                        {
-                            reloader?
-                            null:
-                            <>
-                                {
-                                    ThisPreview?
-                                    <ThisPreview />:
-                                    null
-                                }
-                            </>
-                        }
+                    <div className='w-full min-h-130 h-130 mt-5 flex justify-start items-start border border-[#757070] rounded-[13px] p-2'>
+                        <div className='w-12 h-full bg-[#262626] rounded-full'>
+                            
+                        </div>
+                        <div data-scroll-behavior="smooth" className={`component-preview-container w-full min-h-full h-full bg-amber-600s rounded-2xl_e px-2 overflow-x-hidden overflow-y-auto`}>
+                            {
+                                reloader?
+                                null:
+                                <>
+                                    {
+                                        ThisPreview?
+                                        <ThisPreview />:
+                                        null
+                                    }
+                                </>
+                            }
+                        </div>
                     </div>
                 </div>:
                 viewState=="code"?

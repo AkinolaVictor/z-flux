@@ -585,6 +585,18 @@ const local = {
 const useLocal = process.env.NEXT_PUBLIC_DEVELOPMENT_ENV==="local"?local:{}
 
 export const animation_list = {
+    
     ...module,
-    ...useLocal
+//   omegaCore: {
+//     opacity: [0, 1],
+//     scale: [40, 1],
+//     rotation: [4320, 0],
+//     rotationX: [1080, 0],
+//     rotationY: [1080, 0],
+//     filter: [
+//       "brightness(35) blur(120px)",
+//       "brightness(1) blur(0px)"
+//     ]
+//   },
+    // ...useLocal
 }

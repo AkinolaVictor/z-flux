@@ -29,40 +29,126 @@ export default function Z_Text_Preview({
         if(freshData==null) return
         setAnim(freshData.title)
     }, [alltexts, path])
-
+    // const jdj = "sm--".repeat(2).split("--")
+    // console.log({jdj})
     return (
-        <div className='w-full h-full'>
+        <div className='w-full h-full min-h-full'>
             
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
+            <div className='w-full min-h-full h-auto flex flex-col justify-center items-center relative p-3'>
+                {/* <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     1
-                </div>
+                </div> */}
 
                 <Z_Text
                     animation={anim}
-                    className='text-[45px] font-bold text-center'
-                    text={anim}
+                    className='text-[45px] font-bold text-center py-5 text-amber-200'
+                    text={`${anim} Animation`}
                 />
+
                 <Z_Text
                     animation={anim}
-                    animationOrder={"random"}
-                    className='text-[30px] font-bold text-center'
-                    text={"Text Animation"}
+                    className='text-[15px] font-bold text-center'
+                    text={"(Keep Scrolling)"}
                 />
             </div>
 
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    2
-                </div>
+            <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
+                <div className="mb-10"/>
+                <Z_Text
+                    animation={anim}
+                    trigger={"inview"}
+                    className='text-[60px] font-bold text-center py-5 text-amber-200'
+                    text={"Titles"}
+                    gsapScrollTrigger={{
+                        // toggleActions: "play pause resume reverse",
+                        // start: "top 70%"
+                    }}
+
+                />
+                <Z_Text
+                    animation={anim}
+                    trigger={"inview"}
+                    // animationOrder={"random"}
+                    className='text-[20px] font-bold text-center'
+                    text={"Lorem ipsum"}
+                />
+                <Z_Text
+                    animation={anim}
+                    trigger={"inview"}
+                    // gsapScrollTrigger={{
+                    //     // toggleActions: "play pause resume reverse",
+                    // }}
+                    animationOrder={"lastToFirst"}
+                    className='text-[40px] font-bold text-center'
+                    text={"Lorem ipsum"}
+                />
+                <Z_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    progression={"word"}
+                    gsapScrollTrigger={{
+                        // toggleActions: "play pause resume reverse",
+                    }}
+                    animationOrder={"lastToFirst"}
+                    className='text-[40px] font-bold text-center'
+                    text={"Lorem ipsum dolor"}
+                />
+                <Z_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    progression={"char"}
+                    gsapScrollTrigger={{
+                        // toggleActions: "play pause resume reverse",
+                        // start: "top 60%",
+                        // end: "top 30%"
+                    }}
+                    // animationOrder={"random"}
+                    speed={0.1}
+                    className='text-[55px] w6:text-[80px] font-bold text-center'
+                    text={"Lorem ipsum"}
+                    // extendAnimation={{x: [1000, 0]}}
+                />
+                <Z_Text
+                    animation={anim}
+                    trigger={"onscroll"}
+                    progression={"char"}
+                    gsapScrollTrigger={{
+                        // toggleActions: "play pause resume reverse",
+                        // start: "top 60%",
+                        // end: "top 30%"
+                    }}
+                    animationOrder={"random"}
+                    speed={0.1}
+                    className='text-[55px] w6:text-[80px] font-bold text-center'
+                    text={"Lorem dolor"}
+                    // extendAnimation={{x: [1000, 0]}}
+                />
+            </div>
+
+            <div className='w-full min-h-full flex flex-col justify-center items-center relative p-3'>
+              
+
+                <Z_Text
+                    animation={anim}
+                    className='text-[40px] text-amber-200 mb-4'
+                    // controllerRef={controller}
+                    // style={{color: "yellow"}}
+                    // animationOrder={"random"}
+                    speed={0.1}
+                    // progression={"word"}
+                    trigger={"onscroll"}
+                    text={`
+                        Basic Controls
+                    `}
+                />
                 <Z_Text
                     animation={anim}
                     className='text-[20px]'
                     controllerRef={controller}
-                    style={{color: "yellow"}}
+                    style={{color: "white"}}
                     trigger={"inview"}
                     text={`
-                        This text automatically animates each time it's scrolled to view from the bottom
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
                     `}
                 />
 
@@ -87,209 +173,301 @@ export default function Z_Text_Preview({
 
             </div>
 
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    3
-                </div>
-                <Z_Text
-                    animation={anim}
-                    className='w11:text-[20px]'
-                    trigger={"onscroll"}
-                    text={`
-                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
-                    `}
-                />
+            <div className="w-full h-auto">
+                {
+                    [
+                        {
+                            progression: "char",
+                            type: "Animate through Characters"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "line",
+                            type: "Animate through Lines"
+                        },
+                        {
+                            progression: "word_line",
+                            type: "Animate through Words and Lines"
+                        },
+                        {
+                            progression: "char_line",
+                            type: "Animate through Characters and Lines"
+                        },
+                    ].map((item, index)=>{
+                        const {progression, type} = item
+                        return (
+                            <div 
+                                className='w-full min-h-130 h-auto flex flex-col justify-center items-center relative p-3'
+                            >
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"inview"}
+                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    text={"Paragraphs"}
+                                />
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"inview"}
+                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    text={type}
+                                />
+                                {
+                                    [1,2].map((item2, index)=>{
+                                        return (
+                                            <Z_Text
+                                                animation={anim}
+                                                key={index}
+                                                progression={progression}
+                                                className='text-[16px] py-4'
+                                                trigger={index==1?"onscroll":"inview"}
+                                                text={`
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                `}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+
+            <div className="w-full h-auto">
+                {
+                    [
+                        {
+                            progression: "char",
+                            type: "Animate through Characters"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "line",
+                            type: "Animate through Lines"
+                        },
+                        {
+                            progression: "word_line",
+                            type: "Animate through Words and Lines"
+                        },
+                        {
+                            progression: "char_line",
+                            type: "Animate through Characters and Lines"
+                        },
+                    ].map((item, index)=>{
+                        const {progression, type} = item
+                        return (
+                            <div 
+                                key={index}
+                                className='w-full min-h-130 h-auto flex flex-col justify-center items-center relative p-3'
+                            >
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"onscroll"}
+                                    progression={progression}
+                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    text={"Grouped Paragraphs"}
+                                />
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"onscroll"}
+                                    progression={progression}
+                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    text={`${type} on scroll`}
+                                />
+                                {
+                                    [1,2, 3, 4].map((item2, index)=>{
+                                        return (
+                                            <Z_Text
+                                                animation={anim}
+                                                key={index}
+                                                progression={progression}
+                                                className='text-[16px] py-4'
+                                                trigger={"onscroll"}
+                                                text={`
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                `}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+
+            <div className="w-full h-auto">
+                {
+                    [
+                        {
+                            progression: "char",
+                            type: "Animate through Characters"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "line",
+                            type: "Animate through Lines"
+                        },
+                        {
+                            progression: "word_line",
+                            type: "Animate through Words and Lines"
+                        },
+                        {
+                            progression: "char_line",
+                            type: "Animate through Characters and Lines"
+                        },
+                    ].map((item, index)=>{
+                        const {progression, type} = item
+                        return (
+                            <div 
+                                key={index}
+                                className='w-full min-h-130 h-auto flex flex-col justify-center items-center relative p-3'
+                            >
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"onscroll"}
+                                    progression={progression}
+                                    animationOrder={"lastToFirst"}
+                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    text={"From The Back"}
+                                />
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"onscroll"}
+                                    progression={progression}
+                                    animationOrder={"lastToFirst"}
+                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    text={`${type} on scroll`}
+                                />
+                                {
+                                    [1,2].map((item2, index)=>{
+                                        return (
+                                            <Z_Text
+                                                animation={anim}
+                                                key={index}
+                                                progression={progression}
+                                                animationOrder={"lastToFirst"}
+                                                className='text-[16px] py-4'
+                                                trigger={"onscroll"}
+                                                // trigger={index==0?"onscroll":"inview"}
+                                                text={`
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                `}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    })
+                }
+
+            </div>
+
+            <div className="w-full h-auto">
+                {
+                    [
+                        {
+                            progression: "char",
+                            type: "Animate through Characters"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "word",
+                            type: "Animate through Words"
+                        },
+                        {
+                            progression: "line",
+                            type: "Animate through Lines"
+                        },
+                        {
+                            progression: "word_line",
+                            type: "Animate through Words and Lines"
+                        },
+                        {
+                            progression: "char_line",
+                            type: "Animate through Characters and Lines"
+                        },
+                    ].map((item, index)=>{
+                        const {progression, type} = item
+                        return (
+                            <div 
+                                key={index}
+                                className='w-full min-h-130 h-auto flex flex-col justify-center items-center relative p-3'
+                            >
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"onscroll"}
+                                    progression={progression}
+                                    animationOrder={"random"}
+                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    text={"Randomized"}
+                                />
+                                <Z_Text
+                                    animation={anim}
+                                    trigger={"onscroll"}
+                                    progression={progression}
+                                    animationOrder={"random"}
+                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    text={`${type} on scroll`}
+                                />
+                                {
+                                    [1,2].map((item2, index)=>{
+                                        return (
+                                            <Z_Text
+                                                animation={anim}
+                                                key={index}
+                                                progression={progression}
+                                                animationOrder={"random"}
+                                                className='text-[16px] py-4'
+                                                trigger={"onscroll"}
+                                                // trigger={index==0?"onscroll":"inview"}
+                                                text={`
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                                                `}
+                                            />
+                                        )
+                                    })
+                                }
+                            </div>
+                        )
+                    })
+                }
 
             </div>
 
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    4
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="word"
-                    className='w11:text-[20px]'
-                    trigger={"onscroll"}
-                    text={`
-                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
-                    `}
-                />
-
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    5
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="word_line"
-                    className='w11:text-[20px]'
-                    trigger={"onscroll"}
-                    text={`
-                        This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed.
-                    `}
-                />
-
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    6
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="line"
-                    trigger={"onscroll"}
-                    className='w11:text-[20px]'
-                    text={`
-                        Instead of revealing text one character at a time, this animation unveils the content line by line for a cleaner, more natural reading experience. Each line responds seamlessly to your scrolling, progressing as you move and pausing whenever you stop, giving you complete control over the pace of the animation.
-                    `}
-                />
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    7
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="char_line"
-                    trigger={"onscroll"}
-                    className='w11:text-[20px]'
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop.
-                    </span>
-                </Z_Text>
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    // progression="char_line"
-                    className='w11:text-[20px]'
-                    animationOrder="lastToFirst"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-                <Z_Text
-                    animation={anim}
-                    // progression="char_line"
-                    className='w11:text-[20px]'
-                    animationOrder="lastToFirst"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    9
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="word"
-                    className='w11:text-[20px]'
-                    animationOrder="lastToFirst"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-                <Z_Text
-                    animation={anim}
-                    progression="word"
-                    className='w11:text-[20px]'
-                    animationOrder="lastToFirst"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    8
-                </div>
-                <Z_Text
-                    animation={anim}
-                    // progression="char_line"
-                    className='w11:text-[20px]'
-                    animationOrder="random"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-                <Z_Text
-                    animation={anim}
-                    // progression="char_line"
-                    className='w11:text-[20px]'
-                    animationOrder="random"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    10
-                </div>
-                <Z_Text
-                    animation={anim}
-                    progression="word"
-                    className='w11:text-[20px]'
-                    animationOrder="random"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-                <Z_Text
-                    animation={anim}
-                    progression="word"
-                    className='w11:text-[20px]'
-                    animationOrder="random"
-                    trigger={"inview"}
-                    style={{color: "yellow"}}
-                >
-                    <span>
-                        Rather than revealing characters one after another, every character within a line animates simultaneously...
-                    </span>
-                </Z_Text>
-            </div>
-
-            <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
-                <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
-                    11
-                </div>
+                
                 <Z_Text
                     animation={anim}
                     className='text-[20px]'

@@ -4,7 +4,6 @@ import { animation_list, build_extend_animation, findScrollingElement, getProgre
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { textPack_animations } from '@/utils/animlations/textPack_animations';
 
 gsap.registerPlugin(SplitText, ScrollTrigger)
 
@@ -23,9 +22,11 @@ export default function Z_Text(props) {
         delay=0,
         timeline=undefined,
         speed,
+        stagger,
         gsapScrollTrigger,
         extendAnimation,
-        watch=false
+        watch=false,
+        repeatAnimation=0
     } = props
     const containerRef = useRef(null);
     const [resizeTick, setResizeTick] = useState(0);
@@ -34,8 +35,13 @@ export default function Z_Text(props) {
     const playInView = trigger==="inview"
     const paused = playOnScroll || playInView
     const useAnimation = animation_list[animation] ?? {}
-    // const useAnimation = textPack_animations[animation] ?? {}
-    const tl = timeline ?? gsap.timeline({ paused, delay });
+
+    const tl = timeline ?? gsap.timeline({ 
+        paused, 
+        delay, 
+        repeat: repeatAnimation=="loop"?-1:repeatAnimation,
+        yoyo: true
+    });
     
     if(controllerRef){
         controllerRef.current = tl
@@ -86,7 +92,7 @@ export default function Z_Text(props) {
                 chars,
                 words,
                 lines,
-                speed,
+                speed || stagger,
                 playOnScroll
             );
             

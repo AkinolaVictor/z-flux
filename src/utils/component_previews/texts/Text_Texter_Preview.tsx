@@ -21,7 +21,7 @@ function Text_Texter_Preview(props: Props) {
                     `}
                 />
             </div>
-
+            
             <div className='w-full h-full flex flex-col justify-center items-center relative p-3'>
                 <div className='font-bold darkbg w-10 h-10 absolute right-7 top-7 rounded-full flex justify-center items-center'>
                     2/6

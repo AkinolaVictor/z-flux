@@ -11,11 +11,11 @@ function Footer(props) {
             <p className='opacity-60'>
                 Built by  
                 <Link href={"https://www.linkedin.com/in/victoral/"} className='opacity-100'>
-                    &nbsp;victor_olaleykan
+                    &nbsp;<u>Akinola Victor</u>
                 </Link>. 
                 The source code is available on 
-                <Link href={"https://google.com"} className='opacity-100 '>
-                    &nbsp;GITHUB
+                <Link href={"https://github.com/AkinolaVictor/z-flux-react"} className='opacity-100 '>
+                    &nbsp;<u>GITHUB</u>
                 </Link>
             </p>
         </div>

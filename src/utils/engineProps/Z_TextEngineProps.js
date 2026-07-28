@@ -55,6 +55,19 @@ export const Z_TextEngineProps = [
         value: "value1"
     },
     {
+        name: "repeatAnimation",
+        type: "string | number",
+        range: "loop | number of desired repitition",
+        description: "Number of times animation should be repeated. Type 'loop' to make animation play repeatedly non-stop",
+        more_des: <p>
+            <b>loop</b>: Animation plays without stopping
+            <br />
+            <br />
+            <b>0-100 (or more)</b>: number of times to replay animation
+        </p>,
+        value: "value1"
+    },
+    {
         name: "style",
         type: "object",
         description: "An object containing all the styles you want to add to your text",
@@ -83,7 +96,7 @@ export const Z_TextEngineProps = [
         // </div>,
     },
     {
-        name: "speed",
+        name: "speed (or stagger)",
         type: "number",
         range: "Between 0.001 - 2",
         description: "How fast or slow you want the animation to play.",
