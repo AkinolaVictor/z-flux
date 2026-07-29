@@ -10,6 +10,8 @@ export default function Z_Text_Preview({
     const [anim, setAnim] = useState("Fade")
     const path = usePathname()
     const controller = useRef(null)
+    const [moreExamples, setMoreExamples] = useState(0)
+    // let moreExamples = useRef(0)
     function getFreshData() {
         for(let i=0; i<alltexts.content.length; i++){
             const each = alltexts.content[i]
@@ -29,8 +31,8 @@ export default function Z_Text_Preview({
         if(freshData==null) return
         setAnim(freshData.title)
     }, [alltexts, path])
-    // const jdj = "sm--".repeat(2).split("--")
-    // console.log({jdj})
+
+
     return (
         <div className='w-full h-full min-h-full'>
             
@@ -41,23 +43,23 @@ export default function Z_Text_Preview({
 
                 <Z_Text
                     animation={anim}
-                    className='text-[45px] font-bold text-center py-5 text-amber-200'
+                    className='text-[30px] w6:text-[45px] font-bold text-center flex justify-center items-center py-5 text-amber-200'
                     text={`${anim} Animation`}
                 />
 
                 <Z_Text
                     animation={anim}
-                    className='text-[15px] font-bold text-center'
+                    className='text-[13px] w6:text-[15px] flex justify-center items-center font-bold text-center'
                     text={"(Keep Scrolling)"}
                 />
             </div>
-
+            
             <div className='w-full h-auto flex flex-col justify-center items-center relative p-3'>
                 <div className="mb-10"/>
                 <Z_Text
                     animation={anim}
                     trigger={"inview"}
-                    className='text-[60px] font-bold text-center py-5 text-amber-200'
+                    className='text-[35px] w6:text-[60px] flex justify-center items-center font-bold text-center py-5 text-amber-200'
                     text={"Titles"}
                     gsapScrollTrigger={{
                         // toggleActions: "play pause resume reverse",
@@ -69,7 +71,7 @@ export default function Z_Text_Preview({
                     animation={anim}
                     trigger={"inview"}
                     // animationOrder={"random"}
-                    className='text-[20px] font-bold text-center'
+                    className='text-[15px] w6:text-[20px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum"}
                 />
                 <Z_Text
@@ -79,7 +81,7 @@ export default function Z_Text_Preview({
                     //     // toggleActions: "play pause resume reverse",
                     // }}
                     animationOrder={"lastToFirst"}
-                    className='text-[40px] font-bold text-center'
+                    className='text-[28px] w6:text-[40px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum"}
                 />
                 <Z_Text
@@ -90,7 +92,7 @@ export default function Z_Text_Preview({
                         // toggleActions: "play pause resume reverse",
                     }}
                     animationOrder={"lastToFirst"}
-                    className='text-[40px] font-bold text-center'
+                    className='text-[28px] w6:text-[40px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum dolor"}
                 />
                 <Z_Text
@@ -104,7 +106,7 @@ export default function Z_Text_Preview({
                     }}
                     // animationOrder={"random"}
                     speed={0.1}
-                    className='text-[55px] w6:text-[80px] font-bold text-center'
+                    className='text-[38px] w6:text-[80px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum"}
                     // extendAnimation={{x: [1000, 0]}}
                 />
@@ -119,18 +121,18 @@ export default function Z_Text_Preview({
                     }}
                     animationOrder={"random"}
                     speed={0.1}
-                    className='text-[55px] w6:text-[80px] font-bold text-center'
+                    className='text-[38px] w6:text-[80px] flex justify-center items-center font-bold text-center'
                     text={"Lorem dolor"}
                     // extendAnimation={{x: [1000, 0]}}
                 />
             </div>
 
             <div className='w-full min-h-full flex flex-col justify-center items-center relative p-3'>
-              
+            
 
                 <Z_Text
                     animation={anim}
-                    className='text-[40px] text-amber-200 mb-4'
+                    className='text-[28px] w6:text-[60px] flex justify-center items-center text-amber-200 mb-4'
                     // controllerRef={controller}
                     // style={{color: "yellow"}}
                     // animationOrder={"random"}
@@ -143,7 +145,7 @@ export default function Z_Text_Preview({
                 />
                 <Z_Text
                     animation={anim}
-                    className='text-[20px]'
+                    className='text-[15px] w6:text-[20px]'
                     controllerRef={controller}
                     style={{color: "white"}}
                     trigger={"inview"}
@@ -160,7 +162,7 @@ export default function Z_Text_Preview({
                                     key={index}
                                     onClick={()=>{controlAnimation(item)}} 
                                     className={`
-                                        flex justify-center w-17 items-center gap-2 cursor-pointer rounded-full border px-3 py-1 text-[12px] hover:bg-[#121212]
+                                        flex justify-center w-17 items-center gap-2 cursor-pointer rounded-full border px-3 py-1 text-[14px] hover:bg-[#121212]
                                         opacity-70 hover:opacity-100 mt-4 mx-2
                                     `}
                                 >
@@ -204,18 +206,19 @@ export default function Z_Text_Preview({
                         const {progression, type} = item
                         return (
                             <div 
+                                key={index}
                                 className='w-full min-h-130 h-auto flex flex-col justify-center items-center relative p-3'
                             >
                                 <Z_Text
                                     animation={anim}
                                     trigger={"inview"}
-                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    className='text-[22px] w6:text-[30px] font-bold text-center pb-1 text-amber-200'
                                     text={"Paragraphs"}
                                 />
                                 <Z_Text
                                     animation={anim}
                                     trigger={"inview"}
-                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    className='text-[13px] w6:text-[16px] flex justify-center items-center font-bold text-center py-0 text-amber-200'
                                     text={type}
                                 />
                                 {
@@ -225,7 +228,7 @@ export default function Z_Text_Preview({
                                                 animation={anim}
                                                 key={index}
                                                 progression={progression}
-                                                className='text-[16px] py-4'
+                                                className='text-[13px] w6:text-[16px] py-4'
                                                 trigger={index==1?"onscroll":"inview"}
                                                 text={`
                                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
@@ -242,7 +245,7 @@ export default function Z_Text_Preview({
 
             </div>
 
-            <div className="w-full h-auto">
+            <div className={`w-full h-auto`}>
                 {
                     [
                         {
@@ -280,14 +283,14 @@ export default function Z_Text_Preview({
                                     animation={anim}
                                     trigger={"onscroll"}
                                     progression={progression}
-                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    className='text-[20px] w6:text-[30px] font-bold text-center flex justify-center items-center pb-1 text-amber-200'
                                     text={"Grouped Paragraphs"}
                                 />
                                 <Z_Text
                                     animation={anim}
                                     trigger={"onscroll"}
                                     progression={progression}
-                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    className='text-[13px] w6:text-[16px] font-bold text-center flex justify-center items-center py-0 text-amber-200'
                                     text={`${type} on scroll`}
                                 />
                                 {
@@ -297,7 +300,7 @@ export default function Z_Text_Preview({
                                                 animation={anim}
                                                 key={index}
                                                 progression={progression}
-                                                className='text-[16px] py-4'
+                                                className='text-[13px] w6:text-[16px] py-4'
                                                 trigger={"onscroll"}
                                                 text={`
                                                     Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
@@ -353,7 +356,7 @@ export default function Z_Text_Preview({
                                     trigger={"onscroll"}
                                     progression={progression}
                                     animationOrder={"lastToFirst"}
-                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    className='text-[20px] w6:text-[30px] flex justify-center items-center font-bold text-center pb-1 text-amber-200'
                                     text={"From The Back"}
                                 />
                                 <Z_Text
@@ -361,7 +364,7 @@ export default function Z_Text_Preview({
                                     trigger={"onscroll"}
                                     progression={progression}
                                     animationOrder={"lastToFirst"}
-                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    className='text-[13px] w6:text-[16px] flex justify-center items-center font-bold text-center py-0 text-amber-200'
                                     text={`${type} on scroll`}
                                 />
                                 {
@@ -372,7 +375,7 @@ export default function Z_Text_Preview({
                                                 key={index}
                                                 progression={progression}
                                                 animationOrder={"lastToFirst"}
-                                                className='text-[16px] py-4'
+                                                className='text-[13px] w6:text-[16px] py-4'
                                                 trigger={"onscroll"}
                                                 // trigger={index==0?"onscroll":"inview"}
                                                 text={`
@@ -429,7 +432,7 @@ export default function Z_Text_Preview({
                                     trigger={"onscroll"}
                                     progression={progression}
                                     animationOrder={"random"}
-                                    className='text-[30px] font-bold text-center pb-1 text-amber-200'
+                                    className='text-[20px] w6:text-[30px] flex justify-center items-center font-bold text-center pb-1 text-amber-200'
                                     text={"Randomized"}
                                 />
                                 <Z_Text
@@ -437,7 +440,7 @@ export default function Z_Text_Preview({
                                     trigger={"onscroll"}
                                     progression={progression}
                                     animationOrder={"random"}
-                                    className='text-[16px] font-bold text-center py-0 text-amber-200'
+                                    className='text-[13px] w6:text-[16px] flex justify-center items-center font-bold text-center py-0 text-amber-200'
                                     text={`${type} on scroll`}
                                 />
                                 {
@@ -448,7 +451,7 @@ export default function Z_Text_Preview({
                                                 key={index}
                                                 progression={progression}
                                                 animationOrder={"random"}
-                                                className='text-[16px] py-4'
+                                                className='text-[13px] w6:text-[16px] py-4'
                                                 trigger={"onscroll"}
                                                 // trigger={index==0?"onscroll":"inview"}
                                                 text={`
@@ -477,6 +480,15 @@ export default function Z_Text_Preview({
                     `}
                 />
             </div>
+
+            {/* {
+                moreExamples<4&&
+                <div onClick={()=>setMoreExamples(prev=>prev+1)} className='w-full h-12 my-10 justify-center flex items-center cursor-pointer bg-[#262626] rounded-full p-3'>
+                    <p className="text-[15px]">See More Examples</p>
+                </div>
+            } */}
+
+            <div className='w-full h-12 my-10 justify-center flex items-center cursor-pointer rounded-full p-3' />
         </div>
     )
 }
