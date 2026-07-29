@@ -50,6 +50,10 @@ function overlay_text(){
     });
 
     const overlay_text_content = []
+
+    // if(process.env.NEXT_PUBLIC_DEVELOPMENT_ENV=="local"){
+    //     return {overlay_text_content, overlay_text_parent: {parent: false, href:""}}
+    // }
     
     for(let i=0; i<built_animation.length; i++){
         const {title, val} = built_animation[i]
@@ -87,7 +91,8 @@ export const alltexts = {
         z_text_parent,
         ...z_text_content,
         overlay_text_parent,
-        ...overlay_text_content,
+        ...overlay_text_content
+        
         // overlay_text_proto,
         // texts_texter,
 

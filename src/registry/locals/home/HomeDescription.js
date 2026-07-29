@@ -49,7 +49,7 @@ function HomeDescription(props) {
                     </button>
                 </Link>
 
-                <Link href={"/components/z_text_Fade"}>
+                <Link href={"/components/z_text_FilmRoll"}>
                     <button type="button" className='px-6 text-[14px] text-white min-h-10 bg-[#222222] rounded-full flex justify-center items-center cursor-pointer'>
                         <p>Browse Components</p>
                     </button>

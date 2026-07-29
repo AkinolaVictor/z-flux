@@ -3,6 +3,10 @@ import { getCode } from "../../../utils/helper";
 import { Z_TextEngineProps } from "../../engineProps/Z_TextEngineProps";
 import Z_Text_Preview from "../../component_previews/texts/Z_Text_Preview";
 import { animation_list } from "../../../utils/animlations/animation_list";
+import Z_Text_Titles_Preview from "@/utils/component_previews/texts/z_text/Z_Text_Titles_Preview";
+import Z_Text_Controls_Preview from "@/utils/component_previews/texts/z_text/Z_Text_Controls_Preview";
+import Z_Text_Paragraph_Preview from "@/utils/component_previews/texts/z_text/Z_Text_Paragraphs_Preview";
+import Z_Text_Grouped_Paragraph_Preview from "@/utils/component_previews/texts/z_text/Z_Text_Grouped_Paragraph_Preview";
 
 const usageFunc = (setState)=>getCode("/codes/z_text/z_text_usage.txt", setState)
 const js_cs = (setState)=>getCode("/codes/z_text/z_text_js_cs.txt", setState)
@@ -81,7 +85,36 @@ export const z_text_proto = {
         }
     },
     engine: "Z_Text",
-    preview: (props)=> <Z_Text_Preview data={z_text_proto} {...props}/>,
+    preview: [
+        {
+            // title: "Titles",
+            Preview: (props)=> <Z_Text_Preview data={z_text_proto} {...props}/>
+        },
+        // {
+        //     title: "Titles",
+        //     Preview: (props)=> <Z_Text_Titles_Preview data={z_text_proto} {...props}/>
+        // },
+        // {
+        //     title: "Basic Contols",
+        //     Preview: (props)=> <Z_Text_Controls_Preview data={z_text_proto} {...props}/>
+        // },
+        // {
+        //     title: "Paragraphs",
+        //     Preview: (props)=> <Z_Text_Paragraph_Preview data={z_text_proto} {...props}/>
+        // },
+        // {
+        //     title: "Grouped Paragraphs",
+        //     Preview: (props)=> <Z_Text_Grouped_Paragraph_Preview data={z_text_proto} {...props}/>
+        // },
+        // {
+        //     title: "Reversed",
+        //     Preview: (props)=> <Z_Text_Grouped_Paragraph_Preview data={z_text_proto} {...props}/>
+        // },
+        // {
+        //     title: "Random",
+        //     Preview: (props)=> <Z_Text_Grouped_Paragraph_Preview data={z_text_proto} {...props}/>
+        // },
+    ],
     props: [
         ...Z_TextEngineProps
     ]

@@ -16,7 +16,7 @@ export default function Home() {
       className={`flex flex-col min-h-screen items-center justify-start bg-zinc-50 font-sans dark:bg-black`}
     >
       <Head>
-          <title>Z-Flux || Home</title>
+          <title>Z-Flux || A Web animation library</title>
           <meta name="description" content="The z-flux homepage" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/z-flux-1.png" />

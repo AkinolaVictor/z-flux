@@ -104,7 +104,7 @@ export const Z_TextEngineProps = [
             A good range is between 0.001 and 2 depending on your preferred progression. However, you can go out of the box
             <br />
             <br />
-            if progression=char (default): between 0.01 and 1 is good (from fast to slow, default is 0.1)
+            if progression=char (default): between 0.005 and 1 is good (from fast to slow, default is 0.1)
             <br />
             <br />
             if progression=word: between 0.05 and 0.8 is good (from fast to slow, default is 0.35)

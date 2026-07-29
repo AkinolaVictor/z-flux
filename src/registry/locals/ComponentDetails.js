@@ -43,8 +43,8 @@ function ComponentDetails(props) {
         setReloader(true)
         timeout = setTimeout(() => {
             setReloader(false)
-        }, 300);
-        
+            console.log("assk")
+        }, 30);
         return ()=>clearTimeout(timeout)
     }, [path])
     
@@ -259,25 +259,30 @@ function ComponentDetails(props) {
                         </div>:
                         null
                     }
-                    <div className='w-full min-h-130 h-130 mt-5 flex justify-start items-start border border-[#757070] rounded-[13px] p-2'>
-                        {/* <div className='w-12 h-full bg-[#262626] rounded-full'>
-                            
-                        </div> */}
-                        
-                        <div data-scroll-behavior="smooth" className={`component-preview-container w-full min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
-                            {
-                                reloader?
-                                null:
-                                <>
-                                    {
-                                        ThisPreview?
-                                        <ThisPreview />:
-                                        null
-                                    }
-                                </>
-                            }
-                        </div>
-                    </div>
+
+                        {
+                            ThisPreview.map((item, index)=>{
+                                const {title, Preview} = item
+                                return (
+                                <div key={index} className={`${index==0?"my-5":"mb-5"}`}>
+                                    <p className='text-[16px] py-3 font-bold'>{title}</p>
+                                    <div
+                                        
+                                        className='w-full min-h-130 h-130 mb-5 flex flex-col justify-start relatives items-start border border-[#757070] rounded-[13px] p-2'
+                                    >
+                                        <div data-scroll-behavior="smooth" className={`component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
+                                            {
+                                                reloader?
+                                                null:
+                                                <Preview />
+                                            }
+                                        </div>
+
+                                    </div>      
+                                </div>
+                                )
+                            })
+                        }
                 </div>:
                 viewState=="code"?
                 <div className='py-10'>

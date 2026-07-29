@@ -100,7 +100,12 @@ export const overlay_text_proto = {
     },
     engine: "Overlay_Text",
     // preview: (props)=> <Overlay_Text_preview data={overlay_text_proto} {...props}/>,
-    preview: Overlay_Text_preview,
+    preview: [
+        {
+            title: "",
+            Preview: Overlay_Text_preview
+        }
+    ],
     // preview: Overlay_Text_preview2,
     props: [
         ...Overlay_Text_Engine_Props
