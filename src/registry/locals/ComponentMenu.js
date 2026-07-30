@@ -5,13 +5,18 @@ import {components_directories} from "../../utils/comp_dir/components_directorie
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { generalFunctions } from '../../utils/generalFunctions'
+import { useSelector } from 'react-redux'
 
 function ComponentMenu(props) {
     const {func} = props
+    const path = usePathname()
     const [toggleState, setToggleState] = useState([""])
     const [toggleState2, setToggleState2] = useState([""])
-    const path = usePathname()
     const {setGeneralAlpha} = generalFunctions()
+    // const {toggleState, toggleState2} = useSelector(state=>state.generalSlice)
+    // const setToggleState = (v)=>setGeneralAlpha("toggleState", v)
+    // const setToggleState2 = (v)=>setGeneralAlpha("toggleState2", v)
+    // console.log({toggleState, toggleState2})
 
     function toggler(value){
         setToggleState((prev)=>{

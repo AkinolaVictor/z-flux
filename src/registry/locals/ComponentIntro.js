@@ -104,7 +104,7 @@ function ComponentIntro(props) {
                 </div>
                 
                 <p className={`mb-5 opacity-80 text-[14px] ${which.includes("vision")?"block":"hidden"}`}>
-                    To become the go-to open-source library for interactive web experiences—empowering developers to build websites that don't just look beautiful, but respond naturally to every user interaction through motion, creativity, and modern browser capabilities.
+                    To become the go-to open-source library for interactive web experiences—empowering developers to build websites and apps that don't just look beautiful, but respond naturally to every user interaction through motion, creativity, and modern browser capabilities.
                 </p>
             </div>
 

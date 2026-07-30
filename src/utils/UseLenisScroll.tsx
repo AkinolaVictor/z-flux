@@ -14,6 +14,7 @@ export function useLenisScroll(
       wrapper: wrapperRef.current,
       content: contentRef.current,
       smoothWheel: true,
+      // allowNestedScroll: true
     });
 
     let frame: number;
@@ -25,11 +26,11 @@ export function useLenisScroll(
 
     frame = requestAnimationFrame(raf);
     
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time:number) => {
-      lenis.raf(time * 1000);
-    });
-    gsap.ticker.lagSmoothing(2);
+    // lenis.on('scroll', ScrollTrigger.update);
+    // gsap.ticker.add((time:number) => {
+    //   lenis.raf(time * 1000);
+    // });
+    // gsap.ticker.lagSmoothing(0);
 
     return () => {
       cancelAnimationFrame(frame);

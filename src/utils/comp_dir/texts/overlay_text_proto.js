@@ -64,11 +64,11 @@ export const overlay_text_proto = {
                     code: usageFunc,
                     id: "aouihmndss"
                 },
-                {
-                    title: "Usage in Preview",
-                    code: previewUsageFunc,
-                    id: "afouihmndss"
-                },
+                // {
+                //     title: "Usage in Preview",
+                //     code: previewUsageFunc,
+                //     id: "afouihmndss"
+                // },
             ]
         },
         rawcode: {

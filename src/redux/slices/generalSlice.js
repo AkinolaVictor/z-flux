@@ -5,7 +5,9 @@ const initialState = {
     header_height: 55,
     modalToggle: false,
     modalListOptions: null,
-    modal_state: "list"
+    modal_state: "list",
+    toggleState: [""],
+    toggleState2: [""],
 }
 
 
