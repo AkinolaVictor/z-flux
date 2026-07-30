@@ -1,5 +1,5 @@
 import { ChevronDown, ChevronUp, CodeXml, Copy, Eye } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { hybrid } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import ComponentProperties from './ComponentProperties';
@@ -7,11 +7,16 @@ import { usePathname } from 'next/navigation';
 import { copyThisCode, get_component_data } from '../../utils/helper';
 import Codeblock from './Codeblock';
 import Link from 'next/link';
+// import { useLenisScroll } from '@/utils/UseLenisScroll';
 
 function ComponentDetails(props) {
     const {} = props
     const [viewState, setView] = useState("preview")
     const [similarAnimations, setSimilarAnimations] = useState(true)
+    const previewScroll = useRef()
+    const previewContent = useRef()
+    
+    // useLenisScroll(previewScroll, previewContent)
     const [js_cs, set_js_cs] = useState("")
     const [animations, setAnimations] = useState("")
     const [usage, setUsage] = useState("")
@@ -43,7 +48,6 @@ function ComponentDetails(props) {
         setReloader(true)
         timeout = setTimeout(() => {
             setReloader(false)
-            console.log("assk")
         }, 30);
         return ()=>clearTimeout(timeout)
     }, [path])
@@ -268,14 +272,16 @@ function ComponentDetails(props) {
                                     <p className='text-[16px] py-3 font-bold'>{title}</p>
                                     <div
                                         
-                                        className='w-full min-h-130 h-130 mb-5 flex flex-col justify-start relatives items-start border border-[#757070] rounded-[13px] p-2'
+                                        className='w-full min-h-122 h-122 mb-5 flex flex-col justify-start relatives items-start border border-[#757070] rounded-[13px] p-2'
                                     >
-                                        <div data-scroll-behavior="smooth" className={`component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
-                                            {
-                                                reloader?
-                                                null:
-                                                <Preview />
-                                            }
+                                        <div ref={previewScroll} data-scroll-behavior="smooth" className={`component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
+                                            <div ref={previewContent} className='w-full h-full'>
+                                                {
+                                                    reloader?
+                                                    null:
+                                                    <Preview />
+                                                }
+                                            </div>
                                         </div>
 
                                     </div>      
@@ -461,7 +467,7 @@ function ComponentDetails(props) {
                                             <div key={index}>
                                                 <p className='mt-5'>{title}</p>
                                                 <div className={`w-full h-auto bg-amber-600s rounded-2xl mt-3 p-5 border border-[#757070] relative`}>
-                                                    <div onClick={()=>{copyThisCode(allCodes[showcode])}} className='cursor-pointer absolute top-5 right-5 w-7 h-7 rounded-[10px] flex justify-center items-center bg-[#3c3838] '>
+                                                    <div onClick={()=>{copyThisCode(code)}} className='cursor-pointer absolute top-5 right-5 w-7 h-7 rounded-[10px] flex justify-center items-center bg-[#3c3838] '>
                                                         <Copy size={14}/>
                                                     </div>
 

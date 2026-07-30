@@ -56,11 +56,11 @@ export const z_text_proto = {
                     code: usageFunc,
                     id: "aouihmnd"
                 },
-                {
-                    title: "Usage in Preview",
-                    code: usagePreview,
-                    id: "aouihhjmnd"
-                },
+                // {
+                //     title: "Usage in Preview",
+                //     code: usagePreview,
+                //     id: "aouihhjmnd"
+                // },
             ]
         },
         rawcode: {

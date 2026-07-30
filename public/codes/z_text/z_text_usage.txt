@@ -161,7 +161,8 @@ const restartFunction = ()=>if(controller.current?.restart) controller.current?.
 
 // timeline prop
 const tl = gsap.timeline({delay: 1.5});
-// you can also use this timeline to control the animation like in example 2
+// in case you want to integrate the animation flow with an existing gsap timeline animation of a project
+// you can also use this timeline to control the animation
 // for example: tl.pause() or tl.play() or tl.reverse() --- it works
 <Z_Text 
     animation={/* NAME OF ANIMATION */}

@@ -96,27 +96,27 @@ export default function Slider_Vertical_Scroll_Preview({}) {
             <VerticalScroll animation={anim} 
                 // direction='backward'
             >
-                <div style={{ background: "blue", textAlign: "center", height: "520px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ background: "blue", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is Blue (1)
                     <br />
                     Keep Scrolling for more...
                 </div>
-                <div style={{ background: "red", height: "520px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ background: "red", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is red (2)
                 </div>
-                <div style={{ background: "green", height: "520px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ background: "green", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is green (3)
                 </div>
-                <div style={{ background: "brown", height: "520px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ background: "brown", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is brown (4)
                 </div>
-                <div style={{ background: "gray", height: "520px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ background: "gray", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is gray (5)
                 </div>
-                <div style={{ background: "purple", height: "520px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ background: "purple", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is purple (6)
                 </div>
-                <div style={{ background: "orange", textAlign: "center", height: "520px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                <div style={{ background: "orange", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
                     Color is orange (7)
                 </div>
             </VerticalScroll>

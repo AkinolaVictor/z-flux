@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import ComponentDetails from '../../registry/locals/ComponentDetails'
 import ComponentIntro from '../../registry/locals/ComponentIntro'
 import ComponentMenu from '../../registry/locals/ComponentMenu'
@@ -10,16 +11,27 @@ import Head from 'next/head'
 import { usePathname, useRouter } from 'next/navigation'
 // import React from 'react'
 import { useSelector } from 'react-redux'
+// import { useLenisScroll } from '@/utils/UseLenisScroll'
 // import "../../"
 
 
 function Components(props) {
     const {} = props
     const {header_height} = useSelector((state)=>state.generalSlice)
-    // const router = useRouter()
     const path = usePathname()
-    // bg-[#0a0a0a]
-    // console.log({header_height})
+    // const router = useRouter()
+
+    const leftScroll = useRef()
+    const rightScroll = useRef()
+    const middleScroll = useRef()
+
+    const leftContent = useRef()
+    const rightContent = useRef()
+    const middleContent = useRef()
+
+    // useLenisScroll(leftScroll, leftContent)
+    // useLenisScroll(middleScroll, middleContent)
+    // useLenisScroll(rightScroll, rightContent)
     
     return (
         <div 
@@ -39,41 +51,51 @@ function Components(props) {
                 }}
             >
                 <div 
+                    ref={leftScroll}
                     style={{maxHeight: `calc(100vh - ${header_height}px)`}}
                     className={`hidden w10:flex flex-col w-full max-w-70 h-auto p-2 overflow-y-auto ${pad_x}`}
                 >
-                    <ComponentMenu />
-                    <div className='w-full min-h-30'></div>
+                    <div ref={leftContent}>
+                        <ComponentMenu />
+                        <div className='w-full min-h-30'></div>
+                    </div>
                 </div>
 
                 <div 
+                    ref={middleScroll}
                     style={{
                         maxHeight: `calc(100vh - ${header_height}px)`,
                         height: `calc(100vh - ${header_height}px)`
                     }}
                     className={`w-full overflow-y-auto ${pad_x_2} relative`}
                 >
-                    {
-                        path=="/components"?
-                        <ComponentIntro />:
-                        <ComponentDetails />
-                    }
-                    <Footer />
+                    <div ref={middleContent}>
+                        
+                        {
+                            path=="/components"?
+                            <ComponentIntro />:
+                            <ComponentDetails />
+                        }
+                        <Footer />
 
-                    {/* <div className='fixed bottom-5 left-1/2 -translate-x-1/2 darkbg w-13 h-13 rounded-full w10:hidden flex justify-center items-center'>
-                        <ChevronUp />
-                    </div> */}
-                    <div className='min-h-20 w-full' />
+                        {/* <div className='fixed bottom-5 left-1/2 -translate-x-1/2 darkbg w-13 h-13 rounded-full w10:hidden flex justify-center items-center'>
+                            <ChevronUp />
+                        </div> */}
+                        <div className='min-h-20 w-full' />
+                    </div>
                 </div>
 
                 <div 
+                    ref={rightScroll}
                     style={{maxHeight: `calc(100vh - ${header_height}px)`}}
                     className={`hidden w10:flex flex-col w-full max-w-70 h-auto p-2 overflow-y-auto ${pad_x}`}
                 >
-                    <ComponentProperties />
-                    <div className='w-full min-h-30'></div>
-                    {/* <div className='w-full min-h-screen bg-blue-400'></div> */}
-                    {/* <div className='w-full min-h-screen'></div> */}
+                    <div ref={rightContent}>
+                        <ComponentProperties />
+                        <div className='w-full min-h-30'></div>
+                        {/* <div className='w-full min-h-screen bg-blue-400'></div> */}
+                        {/* <div className='w-full min-h-screen'></div> */}
+                    </div>
                 </div>
             </div>
         </div>

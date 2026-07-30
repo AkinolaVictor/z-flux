@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 // import {Z_Text} from "z-flux-react"
 import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
-import Z_Text from '../../../registry/z-flux/texts/Z_Text'
+import Z_Text from '../../z-flux/texts/Z_Text'
 
 
 function HomeDescription(props) {
