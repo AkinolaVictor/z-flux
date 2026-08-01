@@ -12,7 +12,6 @@ function DefalutLayerComponent({data, index}) {
     )
 }
 
-
 export default function Overlay_Text(props) {
     const {
         text, 

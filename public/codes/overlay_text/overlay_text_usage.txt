@@ -1,6 +1,6 @@
-import Overlay_Text from '@/Overlay_Text';
-            or
 import {Overlay_Text} from "z-flux-react";
+            or
+import Overlay_Text from '@/Overlay_Text';
 
 
 <Overlay_Text 
@@ -34,10 +34,31 @@ import {Overlay_Text} from "z-flux-react";
 </Overlay_Text>
 
 
+// you can also use the animation to reveal another component
+// it does not necessarily have to be text
+// here's an example
+<Overlay_Text 
+    layers={10}
+    stagger={0.5} // to control orderliness/speed of layer movement
+    animation={"Flap"}  // notice that i specified the name of the animation
+>
+    <div className="p-2">
+        <p className="py-1">
+            This Engine can also overlay a full component of moderate size
+        </p>
+
+        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+    </div>  
+</Overlay_Text>
+// keep scrolling, and learn to make it interactivively reveal your content
+
+
+
 
 // in case you want to control (pause, play, etc) the animation
 // setup animation controls
-const controller = useRef(null) // in react
+const controller = useRef(null); // in react
 
 // control functions
 const pauseFunction = ()=>if(controller.current?.pause) controller.current?.pause();
@@ -67,6 +88,15 @@ const restartFunction = ()=>if(controller.current?.restart) controller.current?.
 />
 
 // extendAnimation example
+// ADD MORE FEATURE TO AN EXISTING ANIMATION
+// ASSUMING YOU LIKE A SPECIFIC ANIMATION BUT YOU WANT IT TO DO MORE
+// INPUT THE NAME OF THE ANIMATION AND USE THE extendAnimation PROPS TO ADD MORE FEATURES
+// THE NEW PROPERTIES YOU ADD TO THE extendAnimation WOULD BE INCLUDED IN YOUR SPECIFIED ANIMATION
+// template for properties
+// style: [from_value, to_value] changes from_value to to_value. 
+// for example x: [100, 0], the x property transitions from 100px to 0px 
+// for example filter: ["blur(20px) brightness(3)", "blur(0px) brightness(1)"], the filter property transitions from blur(20px) and brightness(3)  to blur(0px) and brightness(1) simultaneously
+// you can also use properties like %, vh, vw, em, rem, and more
 <Overlay_Text 
     animation={/* NAME OF ANIMATION */}
     text="Rather than revealing characters one after another, every character within a line animates simultaneously. As you scroll, each line progressively fades into view with all its characters moving together, creating a smooth, synchronized effect that responds naturally to your scrolling and pauses the moment you stop."    
@@ -86,6 +116,32 @@ const restartFunction = ()=>if(controller.current?.restart) controller.current?.
         stagger: [null, 0.1], // skip the "from" property and only set the "to" property, in this case, sets the animation stagger to 0.1
     }}
 />
+
+// extendAnimation example
+// CREATE YOUR OWN ANIMATION FROM SCRATCH
+// ASSUMING YOU WANT TO CREATE YOUR OWN ANIMATION FROM SCRATCH WITHOUTH DEPENDENCY ON ANY EXISTING ANIMATION
+// SET THE animation PROPERTY TO "none", AND USE THE extendAnimation PROPS TO SPECIFY ALL THE PROPERTIES YOU WANT TO ANIMATE
+// template for properties
+// style: [from_value, to_value] changes from_value to to_value. 
+// for example x: [100, 0] the x property transitions from 100px to 0px 
+// for example filter: ["blur(20px) brightness(3)", "blur(0px) brightness(1)"] the filter property transitions from blur(20px) and brightness(3)  to blur(0px) and brightness(1) simultaneously
+// you can also use properties like %, vh, vw, em, rem, and more
+<Overlay_Text 
+    animation={"none"} //or simply dont even add the animation props at all
+    extendAnimation={{
+        color: ["blue", "yellow"], //change color from blue to yellow
+        x: [100, 0], //change x from 100px to 0px
+        opacity: [1, 1], //use this value [1, 1] to stop the default opacity behavior(which is [0, 1]), but you can set it to something else though, like [0.3, 1] (from 0.3 to 1)
+        width: [400, 0] change width from 400px to 0px
+        skewX: [70, 0], //change skewX from 70 to 0
+        // you can also set one property and avoid the other
+        y: [null, 30] // skip the from property and only set the to value, in this case, i only want the y propety to be set to 30px
+        duration: [null, 0.7] // skip the "from" property and only set the "to" property, in this case, sets the animation duration to 0.7 second
+        stagger: [null, 0.1], // skip the "from" property and only set the "to" property, in this case, sets the animation stagger to 0.1
+    }}
+>
+    <span>Rather than revealing characters one after another, every character within a line animates simultaneously...</span>
+</Overlay_Text>
 
 
 // timeline prop
@@ -147,3 +203,61 @@ const tl = gsap.timeline({delay: 1.5});
         }
     }}
 />
+
+// INTERACTIVE REVEAL EXAMPLE
+const [reveal, setReveal] = useState("none");
+
+<Overlay_Text
+    animation={"FlayDown"}
+    trigger={reveal}
+    layers={1}
+    textClass={"py-3"}
+    containerClass={"mt-4"}
+    RenderLayer={()=>{
+        return (
+            <div className="w-full h-full flex flex-col justify-center items-center text-black">
+                <p>Click to Reveal Component</p>
+                <div 
+                    onClick={()=>setReveal("")} 
+                    className="w-auto text-white px-3 py-1.5 h-auto cursor-pointer mt-4 darkbg rounded-[15px]"
+                >
+                    Reveal
+                </div>
+            </div>
+        )
+    }}
+>
+    <div className="p-2">
+        <p className="py-1">This Engine can also overlay a full component of moderate size</p>
+
+        <div className="flex justify-between items-center flex-wrap my-2">
+            {
+                [1,2,3].map((item, index)=>{
+                    return (
+                        <div 
+                            key={index} 
+                            className="w-20 h-20 rounded-[10px] darkbg flex justify-center items-center"
+                        >
+                            <p>Box {index+1}</p>
+                        </div>
+                    )
+                })
+            }
+        </div>
+
+        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+        <div className="w-full h-10 darkbg rounded-[11px] mb-2" />
+    </div>                 
+</Overlay_Text>
+
+// an external control to conceal/reveal the animation
+<div 
+    onClick={()=>setReveal("none")}
+    className={`
+        w-auto h-auto py-2 px-5 mt-0 flex justify-center items-center cursor-pointer darkbg rounded-[11px]
+        ${reveal=="none"?"hidden":""}
+    `} 
+>
+    Close Component
+</div>

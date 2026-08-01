@@ -38,7 +38,7 @@ function Components(props) {
             className={`bg-black `}
         >
             <Head>
-                <title>Z-Flux || Components</title>
+                <title>Z-Flux |  A Web animation library | Components</title>
                 <meta name="description" content="The z-flux components page" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/z-flux-1.png" />

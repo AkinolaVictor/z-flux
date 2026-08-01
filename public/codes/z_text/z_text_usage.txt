@@ -1,6 +1,7 @@
-import Z_Text from '@/Z_Text';
-            or
 import {Z_Text} from "z-flux-react";
+            or
+import Z_Text from '@/Z_Text';
+
 
 <Z_Text 
     animation={/* NAME OF ANIMATION */}
@@ -110,8 +111,8 @@ const restartFunction = ()=>if(controller.current?.restart) controller.current?.
 // THE NEW PROPERTIES YOU ADD TO THE extendAnimation WOULD BE INCLUDED IN YOUR SPECIFIED ANIMATION
 // template for properties
 // style: [from_value, to_value] changes from_value to to_value. 
-// for example x: [100, 0] the x property transitions from 100px to 0px 
-// for example filter: ["blur(20px) brightness(3)", "blur(0px) brightness(1)"] the filter property transitions from blur(20px) and brightness(3)  to blur(0px) and brightness(1) simultaneously
+// for example x: [100, 0], the x property transitions from 100px to 0px 
+// for example filter: ["blur(20px) brightness(3)", "blur(0px) brightness(1)"], the filter property transitions from blur(20px) and brightness(3)  to blur(0px) and brightness(1) simultaneously
 // you can also use properties like %, vh, vw, em, rem, and more
 <Z_Text 
     animation={/* NAME OF ANIMATION */}
@@ -132,7 +133,7 @@ const restartFunction = ()=>if(controller.current?.restart) controller.current?.
 </Z_Text>
 
 // extendAnimation example
-// CREATE YOUT OWN ANIMATION FROM SCRATCH
+// CREATE YOUR OWN ANIMATION FROM SCRATCH
 // ASSUMING YOU WANT TO CREATE YOUR OWN ANIMATION FROM SCRATCH WITHOUTH DEPENDENCY ON ANY EXISTING ANIMATION
 // SET THE animation PROPERTY TO "none", AND USE THE extendAnimation PROPS TO SPECIFY ALL THE PROPERTIES YOU WANT TO ANIMATE
 // template for properties

@@ -1,4 +1,5 @@
 export const vertical_scroll_animations = {
+    Basic: { },
     SlideUp: {
         y: ["150%", 0]
     },
@@ -8,7 +9,7 @@ export const vertical_scroll_animations = {
     },
 
     SlideDiagonalUp: {
-        x: ["100", 0],
+        x: ["200", 0],
         y: ["200%", 0]
     },
 
@@ -82,12 +83,12 @@ export const vertical_scroll_animations = {
     },
 
     slideUpFade: {
-        y: [150, 0],
+        y: ["200%", 0],
         opacity: [0, 1]
     },
 
     slideDownFade: {
-        y: [-150, 0],
+        y: ["-200%", 0],
         opacity: [0, 1]
     },
 

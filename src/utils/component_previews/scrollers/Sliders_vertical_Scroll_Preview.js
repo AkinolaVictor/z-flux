@@ -61,87 +61,186 @@ export default function Slider_Vertical_Scroll_Preview({}) {
 
     return (
         <div>
-            <div className='w-full h-70 flex flex-col justify-center items-center'>
-                <p className=''>Example 1/3</p>
-                <p className=''>Keep Scrolling...</p>
+            <div>
+                <div className='w-full h-70 flex flex-col justify-center items-center'>
+                    <p className=''>Vertical Scroll</p>
+                    {/* <p className=''>Normal Direction</p> */}
+                </div>
+                
+                <VerticalScroll 
+                    animation={anim}
+                >
+                    <div style={{ background: "blue", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is Blue (1)
+                        <br />
+                        Keep Scrolling for more...
+                    </div>
+                    <div style={{ background: "red", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is red (2)
+                    </div>
+                    <div style={{ background: "green", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is green (3)
+                    </div>
+                    <div style={{ background: "brown", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is brown (4)
+                    </div>
+                    <div style={{ background: "gray", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is gray (5)
+                    </div>
+                    <div style={{ background: "#262626", height: "480px", minWidth: "300%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is #262626 (6)
+                        <br />
+                        And its 3 times wider
+                    </div>
+                    <div style={{ background: "purple", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is purple (7)
+                    </div>
+                    <div style={{ background: "orange", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is orange (8)
+                    </div>
+                </VerticalScroll>
+            </div>
+
+
+            <div>
+                <div className='w-full h-70 flex flex-col justify-center items-center'>
+                    <p className=''>Vertical Scroll</p>
+                    <p className=''>Backward Direction</p>
+                </div>
+
+                <VerticalScroll 
+                    animation={anim}
+                    direction='backward'
+                    // startAnimation="bottom"
+                    // direction='reverse'
+                >
+                    <div style={{ background: "blue", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is Blue (1)
+                        <br />
+                        Keep Scrolling for more...
+                    </div>
+                    <div style={{ background: "red", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is red (2)
+                    </div>
+                    <div style={{ background: "green", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is green (3)
+                    </div>
+                    <div style={{ background: "brown", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is brown (4)
+                    </div>
+                    <div style={{ background: "gray", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is gray (5)
+                    </div>
+                    <div style={{ background: "#262626", height: "480px", minWidth: "300%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is #262626 (6)
+                        <br />
+                        And its 3 times wider
+                    </div>
+                    <div style={{ background: "purple", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is purple (7)
+                    </div>
+                    <div style={{ background: "orange", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is orange (8)
+                    </div>
+                </VerticalScroll>
+            </div>
+
+
+            <div>
+                <div className='w-full h-70 flex flex-col justify-center items-center'>
+                    <p className=''>Vertical Scroll</p>
+                    <p className=''>Reverse Direction</p>
+                </div>
+
+                <VerticalScroll 
+                    animation={anim}
+                    direction='reverse'
+                    // startAnimation="bottom"
+                    // direction='reverse'
+                >
+                    <div style={{ background: "blue", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is Blue (1)
+                        <br />
+                        Keep Scrolling for more...
+                    </div>
+                    <div style={{ background: "red", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is red (2)
+                    </div>
+                    <div style={{ background: "green", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is green (3)
+                    </div>
+                    <div style={{ background: "brown", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is brown (4)
+                    </div>
+                    <div style={{ background: "gray", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is gray (5)
+                    </div>
+                    <div style={{ background: "#262626", height: "480px", minWidth: "300%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is #262626 (6)
+                        <br />
+                        And its 3 times wider
+                    </div>
+                    <div style={{ background: "purple", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is purple (7)
+                    </div>
+                    <div style={{ background: "orange", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        Color is orange (8)
+                    </div>
+                </VerticalScroll>
             </div>
             
-            <VerticalScroll animation={anim}>
-                {
-                    ["blue","red","green","brown","#333","purple","orange"].map((background, index)=>{
-                        return (
-                            <div 
-                                key={index} 
-                                style={{
-                                    background,
-                                    height: "240px",
-                                    minWidth: index==3?"416px":"100%",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "Center"
-                                }}
-                            >
-                                <p>Section {index+1}</p>
-                            </div>
-                        )
-                    })
-                }
-            </VerticalScroll>
+            <div>
+                <div className='w-full h-70 flex flex-col justify-center items-center'>
+                    <p className=''>Vertical Scroll</p>
+                    <p className=''>Short height</p>
+                </div>
 
-
-            <div className='w-full h-70 flex flex-col justify-center items-center'>
-                <p className=''>Example 2/3</p>
-                <p className=''>Keep Scrolling...</p>
-            </div>
-            <VerticalScroll animation={anim} 
-                // direction='backward'
-            >
-                <div style={{ background: "blue", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    Color is Blue (1)
-                    <br />
-                    Keep Scrolling for more...
-                </div>
-                <div style={{ background: "red", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    Color is red (2)
-                </div>
-                <div style={{ background: "green", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    Color is green (3)
-                </div>
-                <div style={{ background: "brown", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    Color is brown (4)
-                </div>
-                <div style={{ background: "gray", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    Color is gray (5)
-                </div>
-                <div style={{ background: "purple", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    Color is purple (6)
-                </div>
-                <div style={{ background: "orange", textAlign: "center", height: "480px", minWidth: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                    Color is orange (7)
-                </div>
-            </VerticalScroll>
-
-            <div className='w-full h-70 flex flex-col justify-center items-center'>
-                <p className=''>Example 3/3</p>
-                <p className=''>Keep Scrolling...</p>
+                <VerticalScroll animation={anim}>
+                    {
+                        ["blue","red","green","brown","#333","purple","orange"].map((background, index)=>{
+                            return (
+                                <div 
+                                    key={index} 
+                                    style={{
+                                        background,
+                                        height: "240px",
+                                        minWidth: index==3?"416px":"100%",
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: "Center"
+                                    }}
+                                >
+                                    <p>Section {index+1}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </VerticalScroll>
             </div>
 
-            <VerticalScroll animation={anim} 
-                startAnimation='top'
-            >
-                {
-                    dt.map((item, index)=>{
-                        return (
-                            <div 
-                                key={index} 
-                                style={{display: "flex", justifyContent: "center", alignItems: "center", ...item?.style}}
-                            >
-                                <p>Page {index+1}</p>
-                            </div>
-                        )
-                    })
-                }
-            </VerticalScroll>
+            <div>
+                <div className='w-full h-70 flex flex-col justify-center items-center'>
+                    <p className=''>Vertical Scroll</p>
+                    <p className=''>Unequal Heights</p>
+                </div>
+
+                <VerticalScroll animation={anim} 
+                    startAnimation='top'
+                >
+                    {
+                        dt.map((item, index)=>{
+                            return (
+                                <div 
+                                    key={index} 
+                                    style={{display: "flex", justifyContent: "center", alignItems: "center", ...item?.style}}
+                                >
+                                    <p>Page {index+1}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </VerticalScroll>
+            </div>
             
             <div className='w-full h-120 flex items-center justify-center'>
                 The End

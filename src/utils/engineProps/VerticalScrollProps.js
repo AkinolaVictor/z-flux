@@ -56,8 +56,13 @@ export const VerticalScrollProps = [
     },
     {
         name: "direction",
-        type: "normal | within | bottom",
-        description: "Your preferred scroll direction",
+        type: "normal | reverse | backward",
+        description: <p>
+            Your preferred scroll direction. 
+            {/* <br /> */}
+            {/* <br /> */}
+            {/* Note: For an clean and undistorted experience, i strongly recommend that you use this prop only for the animation named "Basic". */}
+        </p>,
     },
     {
         name: "scrollingElement",

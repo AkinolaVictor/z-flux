@@ -347,17 +347,17 @@ function ComponentDetails(props) {
                                     data={[
                                         {
                                             name: "npm",
-                                            code: comp_data?.setup.cli.npm
+                                            code: true?comp_data?.setup.cli.npm_react:comp_data?.setup.cli.npm_vue
                                         }
                                     ]}
                                 />
-                                <p className='w-full text-center py-2'>or use npm module</p>
+                                <p className='w-full text-center py-2'>or use shadcn</p>
                                 <Codeblock
                                     hideNav
                                     data={[
                                         {
                                             name: "npm",
-                                            code: true?comp_data?.setup.cli.npm_react:comp_data?.setup.cli.npm_vue
+                                            code: comp_data?.setup.cli.npm
                                         }
                                     ]}
                                 />

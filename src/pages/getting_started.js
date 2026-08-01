@@ -32,8 +32,8 @@ function Getting_started(props) {
             className={`bg-black w-full min-h-screen`}
         >
             <Head>
-                <title>Z-Flux || Getting Started</title>
-                <meta name="description" content="The z-flux homepage" />
+                <title>Z-Flux | A Web animation library | Getting Started</title>
+                <meta name="description" content="The z-flux getting started" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/z-flux-1.png" />
             </Head>
@@ -68,18 +68,19 @@ function Getting_started(props) {
 
                     <p>How to install dependencies and structure your app.</p>
                     
-                    <div className='w-full flex flex-col gap-2 px-7 py-5 bg-[#262626] rounded-[14px] '>
+                    {/* <div className='w-full flex flex-col gap-2 px-7 py-5 bg-[#262626] rounded-[14px] '>
                         <p>
                             <span className='font-bold'>Note: </span> 
                             We use installation process as 
                             <Link href={"https://ui.shadcn.com/docs/installation"} className='font-bold'> <u>shadcn/ui</u></Link>.
                         </p>
-                    </div>
+                    </div> */}
 
                     <div className='w-full flex flex-col gap-2 px-7 py-5 bg-[#262626] rounded-[14px] '>
                         <p>
                             <span className='font-bold'>Note: </span> 
-                            You can also use the raw code manually by copying and pasting it (from the component page) to your project
+                            {/* You can also use the raw code manually by copying and pasting it (from the component page) to your project */}
+                            You can use the z-flux-react package, or use shadcn intallation process, or copy the raw code of any of the component you want to use. (Go with what works best for you.)
                         </p>
                     </div>
 
@@ -92,9 +93,20 @@ function Getting_started(props) {
                             <div className='w-0.5 h-full bg-[#262626]'/>
                         </div>
                         <div className=' w-full flex flex-col gap-3.5 justify-start items-start mb-10'>
-                            <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Intialize shadcn/ui</p>
-                            <p className='px-4'>Run the <code className='bg-[#262626] p-1 rounded-[5px]'>init</code> command to create a new project with shadcn/ui or add it to existing one.</p>
+                            <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Install z-flux-react or Intialize shadcn/ui</p>
+                            <p className='px-4'>Install the Z_Flux_React package</p>
 
+                            <Codeblock 
+                                hideNav
+                                data={[
+                                    {
+                                        name: "npm",
+                                        code: "npm i z-flux-react"
+                                    }
+                                ]}
+                            />
+                            <p className='px-4'>Or use shadcn</p>
+                            <p className='px-4'>Run the <code className='bg-[#262626] p-1 rounded-[5px]'>init</code> command to create a new project with shadcn/ui</p>
                             <Codeblock
                                 hideNav
                                 data={[
@@ -117,16 +129,6 @@ function Getting_started(props) {
                                 ]}
                             />
 
-                            <p className='w-full text-center'>Or use npm module</p>
-                            <Codeblock 
-                                hideNav
-                                data={[
-                                    {
-                                        name: "npm",
-                                        code: "npm i z-flux-react"
-                                    }
-                                ]}
-                            />
                             {/* <Codeblock 
                                 hideNav
                                 data={[
@@ -149,8 +151,8 @@ function Getting_started(props) {
                         </div>
 
                         <div className=' w-full flex flex-col gap-3.5 justify-start items-start mb-10'>
-                            <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Add Components</p>
-                            <p className='px-4'>Run the  <code className='bg-[#262626] p-1 rounded-[5px]'>add</code> command to add a component to your project.</p>
+                            <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Add Components (For shadcn)</p>
+                            <p className='px-4'>Run the  <code className='bg-[#262626] p-1 rounded-[5px]'>add</code> command to include a component to your project (If you're using shadcn).</p>
                             <p className='px-4 text-[11px]'>For example, the <code className='p-1 rounded-[5px] darkbg mx-1'>Z_Text</code> component</p>
                             
                             
@@ -164,16 +166,16 @@ function Getting_started(props) {
                                 ]}
                             />
 
-                            <p className='w-full text-center'>Or</p>
+                            {/* <p className='w-full text-center'>Or</p>
                             <Codeblock 
                                 hideNav
                                 data={[
                                     {
                                         name: "npm",
-                                        code: "import from installed module (z-flux-react)"
+                                        code: "import Animation_Engine from installed z-flux-react"
                                     }
                                 ]}
-                            />
+                            /> */}
                         </div>
                     </div>
 
@@ -189,8 +191,8 @@ function Getting_started(props) {
                             className='w-auto max-w-full flex flex-col gap-3.5 justify-start items-start bg-yellow-500s'
                             style={{width: "calc(100% - 40px)"}}
                         >
-                            <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Import Components</p>
-                            <p className='px-4'>Import the component to your project.</p>
+                            <p className='min-h-10 flex justify-center items-center px-4 font-bold text-[15px]'>Import and use Components</p>
+                            <p className='px-4'>Import and use the component to your project.</p>
                             
                             <SyntaxHighlighter
                                 language="javascript" 

@@ -37,9 +37,9 @@ const items = [
 />`
 
 
-export const sample_code_2 = `import Z_Text from '@/Z_Text';
-        or
-import {Z_Text} from "z-flux-react"
+export const sample_code_2 = `import {Z_Text} from "z-flux-react"
+            or
+import Z_Text from '@/Z_Text';
 
 <Z_Text
     trigger="onscroll"

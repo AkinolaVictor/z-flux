@@ -1,8 +1,7 @@
-import { vertical_scroll_animations } from '@/utils/animlations/vertical_scroll_animation';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { Fragment, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { build_extend_animation, findScrollingElement, randomizeArray } from 'z-flux-utils';
+import { build_extend_animation, findScrollingElement, getScrollHeight, randomizeArray, value_negator, vertical_scroll_animations, } from 'z-flux-utils';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,49 +15,25 @@ export default function VerticalScroll(props) {
         startAnimation="bottom",  //top, within, bottom
         gsapScrollTrigger,
         scrollSpeed=1, // -.5, 0.6, 1,2,3,4,5,6 ++
-        
         timeline,
         contentOrder,
-        // animation="FadeUp",
-        // animation="ZoomBlur",
         animation,
         extendAnimation,
     } = props
-
     const containerRef = useRef()
     const [height, setHeight] = useState(0)
     const useAnimation = vertical_scroll_animations[animation]
 
-    function performCalculations(){
-        function getTotalWidth(){
-            const el = containerRef.current
-            if(!el) return
-
-            const children = el.children
-            const first = children[0].getBoundingClientRect().width
-            let total = 0
-
-            for(let i=0; i<children.length; i++){
-                const eachChild = children[i]
-                const width = eachChild.getBoundingClientRect().width
-                total=total+width
-            }
-
-            return total - first
-        }
-
-        const totalWidth = getTotalWidth()
-        if(totalWidth) setHeight(totalWidth)
-    }
-
     useEffect(()=>{
-        performCalculations()
+        getScrollHeight(
+            containerRef,
+            setHeight
+        )
     }, [])
-
+    
     useLayoutEffect(()=>{
         const el = containerRef.current
         if(!el || !height) return;
-
         const elements = [...el.children]
         const children = (
             contentOrder==="reverse"?
@@ -67,8 +42,6 @@ export default function VerticalScroll(props) {
             randomizeArray(elements):
             elements
         )
-
-
         
         let ctx = gsap.context(()=>{
             const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(el, true);
@@ -105,28 +78,36 @@ export default function VerticalScroll(props) {
                 ease: "none"
             });
 
-            // const 
+            const differentDirection = direction==="reverse"||direction==="backward"
+            let animateFrom = build_extend_animation(useAnimation, "from")
+            let extendFrom = build_extend_animation(extendAnimation, "from")
+
+            if(differentDirection) animateFrom.x = value_negator(animateFrom, "x")
+            if(differentDirection) extendFrom.x = value_negator(extendFrom, "x")
+
+            gsap.set(children, {
+                ...animateFrom,
+                ...extendFrom,
+            })
+            
             children.forEach((child) => {
-                gsap.set(child, {
-                    // y: "200%",
-                    // x: "150",
-                    // opacity: 0,
-                    ...build_extend_animation(useAnimation, "from"),
-                    ...build_extend_animation(extendAnimation, "from"),
-                })
                 gsap.to(child, {
-                    // y: "0%",
-                    // x: "0",
-                    // opacity: 1,
-                    // duration: 1,
-                    ease: "power3.out",
                     ...build_extend_animation(useAnimation, "to"),
                     ...build_extend_animation(extendAnimation, "to"),
+                    ease: "power3.out",
                     scrollTrigger: {
                         trigger: child,
                         containerAnimation: tl,
-                        start: "left 80%",
-                        end: "left 20%",
+                        start: (
+                            differentDirection?
+                            "right 25%":
+                            "left 75%"
+                        ),
+                        end: (
+                            differentDirection?
+                            "right 75%":
+                            "left 25%"
+                        ),
                         scrub: true,
                         toggleActions: "play none none reverse"
                     }
@@ -150,8 +131,6 @@ export default function VerticalScroll(props) {
                 alignItems: "flex-start",
                 justifyContent: `${direction=="backward"?"flex-end":"flex-start"}`,
                 flexDirection: `${direction=="reverse"?"row-reverse":"row"}`,
-                // willChange: "transform",
-                // transformOrigin: "bottom",
                 ...style
             }}
             className={`${className} scroll_container`}
@@ -170,5 +149,3 @@ export default function VerticalScroll(props) {
         </div>
     )
 }
-
-// how can i add my styles to the this declaration, and make it work together with whatever comes in

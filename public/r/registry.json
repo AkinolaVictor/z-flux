@@ -4,20 +4,6 @@
     "homepage": "https://z-flux.vercel.app/",
     "items": [
         {
-            "name": "TextEngine",
-            "type": "registry:component",
-            "title": "Progressive Text Animation Engine",
-            "description": "The engine to be used to build animation that progress in chronological order.",
-            "files": [
-                {
-                    "path": "src/registry/z-flux/TextEngine.js",
-                    "type": "registry:component"
-                }
-            ],
-            "dependencies": ["gsap", "@gsap/react", "z-flux-utils"],
-            "registryDependencies": []
-        },
-        {
             "name": "Z_Text",
             "type": "registry:ui",
             "title": "Text Animation Engine",
@@ -29,6 +15,20 @@
                 }
             ],
             "dependencies": ["@gsap/react", "gsap", "z-flux-utils"],
+            "registryDependencies": []
+        },
+        {
+            "name": "Overlay_Text",
+            "type": "registry:ui",
+            "title": "Text Animation Engine",
+            "description": "A text animation overlay component",
+            "files": [
+                {
+                    "path": "src/registry/z-flux/texts/Overlay_Text.js",
+                    "type": "registry:ui"
+                }
+            ],
+            "dependencies": ["gsap", "z-flux-utils"],
             "registryDependencies": []
         },
         {

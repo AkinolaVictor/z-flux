@@ -1,10 +1,48 @@
-import VerticalScroll from '@/VerticalScroll';
-                or
 import {Z_Text} from "z-flux-react";
+                or
+import VerticalScroll from '@/VerticalScroll';
 
 
-// Example 1 code (check preview section)
-<VerticalScroll>
+// ensure to set a specific width (minWidth), and height (minHeight) for each of the child element 
+<VerticalScroll animation={"SlideUp"}>
+    <div 
+        style={{ background: "blue, height: "100%",
+            minWidth: 416px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "Center"
+        }}
+    >
+        <p>Color is blue</p>
+    </div>
+
+    <div 
+        style={{ background: "yellow, height: "100%",
+            minWidth: 600px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "Center"
+        }}
+    >
+        <p>Color is yellow</p>
+    </div>
+
+    <div 
+        style={{ background: "green, height: "100%",
+            minWidth: 200%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "Center"
+        }}
+    >
+        <p>Color is green</p>
+    </div>
+</VerticalScroll>
+
+
+
+
+<VerticalScroll animation={"Basic"}>
     {
         ["blue","red","green","brown","#333","purple","orange"].map((background, index)=>{
             return (
@@ -27,8 +65,7 @@ import {Z_Text} from "z-flux-react";
 </VerticalScroll>
 
             
-// Example 2 code (check preview section)
-<VerticalScroll direction='backward'>
+<VerticalScroll animation={"SlideUp"} direction='backward'>
     <div style={{ background: "blue", height: "100vh", minWidth: "100vw", display: "flex", justifyContent: "center", alignItems: "center"}}>
         Color is Blue (1)
         // You can do anything here
@@ -43,7 +80,6 @@ import {Z_Text} from "z-flux-react";
 
 
 
-// Example 3 code (check preview section)
 const dt = [
     {
         style: {minWidth: "100%", height: "240px", background: "blue"},
@@ -71,7 +107,7 @@ const dt = [
     }
 ];
 
-<VerticalScroll startAnimation='top'>
+<VerticalScroll animation={"SlideUp"} startAnimation='bottom'>
     {
         dt.map((item, index)=>{
             return (

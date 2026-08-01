@@ -3,14 +3,14 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { build_extend_animation, countNumbers, findScrollingElement, randomizeArray, getLayerWidth,  overlay_text_animations} from 'z-flux-utils';
 
-gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger);
 
 function DefalutLayerComponent({data, index}) {
     return (
         <div className=''>
         </div>
     )
-}
+};
 
 
 export default function Overlay_Text(props) {
@@ -32,44 +32,45 @@ export default function Overlay_Text(props) {
         layerColor="white",
         RenderLayer=DefalutLayerComponent,
         animationOrder="normal", //reverse, normal, random
-        animation="VerticalReveal",
+        animation,
         animationDimension="y",
         extendAnimation,
         gsapScrollTrigger,
         controllerRef=null,
         useOpacity,
         animationDirection=0,
-    } = props
+        onClick
+    } = props;
 
-    const containerRef = useRef(null)
-    const heightRef = useRef(null)
-    const allLayers = countNumbers(layers)
-    const [layerWidth, setLayerWidth] = useState({eachWidth: "100%", lastWidth: "100%"})
-    const [layerHeight, setLayerHeight] = useState({eachWidth: "100%", lastWidth: "100%"})
+    const containerRef = useRef(null);
+    const heightRef = useRef(null);
+    const allLayers = countNumbers(layers);
+    const [layerWidth, setLayerWidth] = useState({eachWidth: "100%", lastWidth: "100%"});
+    const [layerHeight, setLayerHeight] = useState({eachWidth: "100%", lastWidth: "100%"});
     
-    const tl = timeline||gsap.timeline({})
+    const tl = timeline||gsap.timeline({});
     if(controllerRef){
         controllerRef.current = tl
-    }
+    };
     
-    const anim = overlay_text_animations[animation]
-    const {defaultGsap, animation_origins, animationStyles} = anim
+    const anim = overlay_text_animations[animation];
+    const {defaultGsap, animation_origins, animationStyles} = anim;
 
     function animate_func(){
-        if(trigger=="none") return
+        if(trigger=="none") return;
 
-        const parent = heightRef.current
-        if(!parent) return
-        const elements = [...parent.children]
+        const parent = heightRef.current;
+        if(!parent) return;
+        const elements = [...parent.children];
         
         
         const el = (
             animationOrder==="reverse"?
-            [...elements].reverse():
+            elements.reverse():
             animationOrder==="random"?
             randomizeArray(elements):
             elements
-        )
+        );
         
         const ctx = gsap.context(()=>{
             const scroller = scrollingElement?document.querySelector(`${scrollingElement}`):findScrollingElement(parent, true);
@@ -78,7 +79,7 @@ export default function Overlay_Text(props) {
                 opacity: useOpacity?1:1,
                 ...build_extend_animation(defaultGsap, "from"),
                 ...build_extend_animation(extendAnimation, "from"),
-            })
+            });
 
             tl.to(el, {
                 opacity: useOpacity?0:1,
@@ -86,7 +87,7 @@ export default function Overlay_Text(props) {
                 ...build_extend_animation(defaultGsap, "to"),
                 duration,
                 ...build_extend_animation(extendAnimation, "to"),
-            })
+            });
             
             const triggerOptions =
                 typeof gsapScrollTrigger === "function"
@@ -103,8 +104,8 @@ export default function Overlay_Text(props) {
                     scrub: true,
                     scroller,
                     ...triggerOptions
-                })
-            }
+                });
+            };
 
             if(trigger==="inview"){
                 ScrollTrigger.create({
@@ -115,40 +116,29 @@ export default function Overlay_Text(props) {
                     animation: tl,
                     scroller,
                     ...triggerOptions
-                })
-            }
-        }, elements)
+                });
+            };
+        }, elements);
         
         return ()=>{
             ctx.revert();
-        }
+        };
     }
 
     useEffect(()=>{
         if(animationDimension == "y"){
-            const {eachWidth, lastWidth} = getLayerWidth(heightRef, allLayers.length, "width")
-            setLayerWidth({eachWidth, lastWidth})
+            const {eachWidth, lastWidth} = getLayerWidth(heightRef, allLayers.length, "width");
+            setLayerWidth({eachWidth, lastWidth});
         } else {
-            const {eachWidth, lastWidth} = getLayerWidth(heightRef, allLayers.length, "height")
-            setLayerHeight({eachWidth, lastWidth})
+            const {eachWidth, lastWidth} = getLayerWidth(heightRef, allLayers.length, "height");
+            setLayerHeight({eachWidth, lastWidth});
         }
     }, [])
 
     useLayoutEffect(()=>{
-        const anim = animate_func()
-        return anim
-    }, [
-        animation, 
-        animationOrder, 
-        scrollingElement, 
-        extendAnimation, 
-        gsapScrollTrigger, 
-        stagger, 
-        animationDirection,
-        overlay_text_animations,
-        tl,
-        trigger
-    ])
+        const anim = animate_func();
+        return anim;
+    }, [ props ]);
 
     return (
         <div  
@@ -162,7 +152,9 @@ export default function Overlay_Text(props) {
                 position: "relative",
                 ...containerStyle
             }}
+            onClick={onClick}
             className={`overlay_text_container ${containerClass}`}
+            
         >
             {
                 text?
@@ -179,8 +171,8 @@ export default function Overlay_Text(props) {
                         children.props.className, 
                         "text-parentz",
                         textClass
-                    ].filter(Boolean).join(" ")
-                })
+                    ].filter(Boolean).join(" ");
+                });
             }
 
             <div 
@@ -235,8 +227,8 @@ export default function Overlay_Text(props) {
                             >
                                 <RenderLayer data={data} index={index}/>
                             </div>
-                        )
-                    })
+                        );
+                    });
                 }
             </div>
         </div>

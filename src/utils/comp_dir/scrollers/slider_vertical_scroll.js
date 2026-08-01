@@ -2,9 +2,21 @@ import { Type } from "lucide-react";
 import { VerticalScrollProps } from "../../engineProps/VerticalScrollProps"
 import { getCode } from "../../../utils/helper";
 import Slider_Vertical_Scroll_Preview from "../../component_previews/scrollers/Sliders_vertical_Scroll_Preview";
+import { vertical_scroll_animations } from "@/utils/animlations/vertical_scroll_animation";
 
 const usageFunc = (setState)=>getCode("/codes/vertical_scroll/vertical_scroll_usage.txt", setState)
 const js_cs = (setState)=>getCode("/codes/vertical_scroll/vertical_scroll_js_cs.txt", setState)
+
+function getAnimationObj({func, name}){
+    let obj = ""
+    Object.entries(vertical_scroll_animations).forEach((each)=>{
+        const [key, val] = each;
+        if(key === name){
+            obj = JSON.stringify(val)
+        }
+    });
+    func(obj)
+}
 
 export const slider_vertical_scroll = {
     title: "Vertical Scroll",
@@ -36,6 +48,12 @@ export const slider_vertical_scroll = {
             // },
             codespack: [
                 {
+                    title: "Animation Styles",
+                    code: getAnimationObj,
+                    id: "special_functionaav",
+                    params: "special_function"
+                },
+                {
                     title: "Raw Code",
                     code: js_cs,
                     id: "Sakf"
@@ -50,7 +68,11 @@ export const slider_vertical_scroll = {
     //     }
     // ],
     // engine: "TextEngine",
-    preview: Slider_Vertical_Scroll_Preview,
+    preview: [
+        {
+            Preview: Slider_Vertical_Scroll_Preview
+        }
+    ],
     props: [
         ...VerticalScrollProps
     ]

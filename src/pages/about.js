@@ -8,7 +8,7 @@ function About(props) {
     return (
         <div>
             <Head>
-                <title>Z-Flux || About</title>
+                <title>Z-Flux | A Web animation library | About</title>
                 <meta name="description" content="The z-flux about page" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/z-flux-1.png" />

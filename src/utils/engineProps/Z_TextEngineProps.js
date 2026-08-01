@@ -99,7 +99,7 @@ export const Z_TextEngineProps = [
         name: "speed (or stagger)",
         type: "number",
         range: "Between 0.001 - 2",
-        description: "How fast or slow you want the animation to play.",
+        description: "How fast or slow you want the animation to play. (Use this to influence the duration of the animation)",
         more_des: <p>
             A good range is between 0.001 and 2 depending on your preferred progression. However, you can go out of the box
             <br />
@@ -244,20 +244,12 @@ timeline={tl}
     {
         name: "Keep this in mind",
         type: "",
-        description: "Learn more about the Text Engine",
+        description: "Learn more about this Engine",
         more_des: <p>
-            The underlying TextEngine template used in building this component is an extremely dynamic one, its built using gsap.
+            The underlying engine used in building this component is an extremely dynamic one, its built using gsap.
             <br />
             <br />
             The idea is to help you abstract the many lines of code you need to do stuffs with gsap (while dealing with texts)
-            <br />
-            <br />
-            With the extendAnimation prop, you can completely transform the entire outlook of the component.
-            <br />
-            By default, the animation in the engine is basically to transform the opacity from 0 to 1, you can overwrite this by setting the opacity to [1,1] (with extendAnimation),
-            You can also add more properties to style, for example if you have a big bold text, you can enlarge (scale) each character, word, lines, etc, as it fully reveals (scale: [0, 1]).
-            <br />
-            You can really do much more, its up to you.
             <br />
             <br />
             With the extendAnimation prop, you can completely transform the entire outlook of the component.
@@ -266,7 +258,7 @@ timeline={tl}
             Also with the timeline and scrolltrigger props, you can do much more, like play and pause the animation whenever you want, control the sequence of the animation, and so much more
             <br />
             <br />
-            I recommend that you have a basic knowledge of gsap, it would really make a difference.
+            I advice that you have a basic knowledge of gsap, it would really make a difference.
         </p>
     }
 ]
