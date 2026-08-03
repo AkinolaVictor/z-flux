@@ -1,9 +1,9 @@
-import { components } from "./components";
-import { cursors } from "./cursors";
+// import { components } from "./components";
+// import { cursors } from "./cursors";
 import { guide } from "./guide";
 import { allscrollers } from "./allscrollers";
 import { alltexts } from "./alltexts";
-import { alltransitions } from "./alltransitions";
+// import { alltransitions } from "./alltransitions";
 
 export const components_directories = [
     guide,

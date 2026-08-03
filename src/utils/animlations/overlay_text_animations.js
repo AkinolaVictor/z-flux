@@ -612,5 +612,5 @@ const useLocal = process.env.NEXT_PUBLIC_DEVELOPMENT_ENV==="local"?local:{}
 
 export const overlay_text_animations = {
     ...module,
-    // ...useLocal,
+    ...useLocal,
 }

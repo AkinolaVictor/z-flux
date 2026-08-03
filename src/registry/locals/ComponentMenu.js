@@ -63,6 +63,8 @@ function ComponentMenu(props) {
         setGeneralAlpha("modalToggle", false)
     }
 
+    // if(!components_directories?.length) return null
+
     return (
         <div className='w-full mt-5'>
 
@@ -134,9 +136,9 @@ function ComponentMenu(props) {
 
                                                                 <div className='flex items-center justify-center gap-1 hover:bg-[#3c3838] px-0.5 rounded-[5px]'>
                                                                     {
-                                                                        item_2?.grouped.length>1?
+                                                                        (item_2?.grouped && item_2?.grouped?.length>1)?
                                                                         <p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">
-                                                                            {item_2?.grouped.length}
+                                                                            {item_2?.grouped?.length}
                                                                         </p>:
                                                                         null
                                                                     }

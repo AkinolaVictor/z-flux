@@ -587,5 +587,5 @@ const useLocal = process.env.NEXT_PUBLIC_DEVELOPMENT_ENV==="local"?local:{}
 export const animation_list = {
     
     ...module,
-    // ...useLocal
+    ...useLocal
 }

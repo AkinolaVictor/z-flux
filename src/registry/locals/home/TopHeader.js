@@ -55,7 +55,7 @@ function TopHeader(props) {
                         <div className={`w-full h-0.5 bg-white ${path?.includes("/getting_started")?"opacity-100":"opacity-0"}`}/>
                     </div>
                 </Link>
-                <Link href={"/components/z_text_FilmRoll"}>
+                <Link href={"/components/z_text_Fade"}>
                     <div className=''>
                         <p className='mb-1'>Components</p>
                         <div className={`w-full h-0.5 bg-white ${path?.includes("/components")?"opacity-100":"opacity-0"}`}/>
