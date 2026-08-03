@@ -2,9 +2,9 @@ import { pad_x } from '../../../utils/helper'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
-// import {Z_Text} from "z-flux-react"
+import {Z_Text} from "z-flux-react"
 import Overlay_Text from '../../../registry/z-flux/texts/Overlay_Text'
-import Z_Text from '../../z-flux/texts/Z_Text'
+// import Z_Text from '../../z-flux/texts/Z_Text'
 
 
 function HomeDescription(props) {
@@ -59,6 +59,9 @@ function HomeDescription(props) {
             <div className='flex justify-center items-center gap-1 flex-wrap text-black text-[13px] '>
                 <div className='min-w-10 min-h-10 rounded-full bg-blue-100s flex justify-center items-center'>
                     <img src="react.png" alt="react icon" className='w-9 h-9' />
+                </div>
+                <div className='min-w-10 min-h-10 rounded-full bg-blue-100s flex justify-center items-center'>
+                    <img src="nextjs.png" alt="react icon" className='w-16 h-16 rounded-full' />
                 </div>
                 {/* <div className='min-w-10 min-h-10 rounded-full bg-blue-100s flex justify-center items-center'>
                     <img src="vue.png" alt="vue icon" className='w-11 h-11' />
