@@ -1,7 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { build_extend_animation, countNumbers, findScrollingElement, randomizeArray, getLayerWidth,  overlay_text_animations} from 'z-flux-utils';
+import { build_extend_animation, countNumbers, findScrollingElement, randomizeArray, getLayerWidth, overlay_text_animations  } from 'z-flux-utils';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -52,8 +52,8 @@ export default function Overlay_Text(props) {
         controllerRef.current = tl
     }
     
-    const anim = overlay_text_animations[animation]
-    const {defaultGsap, animation_origins, animationStyles} = anim
+    const anim = overlay_text_animations[animation] || overlay_text_animations["VerticalReveal"]
+    const {defaultGsap, animation_origins} = anim
 
     function animate_func(){
         if(trigger=="none") return
@@ -61,7 +61,6 @@ export default function Overlay_Text(props) {
         const parent = heightRef.current
         if(!parent) return
         const elements = [...parent.children]
-        
         
         const el = (
             animationOrder==="reverse"?
@@ -137,7 +136,20 @@ export default function Overlay_Text(props) {
     useLayoutEffect(()=>{
         const anim = animate_func()
         return anim
-    }, [ props ])
+    }, [
+        scrollingElement,
+        trigger,
+        timeline,
+        stagger,
+        duration,
+        animationOrder,
+        animation,
+        animationDimension,
+        extendAnimation,
+        gsapScrollTrigger,
+        useOpacity,
+        animationDirection,
+    ])
 
     return (
         <div  
@@ -220,7 +232,6 @@ export default function Overlay_Text(props) {
                                     display: "flex",
                                     justifyContent: "center",
                                     alignItems: "center",
-                                    ...animationStyles,
                                     ...layerStyle
                                 }}
                             >

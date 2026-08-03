@@ -188,3 +188,38 @@ export default function VerticalScroll(props) {
     )
 }
 
+
+
+
+
+
+I just built a new web component for my web animation library, i need you to do something for me, should i share you the code?
+
+i need you to build a lot of animation presets for this engine, the presets should be from a wide range of genre, ensure to make them outstanding, and well named.
+Here's an example and patter of what each preset should look like.
+
+anmiationName: {
+    property1: [from_value, to_value],
+    property2: [from_value, to_value],
+    ...
+}
+
+Here's a real example:
+let animation = {
+    FlapRotate: {
+        scaleY: [1, 0],
+        scaleX: [1, 0],
+        rotate: [0, 120],
+        duration: [null, 1.5],
+        borderRadius: ["0%", "100%"],
+    },
+    PeelUp: {
+        scaleX: [1, 0],
+        scaleY: [1, 0],
+        x: [0, -185],
+        y: [0, -185],
+        duration: [null, 1.5]
+    },
+}
+
+Write me a list of amazing presets

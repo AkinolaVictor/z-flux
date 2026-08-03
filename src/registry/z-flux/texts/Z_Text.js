@@ -1,6 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import React, { useEffect, useRef, useState } from 'react';
-import { animation_list, build_extend_animation, findScrollingElement, getProgressionData, randomizeArray } from 'z-flux-utils';
+import { build_extend_animation, findScrollingElement, getProgressionData, randomizeArray, z_text_animations } from 'z-flux-utils';
 import gsap from 'gsap';
 import { SplitText } from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -34,7 +34,7 @@ export default function Z_Text(props) {
     const playOnScroll = trigger==="onscroll"
     const playInView = trigger==="inview"
     const paused = playOnScroll || playInView
-    const useAnimation = animation_list[animation] ?? {}
+    const useAnimation = z_text_animations[animation] ?? {}
 
     const tl = timeline ?? gsap.timeline({ 
         paused, 
@@ -182,7 +182,16 @@ export default function Z_Text(props) {
             scope: containerRef,
             dependencies: [
                 resizeTick,
-                props
+                scrollingElement,
+                progression,
+                animation,
+                animationOrder,
+                trigger,
+                delay,
+                speed,
+                stagger,
+                gsapScrollTrigger,
+                extendAnimation,
             ]
         }
     );

@@ -1,15 +1,8 @@
 import { Type } from "lucide-react";
-// import {texts_fade} from "./texts/text_fade"
-// import {texts_fade_overlay} from "./texts/text_fade_overlay"
-// import {texts_fade_skew} from "./texts/text_fade_skew"
-// import {texts_fade_skew_2} from "./texts/text_fade_skew_2"
-// import {texts_fade_down} from "./texts/text_fade_down"
 import {z_text_proto} from "./texts/z_text_proto"
 import {overlay_text_proto} from "./texts/overlay_text_proto"
-// import {texts_texter} from "./texts/text_texter"
 import { animation_list } from "../animlations/animation_list";
 import { overlay_text_animations } from "../animlations/overlay_text_animations";
-// import { textPack_animations } from "../animlations/textPack_animations";
 
 
 function z_text(){

@@ -39,18 +39,17 @@ function ComponentDetails(props) {
     const path = usePathname()
     const comp_data = get_component_data(path)
     const showcode = `${"js"}_${"cs"}`
-    const [reloader, setReloader] = useState(false)
     const [codeArr, setCodeArr] = useState([])
     const [codeArr2, setCodeArr2] = useState([])
     let timeout;
 
     useEffect(()=>{
-        setReloader(true)
+        if(!previewScroll.current) return
         timeout = setTimeout(() => {
-            setReloader(false)
+            previewScroll?.current?.scrollTo({top: 0, behaviour: "smooth"})
         }, 30);
         return ()=>clearTimeout(timeout)
-    }, [path])
+    }, [path, previewScroll])
     
     // useEffect(()=>{
     //     if(!comp_data) return
@@ -276,11 +275,7 @@ function ComponentDetails(props) {
                                     >
                                         <div ref={previewScroll} data-scroll-behavior="smooth" className={`component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
                                             <div ref={previewContent} className='w-full h-full'>
-                                                {
-                                                    reloader?
-                                                    null:
-                                                    <Preview />
-                                                }
+                                                <Preview />
                                             </div>
                                         </div>
 

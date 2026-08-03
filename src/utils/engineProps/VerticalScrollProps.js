@@ -2,6 +2,14 @@ import CodeBlock_Custom from "../../registry/locals/CodeBlock_Custom"
 
 export const VerticalScrollProps = [
     {
+        name: "animation",
+        type: "string",
+        // range: "true | false",
+        description: "Which Animation you want. Often the title of this current page.",
+        // more_des: "Many more explanation to help understand better",
+        // value: true
+    },
+    {
         name: "style",
         type: "object",
         description: "An object containing all the styles you want to add to the scroll container",
@@ -85,12 +93,40 @@ export const VerticalScrollProps = [
         value: 12
     },
     {
+        name: "timeline",
+        type: "gsap timeline",
+        range: "your own gsap.timeline()",
+        description: "If you want this animation to play sequentially with regards to you own timeline",
+        more_des: <CodeBlock_Custom>{`// if you have your own gsap timeline (for example)
+const tl = gsap.timeline()
+// then pass it to the component, as in
+timeline={tl}
+        `}</CodeBlock_Custom>,
+    },
+    {
         name: "gsapScrollTrigger",
         type: "object",
         // range: "true | false",
         description: "Control the scrollTrigger by adding more details to it",
         more_des: <p>
             Basically everything that works in a gsap scrollTrigger also work here, 
+            <br />
+            <br />
+            Check Z_Text usage section for example
+        </p>,
+        value: true
+    },
+    {
+        name: "extendAnimation",
+        type: "object",
+        range: <p>sample: {`{color: ["blue", "red"]}`}</p>,
+        description: "Add more styles to the animation.",
+        more_des: <p>
+            Extend the animation beyond the current state, you can animate any css gsap enabled properties, 
+            primarily any style you can animate using gsap also works here (check the usage section for better example)
+            <br />
+            <br />
+            Check Z_Text usage section for example
         </p>,
         value: true
     },

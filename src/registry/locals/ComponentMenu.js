@@ -111,7 +111,7 @@ function ComponentMenu(props) {
                                                 const {title, href, id, hide, parent, grouped, taken} = item_2
                                                 
                                                 if(parent){
-                                                    const hid2 = !toggleState2.includes(item_2.id)
+                                                    const hid2 = toggleState2.includes(item_2.id)
                                                     let isActive = false
                                                     for(let i=0; i<grouped.length; i++){
                                                         const checker = grouped[i].href === path
@@ -134,10 +134,11 @@ function ComponentMenu(props) {
 
                                                                 <div className='flex items-center justify-center gap-1 hover:bg-[#3c3838] px-0.5 rounded-[5px]'>
                                                                     {
-                                                                        item_2?.grouped.length>1&&
+                                                                        item_2?.grouped.length>1?
                                                                         <p className="text-[10px] px-2 py-1 flex justify-center items-center darkbg rounded-full">
                                                                             {item_2?.grouped.length}
-                                                                        </p>
+                                                                        </p>:
+                                                                        null
                                                                     }
                                                                     {
                                                                         !hid2?
