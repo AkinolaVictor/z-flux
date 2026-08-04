@@ -43,6 +43,7 @@ function ComponentDetails(props) {
     const [codeArr2, setCodeArr2] = useState([])
     const [reloadPreview, setReloadPreview] = useState(false)
     let timeout;
+    let timeout2;
 
     useEffect(()=>{
         if(!previewScroll.current) return
@@ -55,6 +56,10 @@ function ComponentDetails(props) {
     useEffect(()=>{
         if(reloadPreview==false) return
         setReloadPreview(false)
+        timeout2 = setTimeout(() => {
+            previewScroll?.current?.scrollTo({top: 0, behaviour: "smooth"})
+        }, 30);
+        return ()=>clearTimeout(timeout2)
     }, [reloadPreview])
     
     // useEffect(()=>{
