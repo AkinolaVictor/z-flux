@@ -223,3 +223,12 @@ let animation = {
 }
 
 Write me a list of amazing presets
+
+
+
+
+i am planning on launching my web animation library today, i need ideas on how to go about this
+
+Currently it only works for react and nextjs, i plan to extend functionality to vue.js later
+
+how do i make a public and viral launch of it

@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronUp, CodeXml, Copy, Eye } from 'lucide-react'
+import { ChevronDown, ChevronUp, CodeXml, Copy, Eye, RefreshCw, RotateCw } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { hybrid } from 'react-syntax-highlighter/dist/esm/styles/hljs';
@@ -41,6 +41,7 @@ function ComponentDetails(props) {
     const showcode = `${"js"}_${"cs"}`
     const [codeArr, setCodeArr] = useState([])
     const [codeArr2, setCodeArr2] = useState([])
+    const [reloadPreview, setReloadPreview] = useState(false)
     let timeout;
 
     useEffect(()=>{
@@ -50,6 +51,11 @@ function ComponentDetails(props) {
         }, 30);
         return ()=>clearTimeout(timeout)
     }, [path, previewScroll])
+
+    useEffect(()=>{
+        if(reloadPreview==false) return
+        setReloadPreview(false)
+    }, [reloadPreview])
     
     // useEffect(()=>{
     //     if(!comp_data) return
@@ -150,12 +156,6 @@ function ComponentDetails(props) {
     }
 
     const ThisPreview = comp_data.preview
-    // let overlay = {
-    //     opacity: [0.2, 1],
-    //     ssd: [1,2]
-    // }
-    // const dd = JSON.stringify(overlay)
-    // console.log({overlay, dd})
 
     return (
         <div>
@@ -273,9 +273,16 @@ function ComponentDetails(props) {
                                         
                                         className='w-full min-h-122 h-122 mb-5 flex flex-col justify-start relatives items-start border border-[#757070] rounded-[13px] p-2'
                                     >
-                                        <div ref={previewScroll} data-scroll-behavior="smooth" className={`component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
+                                        <div ref={previewScroll} data-scroll-behavior="smooth" className={`relative component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
+                                            <div onClick={()=>{setReloadPreview(true)}} className='flex justify-center items-center w-11 h-11 rounded-full ml-auto sticky top-3 right-3 z-2 darkbg cursor-pointer'>
+                                                <RefreshCw size={18}/>
+                                            </div>
                                             <div ref={previewContent} className='w-full h-full'>
-                                                <Preview />
+                                                {
+                                                    reloadPreview?
+                                                    null:
+                                                    <Preview />
+                                                }
                                             </div>
                                         </div>
 

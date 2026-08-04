@@ -1,11 +1,11 @@
 import { Type } from "lucide-react";
-import { VerticalScrollProps } from "../../engineProps/VerticalScrollProps"
-import { getCode } from "../../../utils/helper";
-import Slider_Vertical_Scroll_Preview from "../../component_previews/scrollers/Sliders_vertical_Scroll_Preview";
+import { getCode } from "../../helper";
 import { vertical_scroll_animations } from "@/utils/animlations/vertical_scroll_animation";
+import { DualScrollProps } from "@/utils/engineProps/DualScrollProps";
+import Dual_scroll_preview from "@/utils/component_previews/scrollers/Dual_scroll_preview";
 
-const usageFunc = (setState)=>getCode("/codes/vertical_scroll/vertical_scroll_usage.txt", setState)
-const js_cs = (setState)=>getCode("/codes/vertical_scroll/vertical_scroll_js_cs.txt", setState)
+const usageFunc = (setState)=>getCode("/codes/dual_scroll/dual_scroll_usage.txt", setState)
+const js_cs = (setState)=>getCode("/codes/dual_scroll/dual_scroll_js_cs.txt", setState)
 
 function getAnimationObj({func, name}){
     let obj = ""
@@ -18,18 +18,18 @@ function getAnimationObj({func, name}){
     func(obj)
 }
 
-export const slider_vertical_scroll = {
-    title: "Vertical Scroll",
-    href: "/components/vertical_scroll",
+export const dual_scroll_scroller = {
+    title: "Dual Scroll",
+    href: "/components/dual_scroll",
     date_published: "18-07-2026",
     id: "vertical_scroll",
     section: "Scrollers",
     Icon: ()=><Type size={"13px"}/>,
-    description: "Converts the vertical scroll to a horizontal movement for the list of items",
+    description: "Implements different types of scroll for two list of items",
     // concept: "Description of the way this was achieved",
     setup: {
         cli: {
-            npm: "npx shadcn add https://z-flux.vercel.app/r/VerticalScroll.json",
+            npm: "npx shadcn add https://z-flux.vercel.app/r/DualScroll.json",
             npm_react: "npm i z-flux-react",
             npm_vue: "npm i z-flux-vue",
             // usage: usageFunc,
@@ -70,10 +70,10 @@ export const slider_vertical_scroll = {
     // engine: "TextEngine",
     preview: [
         {
-            Preview: Slider_Vertical_Scroll_Preview
+            Preview: Dual_scroll_preview
         }
     ],
     props: [
-        ...VerticalScrollProps
+        ...DualScrollProps
     ]
 }
