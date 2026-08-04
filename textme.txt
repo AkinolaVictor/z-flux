@@ -258,7 +258,40 @@ let's start with linkedin and X,
 create a post for linkedin that helps me attract componies and developers (to get a job), and projects the excellence of the library.
 
 For context,
-There are 3 main animation engines i built, and i multiplied their effect by creating 145 presets by propmting AI
+There are 3 main animation engines i built for now (i would be building more soon), and i multiplied their effect by creating 145 presets by propmting AI
 The engine is built in such a way that all animations are extendable, more stylings can be added to them
 In case the developer wants to build something from scratch, they can use the engine to craft their own unique animation from scratch,all the hard part are already abstracted, all they need to do is input the required styles to animate
+Its very easy to use
+Proper documentation on the website 
+website: https://z-flux.vercel.app
+I am proud of the architectural structure of each of the engines, its built in such an extensible way
+whild building i launched two main npm modules z-flux-utils (for utilities function, which helps makes it easy for me to write each engine in other frameworks like vue, later in the future, by centralizing these necessary functions)
+and z-flux-react (which i currently ready to be deployed to production ready react and next projects)
 
+
+That led me to building a library of reusable animation engines...
+
+
+
+reconstruct the post below to include this new context:
+I am proud of the architectural structure of each of the engines, its built in such an extensible way
+whild building i launched two main npm modules z-flux-utils (for utilities function, which helps makes it easy for me to write each engine in other frameworks like vue, later in the future, by centralizing these necessary functions)
+and z-flux-react (which i currently ready to be deployed to production ready react and next projects)
+
+
+Split this post into two
+1. mainly for launch
+2. to talk about the architectural design and construction
+make each post between 150 and 250 words
+
+
+
+
+Now do the same for x.
+Create two posts
+1. mainly for launch
+2. to talk about the architectural design and construction
+Remember that x does not take in much texts, about 250 text characters
+
+
+https://scrnli.com/webm-to-mp4-converter

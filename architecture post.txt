@@ -2,23 +2,62 @@ linkedin
 
 One of my goals while building **Z-Flux** wasn't just to create an animation library—it was to design an architecture that could continue to grow without becoming difficult to maintain.
 
-Rather than hardcoding hundreds of animations, I started by building **three extensible animation engines** that abstract the complex parts of animation creation while allowing developers to extend existing effects or create entirely new ones.
+
+
+Rather than hardcoding hundreds of animations, I started by building extensible animation engines that abstract the complex parts of animation creation while allowing developers to extend existing effects or create entirely new ones.
+
+
 
 As the project evolved, I separated the architecture into two npm packages:
 
+
+
 📦 **z-flux-utils** – a shared utilities package containing the core abstractions that power every animation engine. This makes future framework support, such as Vue, much easier without duplicating core logic.
+
+
 
 📦 **z-flux-react** – the React and Next.js implementation built on top of those shared utilities and ready for production applications.
 
-That architecture now powers **145 animation presets**, but the presets are really just examples of what the engines can produce.
+
+
+That architecture now powers 140+ animation presets, but the presets are really just examples of what the engines can produce.
+
+
 
 Designing reusable APIs, package boundaries, and an extensible foundation has been one of the most rewarding engineering challenges I've taken on, and it's shaped how I think about building scalable frontend systems.
 
+
+
 If you're interested in frontend architecture, developer tooling, or reusable UI systems, I'd love to hear your thoughts.
+
+
 
 🌐 https://z-flux.vercel.app
 
+
+
 #SoftwareEngineering #OpenSource #React #Frontend #DeveloperTools #Architecture #JavaScript
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -32,14 +71,14 @@ X
 
 I didn't want to build 145 animations.
 
-I wanted to build **3 animation engines** capable of producing hundreds.
+I wanted to build **3+ animation engines** capable of producing hundreds.
 
 The result?
 
 📦 z-flux-utils → shared architecture
 📦 z-flux-react → production-ready React package
 
-145 presets are just the proof.
+140+ presets are just the proof.
 
 🌐 https://z-flux.vercel.app
 

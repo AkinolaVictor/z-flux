@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }) {
     <Provider store={dataStore}>
       <div ref={parent} className="relative" >
         {/* <ReactLenis root  options={{ autoRaf: false }} ref={lenisRef}/> */}
-        <div ref={content}>
+        <div ref={content} className="relative">
           <Component {...pageProps} />
           <ModalContainer />
         </div>

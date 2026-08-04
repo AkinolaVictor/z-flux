@@ -272,16 +272,16 @@ function ComponentDetails(props) {
                             ThisPreview.map((item, index)=>{
                                 const {title, Preview} = item
                                 return (
-                                <div key={index} className={`${index==0?"my-5":"mb-5"}`}>
+                                <div key={index} className={`${index==0?"my-5":"mb-5"} relative`}>
                                     <p className='text-[16px] py-3 font-bold'>{title}</p>
                                     <div
                                         
-                                        className='w-full min-h-122 h-122 mb-5 flex flex-col justify-start relatives items-start border border-[#757070] rounded-[13px] p-2'
+                                        className='relative w-full min-h-122 h-122 mb-5 flex flex-col justify-start relatives items-start border border-[#757070] rounded-[13px] p-2'
                                     >
+                                        <div onClick={()=>{setReloadPreview(true)}} className='flex justify-center items-center w-11 h-11 rounded-full ml-auto absolute top-3 right-6 z-2 darkbg cursor-pointer'>
+                                            <RefreshCw size={18}/>
+                                        </div>
                                         <div ref={previewScroll} data-scroll-behavior="smooth" className={`relative component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>
-                                            <div onClick={()=>{setReloadPreview(true)}} className='flex justify-center items-center w-11 h-11 rounded-full ml-auto sticky top-3 right-3 z-2 darkbg cursor-pointer'>
-                                                <RefreshCw size={18}/>
-                                            </div>
                                             <div ref={previewContent} className='w-full h-full'>
                                                 {
                                                     reloadPreview?

@@ -39,14 +39,15 @@ I'd love to hear what fellow developers think, and if you're building products t
 X launch
 🚀 Introducing **Z-Flux**.
 
-An animation library built around **3 extensible animation engines** that power **145 unique presets**.
+An animation library built around **extensible animation engines** that power **140+ unique presets**.
 
 ⚛️ React & Next.js
 🛠️ Fully customizable
 📚 Interactive docs & live previews
+📚 Open-Source
 
 This is just the beginning.
 
 🌐 https://z-flux.vercel.app
 
-#react #nextjs #opensource #webdev
+#react #nextjs #opensource #webdev #gsap #frontend

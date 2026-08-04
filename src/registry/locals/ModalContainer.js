@@ -14,7 +14,7 @@ function ModalContainer(props) {
     
     if(!modalToggle) return null
     return (
-        <div onClick={closeModal} className='w-screen h-screen bg-[#00000093] flex justify-center items-center absolute top-0 left-0'>
+        <div onClick={closeModal} className='w-screen h-screen bg-[#00000093] flex justify-center items-center absolute top-0 left-0 z-10'>
             <div className=''>
                 {
                     modal_state=="list"?
