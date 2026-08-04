@@ -1,5 +1,6 @@
 import { GalleryVertical } from "lucide-react";
 import {slider_vertical_scroll} from "./scrollers/slider_vertical_scroll"
+import {dual_scroll_scroller} from "./scrollers/dual_scroll_scroller"
 import { vertical_scroll_animations } from "../animlations/vertical_scroll_animation";
 
 
@@ -43,5 +44,6 @@ export const allscrollers = {
         // slider_vertical_scroll,
         vertical_scroll_parent,
         ...vertical_scroll_content,
+        // dual_scroll_scroller
     ]
 }
