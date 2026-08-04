@@ -83,6 +83,10 @@ const restartFunction = ()=>if(controller.current?.restart) controller.current?.
 <Overlay_Text 
     animation={/* NAME OF ANIMATION */}
     trigger={"onscroll"}
+    gsapScrollTrigger={{
+        start: "top 70%", // start this animation when the "top" of this text reach "70%" height of the screen
+        end: "top 15%" // end this animation when the "top" of this text reach "15%" height of the screen
+    }}
     scrollingElement={'.scrollable_parent_container'}  
     text="This text responds directly to your scrolling. As you scroll, more of the content is gradually revealed, creating a smooth, interactive reading experience. Stop scrolling, and the animation pauses instantly. The farther you scroll, the more you uncover; scroll less, and only part of the text is revealed."
 />

@@ -1,8 +1,8 @@
 import { alltexts } from "../../../utils/comp_dir/alltexts"
-import Z_Text from "../../../registry/z-flux/texts/Z_Text"
+// import Z_Text from "../../../registry/z-flux/texts/Z_Text"
 import { useEffect, useRef, useState } from "react"
 import { usePathname } from "next/navigation"
-// import { Z_Text } from "z-flux-react"
+import { Z_Text } from "z-flux-react"
 
 export default function Z_Text_Preview() {
 
@@ -71,25 +71,29 @@ export default function Z_Text_Preview() {
                     className='text-[15px] w6:text-[20px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum"}
                 />
-                <Z_Text
+                {/* <Z_Text
                     animation={anim}
                     trigger={"inview"}
                     animationOrder={"lastToFirst"}
                     className='text-[28px] w6:text-[40px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum"}
-                />
-                <Z_Text
+                /> */}
+                {/* <Z_Text
                     animation={anim}
                     trigger={"onscroll"}
                     progression={"word"}
-                    animationOrder={"lastToFirst"}
                     className='text-[28px] w6:text-[40px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum dolor"}
-                />
+                    animationOrder={"lastToFirst"}
+                /> */}
                 <Z_Text
                     animation={anim}
                     trigger={"onscroll"}
+                    animationOrder={"lastToFirst"}
                     progression={"char"}
+                    gsapScrollTrigger={{
+                        end: "top 15%"
+                    }}
                     speed={0.2}
                     className='text-[38px] w6:text-[80px] flex justify-center items-center font-bold text-center'
                     text={"Lorem ipsum"}
@@ -121,6 +125,9 @@ export default function Z_Text_Preview() {
                     animationOrder={"random"}
                     className='text-[13px] w6:text-[16px] py-4'
                     trigger={"onscroll"}
+                    gsapScrollTrigger={{
+                        end: "top 15%"
+                    }}
                     // speed={0.05}
                     text={`
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 

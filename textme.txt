@@ -232,3 +232,17 @@ i am planning on launching my web animation library today, i need ideas on how t
 Currently it only works for react and nextjs, i plan to extend functionality to vue.js later
 
 how do i make a public and viral launch of it
+
+
+
+i have a stunning landing page
+
+all the documentation is in the website, not in the readme.md file of github --- is this a problem
+
+there is an easy to use preview section in the website
+
+there are 145 different and unique animation present Examples created with 3 animation engines i already created using gsap
+
+i have not made any video yet
+
+give me a list of 5 most important places to launch

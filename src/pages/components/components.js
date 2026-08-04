@@ -6,13 +6,9 @@ import ComponentProperties from '../../registry/locals/ComponentProperties'
 import Footer from '../../registry/locals/Footer'
 import TopHeader from '../../registry/locals/home/TopHeader'
 import { pad_x, pad_x_2 } from '../../utils/helper'
-import { ChevronUp, CodeXml, Copy, Eye } from 'lucide-react'
 import Head from 'next/head'
 import { usePathname, useRouter } from 'next/navigation'
-// import React from 'react'
 import { useSelector } from 'react-redux'
-// import { useLenisScroll } from '@/utils/UseLenisScroll'
-// import "../../"
 
 
 function Components(props) {
@@ -32,6 +28,15 @@ function Components(props) {
     // useLenisScroll(leftScroll, leftContent)
     // useLenisScroll(middleScroll, middleContent)
     // useLenisScroll(rightScroll, rightContent)
+    
+    // let timeout;
+    // useEffect(()=>{
+    //     if(!middleScroll.current) return
+    //     timeout = setTimeout(() => {
+    //         middleScroll?.current?.scrollTo({top: 0, behaviour: "smooth"})
+    //     }, 30);
+    //     return ()=>clearTimeout(timeout)
+    // }, [path, middleScroll])
     
     return (
         <div 
