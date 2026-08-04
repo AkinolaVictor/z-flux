@@ -278,7 +278,7 @@ function ComponentDetails(props) {
                                         
                                         className='relative w-full min-h-122 h-122 mb-5 flex flex-col justify-start relatives items-start border border-[#757070] rounded-[13px] p-2'
                                     >
-                                        <div onClick={()=>{setReloadPreview(true)}} className='flex justify-center items-center w-11 h-11 rounded-full ml-auto absolute top-3 right-6 z-2 darkbg cursor-pointer'>
+                                        <div onClick={()=>{setReloadPreview(true)}} className='flex justify-center items-center w-11 h-11 rounded-full ml-auto absolute top-3 right-4 z-2 darkbg cursor-pointer'>
                                             <RefreshCw size={18}/>
                                         </div>
                                         <div ref={previewScroll} data-scroll-behavior="smooth" className={`relative component-preview-container w-full py-2 min-h-full h-full bg-amber-600s rounded-2xl_e overflow-x-hidden overflow-y-auto`}>

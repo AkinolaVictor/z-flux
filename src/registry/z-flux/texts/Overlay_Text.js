@@ -1,7 +1,15 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { build_extend_animation, countNumbers, findScrollingElement, randomizeArray, getLayerWidth, overlay_text_animations  } from 'z-flux-utils';
+import { 
+    build_extend_animation, 
+    countNumbers, 
+    findScrollingElement, 
+    randomizeArray, 
+    getLayerWidth, 
+    // overlay_text_animations  
+} from 'z-flux-utils';
+import { overlay_text_animations } from '@/utils/animlations/overlay_text_animations';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -53,7 +61,7 @@ export default function Overlay_Text(props) {
     }
     
     const anim = overlay_text_animations[animation] || overlay_text_animations["VerticalReveal"]
-    const {defaultGsap, animation_origins} = anim
+    const {defaultGsap, animation_origins, color} = anim
 
     function animate_func(){
         if(trigger=="none") return
@@ -223,7 +231,7 @@ export default function Overlay_Text(props) {
                                         last?lastWidth:eachWidth
                                     ),
                                     willChange: "transform",
-                                    background: layerColor,
+                                    background: color||layerColor,
                                     transformOrigin: (
                                         typeof(animationDirection)=="number"?
                                         animation_origins[animationDirection] || "center":

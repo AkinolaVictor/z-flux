@@ -611,6 +611,28 @@ const local = {
 const useLocal = process.env.NEXT_PUBLIC_DEVELOPMENT_ENV==="local"?local:{}
 
 export const overlay_text_animations = {
+    // OpacityX: {
+    //     defaultGsap: {
+    //         scaleX: [1, 0],
+    //     },
+    //     animation_origins: [
+    //         origins.right, //def
+    //         origins.left,
+    //         origins.center,
+    //     ],
+    //     color: "rgba(0,0,0,0.8)"
+    // },
+    // OpacityY: {
+    //     defaultGsap: {
+    //         scaleY: [1, 0],
+    //     },
+    //     animation_origins: [
+    //         origins.bottom, //def
+    //         origins.center,
+    //         origins.top,
+    //     ],
+    //     color: "rgba(0,0,0,0.8)"
+    // },
     ...module,
     ...useLocal,
 }
