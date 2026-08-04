@@ -246,3 +246,19 @@ there are 145 different and unique animation present Examples created with 3 ani
 i have not made any video yet
 
 give me a list of 5 most important places to launch
+
+
+
+
+
+create a post for x that helps attract developers to join in building the library, they can also add their own animations, also to atttract companies to give me job
+
+let's start with linkedin and X,
+
+create a post for linkedin that helps me attract componies and developers (to get a job), and projects the excellence of the library.
+
+For context,
+There are 3 main animation engines i built, and i multiplied their effect by creating 145 presets by propmting AI
+The engine is built in such a way that all animations are extendable, more stylings can be added to them
+In case the developer wants to build something from scratch, they can use the engine to craft their own unique animation from scratch,all the hard part are already abstracted, all they need to do is input the required styles to animate
+

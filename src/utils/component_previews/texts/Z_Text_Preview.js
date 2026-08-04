@@ -200,6 +200,15 @@ export default function Z_Text_Preview() {
             </div>
 
             <div className='w-full min-h-full flex flex-col justify-center items-center relative p-3'>
+                
+                <Z_Text
+                    animation={anim}
+                    trigger={"inview"}
+                    className='text-[20px] w6:text-[30px] flex justify-center items-center font-bold text-center py-5 text-amber-200'
+                    text={"Control Animation"}
+
+                />
+
                 <Z_Text
                     animation={anim}
                     className='text-[15px] w6:text-[20px]'
@@ -207,7 +216,9 @@ export default function Z_Text_Preview() {
                     style={{color: "white"}}
                     trigger={"inview"}
                     text={`
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut inventore corrupti odio 
+                        harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
+                        harum ducimus sequi animi tempora ad, enim, facere nemo dolor qui obcaecati maxime. 
                     `}
                 />
 

@@ -1,0 +1,52 @@
+linkedin launch
+
+
+🚀 I'm excited to finally launch **Z-Flux**!
+
+Over the past few months, I've been building an animation library with one goal in mind:
+
+**Make advanced web animations easy to build without sacrificing flexibility.**
+
+Instead of creating a collection of disconnected effects, I built **three reusable animation engines** that power the library. To demonstrate what those engines can do, I created **145 unique animation presets**—all built on the same extensible architecture.
+
+Whether you want to use a preset as-is, customize it, or build something entirely new, the underlying engines handle the complex animation logic so you can focus on creating great user experiences.
+
+Current highlights:
+
+✨ 3 extensible animation engines
+🎨 145 animation presets
+⚛️ Production-ready for React & Next.js
+🛠️ Fully customizable animations
+📚 Interactive documentation and live previews
+
+This is only the beginning. More animation engines and framework support—including Vue—are already on the roadmap.
+
+I'd love to hear what fellow developers think, and if you're building products that care about polished user experiences, I'd love for you to give Z-Flux a try.
+
+🌐 https://z-flux.vercel.app
+
+#OpenSource #React #NextJS #Frontend #JavaScript #Animation #DeveloperTools #GSAP
+
+
+
+
+
+
+
+
+
+
+X launch
+🚀 Introducing **Z-Flux**.
+
+An animation library built around **3 extensible animation engines** that power **145 unique presets**.
+
+⚛️ React & Next.js
+🛠️ Fully customizable
+📚 Interactive docs & live previews
+
+This is just the beginning.
+
+🌐 https://z-flux.vercel.app
+
+#react #nextjs #opensource #webdev
